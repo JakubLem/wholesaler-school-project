@@ -1,1 +1,7 @@
-# -wholesaler-school-project
+# wholesaler-school-project
+
+
+# Konfiguracja środowiska:
+
+
+
