@@ -1,2 +1,3 @@
 DATABASE_NAME=
+
 TEST=
