@@ -43,4 +43,7 @@ W przeglądarce należy wpisać link: `localhost/wholesaler-school-project/`
 - Zamknięcie aplikacji:
 --
 
-1. Należy wyłączyć usługi
+1. Należy wyłączyć usługi:
+- wyłączyć usługi Apache oraz MySQL w XAMPP Control Panel
+- wykonać w konsoli `CTRL+C` aby zatrzymać pracę aplikacji 
+oraz `deactivate` aby wyłączyć wirtualne środowisko
