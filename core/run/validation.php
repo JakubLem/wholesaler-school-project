@@ -10,11 +10,7 @@ class Validation {
     }
 }
 
-require_once('env_validation.php');
-
-
-
-
+include_once('env_validation.php');
 
 function validate() {
     try {
