@@ -7,3 +7,5 @@ print_r($_ENV);
 $db = get_db();
 $GLOBALS['db'] = $db;
 
+@include_once(__DIR__. '/sites/start.php');
+@include_once(__DIR__. '/sites/stop.php');

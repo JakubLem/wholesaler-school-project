@@ -21,6 +21,10 @@ class MyDatabase {
     public $valid;
     public $last_response;
 
+    public function close_connection() {
+        $this->conn->close();
+    }
+
     private function check_connection() {
         if(mysqli_connect_errno()){
             $this->valid = FALSE;
@@ -33,6 +37,7 @@ class MyDatabase {
         $this->data = new ConnectionData($dbsname, $dbusername, $dbpassword, $dbname);
         $this->conn = mysqli_connect($dbsname, $dbusername, $dbpassword, $dbname);
         $this->check_connection();
+        $this->close_connection();
     }
 
     private function sql_request_validation($sql_request) {
@@ -65,10 +70,6 @@ class MyDatabase {
         return $this->last_response;
     }
 
-    public function close_connection() {
-        $this->conn->close();
-    }
-
     public function get_connection() {
         $this->conn = mysqli_connect(
             $this->data->dbsname, 
@@ -76,5 +77,6 @@ class MyDatabase {
             $this->data->dbpassword, 
             $this->data->dbname
         );
+        $this->check_connection();
     }
 }
