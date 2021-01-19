@@ -10,18 +10,3 @@ function get_db() {
     $db = new MyDatabase($dbsname, $dbusername, $dbpassword, $dbname);
     return $db;
 }
-
-
-
-/*
-    if(mysqli_connect_errno()){
-        echo "Fail";
-        exit();
-    } 
-    echo "super";
-    
-    $result = $conn->query("SELECT * FROM olejki");
-    while($row = $result->fetch_assoc()) {
-        print_r($row);
-    }
-}*/
