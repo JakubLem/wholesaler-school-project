@@ -6,7 +6,9 @@ function validate_env() {
 
     $valid_env = array(
         'DATABASE_NAME',
-        'TEST',
+        'DBUSERNAME',
+        'DBPASSWORD',
+        'DBNAME'
     );
     
     foreach ($valid_env as &$value) {
