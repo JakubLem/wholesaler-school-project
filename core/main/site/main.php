@@ -2,11 +2,8 @@
 
 print_r($_ENV);
 
-
-
-
 @include_once(__DIR__. '/db_connector/db_connector.php');
 
 $db = get_db();
-
+$GLOBALS['db'] = $db;
 
