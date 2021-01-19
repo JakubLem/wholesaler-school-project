@@ -71,12 +71,26 @@ class MyDatabase {
     }
 
     public function get_connection() {
-        $this->conn = mysqli_connect(
-            $this->data->dbsname, 
-            $this->data->dbusername, 
-            $this->data->dbpassword, 
-            $this->data->dbname
-        );
-        $this->check_connection();
+        echo "123";
+        try {
+            $this->conn = mysqli_connect(
+                $this->data->dbsname, 
+                $this->data->dbusername, 
+                $this->data->dbpassword, 
+                $this->data->dbname
+            );
+            $this->check_connection();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        
+    }
+
+    public function check_valid() {
+        if($this->valid) {
+            echo "TRUE";
+        } else {
+            echo "FALSE";
+        }
     }
 }

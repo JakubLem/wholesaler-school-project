@@ -10,4 +10,4 @@
         echo $validate_result->message;
         exit();
     }
-    require_once(__DIR__ . '/core/main/site/main.php');
+    require_once(__DIR__ . '/core/main/main_page.php');
