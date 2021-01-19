@@ -22,6 +22,7 @@ class MyDatabase {
     public $last_response;
 
     public function close_connection() {
+        mysqli_free_result($this->last_response);
         $this->conn->close();
     }
 
@@ -33,11 +34,25 @@ class MyDatabase {
         }
     }
 
+    public function get_connection() {
+        echo "123";
+        try {
+            $this->conn = mysqli_connect(
+                $this->data->dbsname, 
+                $this->data->dbusername, 
+                $this->data->dbpassword, 
+                $this->data->dbname
+            );
+            $this->check_connection();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
     public function __construct($dbsname, $dbusername, $dbpassword, $dbname) {
         $this->data = new ConnectionData($dbsname, $dbusername, $dbpassword, $dbname);
-        $this->conn = mysqli_connect($dbsname, $dbusername, $dbpassword, $dbname);
+        $this->get_connection();
         $this->check_connection();
-        $this->close_connection();
     }
 
     private function sql_request_validation($sql_request) {
@@ -54,9 +69,16 @@ class MyDatabase {
     }
 
     public function make_query($sql_request) {
+        $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
+                echo "QUERY: ";
+                echo $sql_request;
                 $this->last_response = $this->conn->query($sql_request);
+                while($row = $this->last_response->fetch_assoc()) {
+                    print_r($row);
+                    echo "<br>";
+                }
             } else {
                 throw new Exception("Invalid query");
             }
@@ -68,22 +90,6 @@ class MyDatabase {
 
     public function get_last_response() {
         return $this->last_response;
-    }
-
-    public function get_connection() {
-        echo "123";
-        try {
-            $this->conn = mysqli_connect(
-                $this->data->dbsname, 
-                $this->data->dbusername, 
-                $this->data->dbpassword, 
-                $this->data->dbname
-            );
-            $this->check_connection();
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-        
     }
 
     public function check_valid() {
