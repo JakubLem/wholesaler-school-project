@@ -2,7 +2,7 @@
 
 @include_once('myDatabase.php');
 
-function get_conn() {
+function get_db() {
     $dbsname = $_ENV["DATABASE_NAME"];
     $dbusername = $_ENV["DBUSERNAME"];
     $dbpassword = $_ENV["DBPASSWORD"];
