@@ -12,6 +12,5 @@ foreach($result as $row) {
 }
 
 @include_once(__DIR__. '/bottom.php');
-
 unset($GLOBALS['database']);
 ?>

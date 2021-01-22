@@ -2,15 +2,10 @@
 // @include_once('db_connector/db_connector.php');
 
 class MyDatabase {
-    public $data;
     public $conn;
     public $valid;
     public $last_response;
 
-    public function close_connection() {
-        mysqli_free_result($this->last_response);
-        $this->conn->close();
-    }
 
     private function check_connection() {
         if(mysqli_connect_errno()){
@@ -58,7 +53,6 @@ class MyDatabase {
         $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
-                // return $this->conn->query('SELECT * FROM olejki.olejki');
                 $sql = $this->conn->prepare($sql_request);
                 $sql->execute($types);
                 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
