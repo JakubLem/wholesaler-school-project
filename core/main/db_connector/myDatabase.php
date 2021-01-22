@@ -1,19 +1,5 @@
 <?php
-
-class ConnectionData {
-
-    public $dbsname;
-    public $dbusername;
-    public $dbpassword;
-    public $dbname;
-
-    public function __construct($dbsname, $dbusername, $dbpassword, $dbname) {
-        $this->dbsname = $dbsname;
-        $this->dbusername = $dbusername;
-        $this->dbpassword = $dbpassword;
-        $this->dbname = $dbname;
-    }
-}
+// @include_once('db_connector/db_connector.php');
 
 class MyDatabase {
     public $data;
@@ -34,25 +20,25 @@ class MyDatabase {
         }
     }
 
+
     public function get_connection() {
-        echo "123";
         try {
-            $this->conn = mysqli_connect(
-                $this->data->dbsname, 
-                $this->data->dbusername, 
-                $this->data->dbpassword, 
-                $this->data->dbname
+
+            $host="localhost";
+            $dbusername="root";
+            $dbpassword="";
+            $dbname="olejki";
+
+            $this->conn = new PDO('mysql:dbname='.$dbname.';host='.$host.';charset=utf8',
+                $dbusername,
+                $dbpassword
             );
+            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->check_connection();
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
-    }
-
-    public function __construct($dbsname, $dbusername, $dbpassword, $dbname) {
-        $this->data = new ConnectionData($dbsname, $dbusername, $dbpassword, $dbname);
-        $this->get_connection();
-        $this->check_connection();
     }
 
     private function sql_request_validation($sql_request) {
@@ -67,18 +53,16 @@ class MyDatabase {
         }
         return TRUE;
     }
-
-    public function make_query($sql_request) {
+    
+    public function make_query($sql_request, $types=[]) {
         $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
-                echo "QUERY: ";
-                echo $sql_request;
-                $this->last_response = $this->conn->query($sql_request);
-                while($row = $this->last_response->fetch_assoc()) {
-                    print_r($row);
-                    echo "<br>";
-                }
+                // return $this->conn->query('SELECT * FROM olejki.olejki');
+                $sql = $this->conn->prepare($sql_request);
+                $sql->execute($types);
+                $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
             } else {
                 throw new Exception("Invalid query");
             }
@@ -87,7 +71,7 @@ class MyDatabase {
         }
         
     }
-
+    
     public function get_last_response() {
         return $this->last_response;
     }

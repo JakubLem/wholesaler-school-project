@@ -4,14 +4,14 @@ stop
 <?php
 
 echo "ddd";
-$db->check_valid();
+//$db->check_valid();
 
 
 @include_once(__DIR__. '/bottom.php');
 
-$db->close_connection();
+//$db->close_connection();
 
-unset($db);
-
+//unset($db);
+unset($GLOBALS['database']);
 echo "144";
 ?>

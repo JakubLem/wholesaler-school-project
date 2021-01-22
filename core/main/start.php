@@ -9,24 +9,43 @@
 <body>
 start
 <?php
-@include_once('db_connector/db_connector.php');
+/*
+$GLOBALS['database'] = mysqli_connect(
+    $dbsname, 
+    $dbusername, 
+    $dbpassword, 
+    $dbname
+);
 
-$db = new MyDatabase($dbsname, $dbusername, $dbpassword, $dbname);
-$db->check_valid();
+
+$result = $GLOBALS['database']->query($sql_request);
+*/
+
+
+
+
+@include_once('db_connector/myDatabase.php');
+$GLOBALS['database'] = new MyDatabase;
+$GLOBALS['database']->get_connection();
+//$db = new MyDatabase($dbsname, $dbusername, $dbpassword, $dbname);
+//$db->check_valid();
 
 @include_once(__DIR__. '/header.php');
 
 
-$db->make_query("SELECT * FROM olejki");
-$result = $db->get_last_response();
-echo var_dump($result);
-if(var_dump($result) != false) {
-    while($row = $result->fetch_assoc()) {
-        print_r($row);
-        echo "<br>";
-    }
-    $db->last_response->free_result();
-    $result->free_result();
-    unset($result);
+//$db->make_query("SELECT * FROM olejki");
+//$result = $db->get_last_response();
+//echo var_dump($result);
+// $sql_request = "SELECT * FROM olejki";
+$sqlTypes = ['IDOlejku' => 1];
+$query = 'SELECT * FROM olejki.olejki';
+$result = $GLOBALS['database']->make_query($query, $sqlTypes);
+// $result = $GLOBALS['database']->get_last_response();
+foreach($result as $row) {
+    print_r($row);
 }
+//    $db->last_response->free_result();
+//    $result->free_result();
+//    unset($result);
+
 
