@@ -3,15 +3,15 @@ stop
 </html>
 <?php
 
-echo "ddd";
-//$db->check_valid();
+$sqlTypes = [];
+$query = 'SELECT * FROM olejki';
+$result = $GLOBALS['database']->make_query($query, []);
 
+foreach($result as $row) {
+    print_r($row);
+}
 
 @include_once(__DIR__. '/bottom.php');
 
-//$db->close_connection();
-
-//unset($db);
 unset($GLOBALS['database']);
-echo "144";
 ?>

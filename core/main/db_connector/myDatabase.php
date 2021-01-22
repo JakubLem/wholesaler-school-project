@@ -54,7 +54,7 @@ class MyDatabase {
         return TRUE;
     }
     
-    public function make_query($sql_request, $types=[]) {
+    public function make_query($sql_request, $types) {
         $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
