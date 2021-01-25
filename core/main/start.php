@@ -7,21 +7,18 @@
     <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/main.css">
 </head>
 <body>
-start
 <?php
 include_once('../../vendor/autoload.php');
     
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
 $GLOBALS['env'] = $_ENV;
 
 @include_once('db_connector/myDatabase.php');
+
 $GLOBALS['database'] = new MyDatabase;
 $GLOBALS['database']->get_connection();
 
 @include_once(__DIR__. '/header.php');
-
-
 ?>
-
-
