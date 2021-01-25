@@ -17,12 +17,11 @@ class MyDatabase {
 
 
     public function get_connection() {
-        try {
-
-            $host="localhost";
-            $dbusername="root";
-            $dbpassword="";
-            $dbname="olejki";
+        try {            
+            $host=$_ENV['HOST'];
+            $dbusername=$_ENV['USERNAME'];
+            $dbpassword=$_ENV['PASSWORD'];
+            $dbname=$_ENV['DBNAME'];
 
             $this->conn = new PDO('mysql:dbname='.$dbname.';host='.$host.';charset=utf8',
                 $dbusername,
