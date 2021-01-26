@@ -49,7 +49,7 @@ class UserCreate{
 
     public function create() {
         if($validate_status){
-
+            
         } else {
             
         }

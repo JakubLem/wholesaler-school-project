@@ -48,12 +48,12 @@ class MyDatabase {
         return TRUE;
     }
     
-    public function make_query($sql_request, $types) {
+    public function make_query($sql_request) {
         $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
                 $sql = $this->conn->prepare($sql_request);
-                $sql->execute($types);
+                $sql->execute();
                 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             } else {
