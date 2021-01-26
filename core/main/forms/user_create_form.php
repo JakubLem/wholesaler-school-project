@@ -15,14 +15,12 @@ function run_form($post_data) {
         'address_country',
         'user_firm_nip'
     );
-    /*
-    if($response_form->status == 'OK') {
 
-    }
-    */
     $response_general = general_form_validation($post_data, $REQUIRED_FORM_FIELDS);
 
     if($response_general->status == 'OK') {
+        $response = new Response();
+
         $user_name = $post_data['user_name'];
         $user_surname = $post_data['user_surname'];
         $user_email = $post_data['user_email'];
@@ -50,6 +48,11 @@ function run_form($post_data) {
         );
 
         $user->validate();
+
+        if($user->validation_status) {
+            $user->create();
+        }
+        $GLOBALS['response'] = $user->last_response;
         
     } else {
         $GLOBALS['response'] = $response_general;

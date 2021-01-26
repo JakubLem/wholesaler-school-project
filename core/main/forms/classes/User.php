@@ -15,6 +15,7 @@ class UserCreate{
     public $user_firm_nip;
 
     public $validate_status = FALSE;
+    public $last_response;
 
     public function __construct(
         $user_name,
@@ -39,10 +40,6 @@ class UserCreate{
         $this->address_address = $address_address;
         $this->address_country = $address_country;
         $this->user_firm_nip = $user_firm_nip;
-    }
-
-    private function validate_varchar($length) {
-        
     }
 
     public function validate() {
