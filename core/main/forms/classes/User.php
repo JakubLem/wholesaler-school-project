@@ -51,7 +51,7 @@ class UserCreate{
         if($validate_status){
 
         } else {
-
+            
         }
     }
 }
