@@ -5,9 +5,9 @@ function validate_env() {
     $env_exception = "VALIDATE ENV ERROR :: ";
 
     $valid_env = array(
-        'DATABASE_NAME',
-        'DBUSERNAME',
-        'DBPASSWORD',
+        'HOST',
+        'USERNAME',
+        'PASSWORD',
         'DBNAME'
     );
     
