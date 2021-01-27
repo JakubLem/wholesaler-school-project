@@ -49,10 +49,11 @@ class UserCreate{
 
     public function create() {
         if($this->validate_status){
+            $password = password_hash($this->user_password_1, PASSWORD_BCRYPT);
             $sql_types = ['name' => $this->user_name, 
                 'surname' => $this->user_surname, 
                 'email' => $this->user_email, 
-                'password' => $this->user_password_1,
+                'password' => $password,
                 'address_id' => "1",
                 'firm_id' => $this->user_firm_nip
             ];
