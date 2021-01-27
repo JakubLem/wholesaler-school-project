@@ -46,9 +46,18 @@ class UserCreate{
         $this->validate_status = TRUE;
     }
 
+    private function sql_user_create_check() {
+        return TRUE; # TODO
+    }
+
 
     public function create() {
+        $response = new Response();
         if($this->validate_status){
+
+
+
+
             $password = password_hash($this->user_password_1, PASSWORD_BCRYPT);
             $sql_types = ['name' => $this->user_name, 
                 'surname' => $this->user_surname, 
@@ -62,10 +71,10 @@ class UserCreate{
             echo $query;
             $result = $GLOBALS['database']->make_query($query, $sql_types);
             $this->last_response = $result;
-            echo "<br>";
             foreach($result as $row) {
                 print_r($row);
             }
+            $this->last_response = $response;
         } else {
             echo "invalid"; # TODO response here
         }

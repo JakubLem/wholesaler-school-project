@@ -34,7 +34,6 @@ function run_form($post_data) {
 
     // if($response_general->status == 'INVALID') {
     if(TRUE) {
-        $response = new Response();
 
         $user_name = $post_data['user_name'];
         $user_surname = $post_data['user_surname'];
@@ -69,7 +68,6 @@ function run_form($post_data) {
         // }
         $user->create();
         $GLOBALS['response'] = $user->last_response;
-        echo "XD";
     } else {
         $GLOBALS['response'] = $response_general;
     }
