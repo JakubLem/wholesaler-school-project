@@ -25,3 +25,11 @@ $html_header = array(
     let header_len = <?php echo count($html_header); ?>;
     set_header(header_id, header_len);
 </script>
+<?php
+$query = 'SELECT * FROM users';
+$result = $GLOBALS['database']->make_query($query, []);
+
+foreach($result as $row) {
+    print_r($row);
+}
+?>

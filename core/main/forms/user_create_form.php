@@ -1,5 +1,19 @@
 <?php
+
+
+
+
+
+
 require_once('validators.php');
+require_once('../connect_db.php');
+
+$query = 'SELECT * FROM users';
+$result = $GLOBALS['database']->make_query($query, []);
+
+foreach($result as $row) {
+    print_r($row);
+}
 
 function run_form($post_data) {
 
@@ -18,7 +32,8 @@ function run_form($post_data) {
 
     $response_general = general_form_validation($post_data, $REQUIRED_FORM_FIELDS);
 
-    if($response_general->status == 'OK') {
+    // if($response_general->status == 'INVALID') {
+    if(TRUE) {
         $response = new Response();
 
         $user_name = $post_data['user_name'];
@@ -49,15 +64,16 @@ function run_form($post_data) {
 
         $user->validate();
 
-        if($user->validation_status) {
-            $user->create();
-        }
+        // if($user->validation_status) {
+        //     $user->create();
+        // }
+        $user->create();
         $GLOBALS['response'] = $user->last_response;
-        
+        echo "XD";
     } else {
         $GLOBALS['response'] = $response_general;
     }
-    header("Location: ../account.php");
+    // header("Location: ../account.php");
 }
 
 run_form($_POST);

@@ -1,6 +1,6 @@
 <?php
 // @include_once('db_connector/db_connector.php');
-
+@include_once('connect_env.php');
 class MyDatabase {
     public $conn;
     public $valid;
@@ -16,12 +16,12 @@ class MyDatabase {
     }
 
 
-    public function get_connection() {
+    public function get_connection($data) {
         try {            
-            $host=$_ENV['HOST'];
-            $dbusername=$_ENV['USERNAME'];
-            $dbpassword=$_ENV['PASSWORD'];
-            $dbname=$_ENV['DBNAME'];
+            $host=$data['HOST'];
+            $dbusername=$data['USERNAME'];
+            $dbpassword=$data['PASSWORD'];
+            $dbname=$data['DBNAME'];
 
             $this->conn = new PDO('mysql:dbname='.$dbname.';host='.$host.';charset=utf8',
                 $dbusername,
@@ -48,12 +48,12 @@ class MyDatabase {
         return TRUE;
     }
     
-    public function make_query($sql_request) {
+    public function make_query($sql_request, $types) {
         $this->check_connection();
         if($this->valid) {
             if($this->sql_request_validation($sql_request)) {
                 $sql = $this->conn->prepare($sql_request);
-                $sql->execute();
+                $sql->execute($types);
                 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             } else {

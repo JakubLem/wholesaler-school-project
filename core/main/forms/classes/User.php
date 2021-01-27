@@ -48,10 +48,25 @@ class UserCreate{
 
 
     public function create() {
-        if($validate_status){
-            
+        if($this->validate_status){
+            $sql_types = ['name' => $this->user_name, 
+                'surname' => $this->user_surname, 
+                'email' => $this->user_email, 
+                'password' => $this->user_password_1,
+                'address_id' => "1",
+                'firm_id' => $this->user_firm_nip
+            ];
+            $query = "INSERT INTO users (user_name, user_surname, user_email, user_password, user_firm_id, user_address_id)
+                      VALUES(:name, :surname, :email, :password, :firm_id, :address_id)";
+            echo $query;
+            $result = $GLOBALS['database']->make_query($query, $sql_types);
+            $this->last_response = $result;
+            echo "<br>";
+            foreach($result as $row) {
+                print_r($row);
+            }
         } else {
-            
+            echo "invalid"; # TODO response here
         }
     }
 }

@@ -8,17 +8,10 @@
 </head>
 <body>
 <?php
-include_once('../../vendor/autoload.php');
-    
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
-$GLOBALS['env'] = $_ENV;
+@include_once('connect_db.php');
 
-@include_once('db_connector/myDatabase.php');
-
-$GLOBALS['database'] = new MyDatabase;
-$GLOBALS['database']->get_connection();
+$GLOBALS['response'] = "NONE";
 
 @include_once(__DIR__. '/header.php');
 ?>

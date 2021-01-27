@@ -11,3 +11,7 @@
     <input type="text" name="user_firm_nip" placeholder="NIP firmy">
     <input type="submit" value="Rejestrajca">
 <form>
+
+<?php
+
+echo $GLOBALS['response'];
