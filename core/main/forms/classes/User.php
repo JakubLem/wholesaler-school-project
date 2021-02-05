@@ -1,6 +1,7 @@
 <?php
 
-require_once('classes/Response.php');
+require_once('Response.php');
+require_once('Address.php');
 
 class UserCreate{
     public $user_name;
@@ -54,6 +55,24 @@ class UserCreate{
     public function create() {
         $response = new Response();
         if($this->validate_status){
+            $address = new AddressCreate(
+                $this->address_city,
+                $this->address_postal_code,
+                $this->address_address,
+                $this->address_country
+            );
+
+            $address->validate();
+            $address->create();
+
+            # TODO check create
+            $address_id = $address->last_response;
+            
+            echo "ADDRESS ID    ";
+            echo $address_id;
+            echo "        ADDRESS ID    ";
+
+
 
 
 
