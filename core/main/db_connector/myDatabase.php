@@ -76,4 +76,8 @@ class MyDatabase {
             echo "FALSE";
         }
     }
+
+    public function get_last_insert() {
+        return $this->conn->lastInsertId();
+    }
 }

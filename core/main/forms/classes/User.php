@@ -66,10 +66,10 @@ class UserCreate{
             $address->create();
 
             # TODO check create
-            $address_id = $address->last_response;
+            # $address_id = $address->last_response;
             
             echo "ADDRESS ID    ";
-            echo $address_id;
+            # echo $address_id;
             echo "        ADDRESS ID    ";
 
 
@@ -89,10 +89,13 @@ class UserCreate{
                       VALUES(:name, :surname, :email, :password, :firm_id, :address_id)";
             echo $query;
             $result = $GLOBALS['database']->make_query($query, $sql_types);
-            $this->last_response = $result;
-            foreach($result as $row) {
-                print_r($row);
-            }
+            $last_id = $GLOBALS['database']->get_last_insert();
+            
+
+            echo "<br><br>XDD<br><br>";
+            echo $last_id;
+            echo "<br><br>XDD<br><br>";
+
             $this->last_response = $response;
         } else {
             echo "invalid"; # TODO response here

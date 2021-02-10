@@ -1,6 +1,7 @@
 <?php
 
 class Response {
+    public $response_code;
     public $message = array();
     public $status;
 

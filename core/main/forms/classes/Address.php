@@ -31,7 +31,7 @@ class AddressCreate{
         if($this->validate_status){
             $sql_types = ['city' => $this->address_city, 
                 'address' => $this->address_address, 
-                'postal_code' => $this->user_email, 
+                'postal_code' => $this->address_postal_code, 
                 'country' => $this->address_city
             ];
             $query = "INSERT INTO address (address_city, address_address, address_postal_code, address_country)
@@ -39,9 +39,11 @@ class AddressCreate{
             echo $query;
             $result = $GLOBALS['database']->make_query($query, $sql_types);
             $this->last_response = $result;
-            foreach($result as $row) {
-                print_r($row);
-            }
+
+            echo "<br><br><br><br>";
+            print_r($result);
+            echo "<br><br><br><br>";
+
             $this->last_response = $response;
         }
     }
