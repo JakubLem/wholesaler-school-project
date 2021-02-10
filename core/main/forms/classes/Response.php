@@ -1,7 +1,7 @@
 <?php
 
 class Response {
-    public $response_code;
+    public $last_id;
     public $message = array();
     public $status;
 
@@ -11,5 +11,9 @@ class Response {
 
     public function set_status($status) {
         $this->status = $status;
+    }
+
+    public function set_invalid() {
+        $this->status = "INVALID";
     }
 }

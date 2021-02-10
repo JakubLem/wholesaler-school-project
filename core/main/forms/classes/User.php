@@ -66,6 +66,13 @@ class UserCreate{
             $address->create();
 
             # TODO check create
+
+            if($address->last_response->status == "OK"){
+                $address_id = $address->last_response->last_id;
+
+            } else {
+                $response->set_invalid();
+            }
             # $address_id = $address->last_response;
             
             echo "ADDRESS ID    ";
@@ -78,23 +85,23 @@ class UserCreate{
 
 
             $password = password_hash($this->user_password_1, PASSWORD_BCRYPT);
-            $sql_types = ['name' => $this->user_name, 
+            $sql_types = [
+                'name' => $this->user_name, 
                 'surname' => $this->user_surname, 
                 'email' => $this->user_email, 
                 'password' => $password,
                 'address_id' => "1",
                 'firm_id' => $this->user_firm_nip
             ];
+            
             $query = "INSERT INTO users (user_name, user_surname, user_email, user_password, user_firm_id, user_address_id)
                       VALUES(:name, :surname, :email, :password, :firm_id, :address_id)";
-            echo $query;
+
             $result = $GLOBALS['database']->make_query($query, $sql_types);
             $last_id = $GLOBALS['database']->get_last_insert();
             
 
-            echo "<br><br>XDD<br><br>";
-            echo $last_id;
-            echo "<br><br>XDD<br><br>";
+
 
             $this->last_response = $response;
         } else {
