@@ -7,12 +7,20 @@ $GLOBALS['header'] = 5;
 @include_once(__DIR__. '/top.php');
 print_r($_SESSION);
 if(isset($_SESSION['register_ok'])) {
-    echo "UDALO SIE";
     if($_SESSION['register_ok'] == "OK") {
-        echo "UDALO SIE 2";
         ?>
             <div class="register_ok">
                 <h2>Poprawnie utworzono konto!</h2>
+                <h3>Możesz się teraz zalogować!</h3>
+                <div class="login-register-form-master">
+                    <div class="login-register-form-slave">
+                        <div class="login-form">
+                            <?php
+                                @include_once(__DIR__. '/login.php');
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         <?php
     } else {
