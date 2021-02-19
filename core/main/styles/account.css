@@ -1,0 +1,38 @@
+.register_ok > h2 {
+    color: rgb(60, 223, 60);
+}
+
+.register_false > h2 {
+    color: rgb(223, 79, 60);
+}
+
+.login-register-form-master {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-register-form-slave {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: blueviolet;
+    width: 75%;
+    height: 600px;
+}
+
+.login-form {
+    width: 80%;
+}
+
+.register-form {
+    width: 80%;
+}
+
+.register-form-form {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

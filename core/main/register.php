@@ -1,4 +1,4 @@
-<form action="forms/user_create_form.php" method="post">
+<form class="register-form-form" action="forms/user_create_form.php" method="post">
     <input type="text" name="user_name" placeholder="Imię" value="">
     <input type="text" name="user_surname" placeholder="Nazwisko" value="">
     <input type="text" name="user_email" placeholder="Adres email">
@@ -11,7 +11,3 @@
     <input type="text" name="user_firm_nip" placeholder="NIP firmy">
     <input type="submit" value="Rejestrajca">
 <form>
-
-<?php
-
-echo $GLOBALS['response'];

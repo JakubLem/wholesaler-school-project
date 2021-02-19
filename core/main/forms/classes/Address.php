@@ -41,7 +41,7 @@ class AddressCreate{
                 'postal_code' => $this->address_postal_code, 
                 'country' => $this->address_city
             ];
-            
+
             $query = "INSERT INTO address (address_city, address_address, address_postal_code, address_country)
                       VALUES(:city, :address, :postal_code, :country)";
 
@@ -53,7 +53,9 @@ class AddressCreate{
             } else {
                 $response->set_invalid();
             }
-            $this->last_response = $response;            
+
+            $this->last_response = $response;  
+                      
         }
     }
 }

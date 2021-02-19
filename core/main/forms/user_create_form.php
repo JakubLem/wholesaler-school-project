@@ -1,19 +1,9 @@
 <?php
 
-
-
-
-
-
 require_once('validators.php');
 require_once('../connect_db.php');
+require_once('session/start.php');
 
-$query = 'SELECT * FROM users';
-$result = $GLOBALS['database']->make_query($query, []);
-
-foreach($result as $row) {
-    print_r($row);
-}
 
 function run_form($post_data) {
 
@@ -48,7 +38,7 @@ function run_form($post_data) {
 
         require_once('classes/User.php');
 
-        $user = new UserCreate(
+        $user = new User(
             $user_name,
             $user_surname,
             $user_email,
@@ -62,16 +52,16 @@ function run_form($post_data) {
         );
 
         $user->validate();
-
-        // if($user->validation_status) {
-        //     $user->create();
-        // }
         $user->create();
-        $GLOBALS['response'] = $user->last_response;
+        $_SESSION['response'] = $user->last_response;
+        if($user->last_response->status == "OK") {
+            $_SESSION['register_ok'] = "OK";
+        }
     } else {
-        $GLOBALS['response'] = $response_general;
+        $_SESSION['register_ok'] = "INVALID";
+        $_SESSION['response'] = $response_general;
     }
-    // header("Location: ../account.php");
+    header("Location: ../account.php");
 }
 
 run_form($_POST);

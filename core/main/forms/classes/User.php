@@ -3,7 +3,7 @@
 require_once('Response.php');
 require_once('Address.php');
 
-class UserCreate{
+class User{
     public $user_name;
     public $user_surname;
     public $user_email;
@@ -44,10 +44,10 @@ class UserCreate{
     }
 
     public function validate() {
-        $this->validate_status = TRUE;
+        $this->validate_status = TRUE; // TODO
     }
 
-    private function sql_user_create_check() {
+    private function check_obj_create() {
         return TRUE; # TODO
     }
 
@@ -70,42 +70,35 @@ class UserCreate{
             if($address->last_response->status == "OK"){
                 $address_id = $address->last_response->last_id;
 
+                $password = password_hash($this->user_password_1, PASSWORD_BCRYPT);
+                $sql_types = [
+                    'name' => $this->user_name, 
+                    'surname' => $this->user_surname, 
+                    'email' => $this->user_email, 
+                    'password' => $password,
+                    'address_id' => $address_id,
+                    'firm_id' => $this->user_firm_nip
+                ];
+
+                $query = "INSERT INTO users (user_name, user_surname, user_email, user_password, user_firm_id, user_address_id)
+                        VALUES(:name, :surname, :email, :password, :firm_id, :address_id)";
+
+                $result = $GLOBALS['database']->make_query($query, $sql_types);
+                $last_id = $GLOBALS['database']->get_last_insert();
+                
+                if($this->check_obj_create($last_id)){
+                    $response->last_id = $last_id;
+                } else {
+                    $response->set_invalid();
+                }
+
+                $this->last_response = $response;
+
             } else {
                 $response->set_invalid();
             }
-            # $address_id = $address->last_response;
-            
-            echo "ADDRESS ID    ";
-            # echo $address_id;
-            echo "        ADDRESS ID    ";
-
-
-
-
-
-
-            $password = password_hash($this->user_password_1, PASSWORD_BCRYPT);
-            $sql_types = [
-                'name' => $this->user_name, 
-                'surname' => $this->user_surname, 
-                'email' => $this->user_email, 
-                'password' => $password,
-                'address_id' => "1",
-                'firm_id' => $this->user_firm_nip
-            ];
-            
-            $query = "INSERT INTO users (user_name, user_surname, user_email, user_password, user_firm_id, user_address_id)
-                      VALUES(:name, :surname, :email, :password, :firm_id, :address_id)";
-
-            $result = $GLOBALS['database']->make_query($query, $sql_types);
-            $last_id = $GLOBALS['database']->get_last_insert();
-            
-
-
-
-            $this->last_response = $response;
         } else {
-            echo "invalid"; # TODO response here
+            $response->set_invalid(); # TODO response here
         }
     }
 }
