@@ -56,21 +56,31 @@ class User{
         $result = $GLOBALS['database']->make_query($query, $sql_types);
 
         if(empty($result)) {
-            $response->set_invalid();
+            $response->set_status("puste1");
         } else {
-            if(password_verify($this->user_password_1, $result['user_password'])){
-                $this->identifier = $result['user_id'];
+            if(password_verify($this->user_password_1, $result[0]['user_password'])){
+                $this->identifier = $result[0]['user_id'];
             } else {
-                $response->set_invalid();
+                $response->set_status($result);
             }
         }
-
-        return $response;
+        $this->last_response = $response;
     }
 
     public function update_data() {
-        $sql_types = ['email' => $this->user_email];
-        $query = "SELECT user_id, user_password FROM users WHERE user_email = :email";
+        $sql_types = ['id' => $this->identifier];
+        $query = "SELECT user_name, user_surname, user_email, user_firm_id, user_address_id FROM users WHERE user_id = :id";
+        
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+
+        $this->user_name = $result[0]['user_name'];
+        $this->user_surname = $result[0]['user_name'];
+        $this->user_email = $result[0]['user_name'];
+
+        // $sql_types = ['id' => $this->identifier];
+
+
+        return true;
     }
 
     public function validate() {
@@ -119,7 +129,7 @@ class User{
                 $result = $GLOBALS['database']->make_query($query, $sql_types);
                 $last_id = $GLOBALS['database']->get_last_insert();
                 
-                if($this->check_obj_create($last_id)){
+                if($this->check_obj_create($last_id)) {
                     $response->last_id = $last_id;
                 } else {
                     $response->set_invalid();

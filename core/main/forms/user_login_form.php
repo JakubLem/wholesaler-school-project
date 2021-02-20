@@ -25,14 +25,22 @@ function run_form($post_data) {
         $user->user_email = $user_email;
         $user->user_password_1 = $user_password;
 
+        $user->login();
+
         if($user->last_response->status == "OK") {
-            $_SESSION['login'] = "OK";
-            $user->update_data();
+            
+            if($user->update_data()) {
+                $_SESSION['login'] = "OK";
+                $_SESSION['user'] = $user;
+            } else {
+                $_SESSION['login'] = "FALSE1";
+                $_SESSION['user'] = $user;
+            }
+        } else {
+            $_SESSION['login'] = "FALSE2";
             $_SESSION['user'] = $user;
         }
-
-        $_SESSION['login'] = $user->login();
-
+        $_SESSION['response'] = $user->last_response->status;
     }
 
     header("Location: ../account.php");

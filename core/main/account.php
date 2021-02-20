@@ -34,6 +34,9 @@ if(isset($_SESSION['register_ok'])) {
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
     echo "zalogowano";
+    ?>
+        <a href="/wholesaler-school-project/core/main/logout.php">Wyloguj</a>
+    <?php
 } else {
     ?>
         <div class="login-register-form-master">
@@ -50,6 +53,7 @@ if(isset($_SESSION['register_ok'])) {
                 </div>
             </div>
         </div>
+
     <?php
 }
 
@@ -59,3 +63,4 @@ if(isset($_SESSION['register_ok'])) {
 
 @include_once(__DIR__. '/stop.php');
 ?>
+
