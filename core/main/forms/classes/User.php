@@ -20,51 +20,36 @@ class User{
     public $validate_status = FALSE;
     public $last_response;
 
-    /*
-    public function __construct(
-        $user_name,
-        $user_surname,
-        $user_email,
-        $user_password_1,
-        $user_password_2,
-        $address_city,
-        $address_postal_code,
-        $address_address,
-        $address_country,
-        $user_firm_nip
-    )   
-    {
-        $this->user_name = $user_name;
-        $this->user_surname = $user_surname;
-        $this->user_email = $user_email;
-        $this->user_password_1 = $user_password_1;
-        $this->user_password_2 = $user_password_2;
-        $this->address_city = $address_city;
-        $this->address_postal_code = $address_postal_code;
-        $this->address_address = $address_address;
-        $this->address_country = $address_country;
-        $this->user_firm_nip = $user_firm_nip;
+    public function get_user_name() {
+        return $this->user_name;
     }
-    */
-
+    
     public function login() {
         $response = new Response();
 
-        $sql_types = ['email' => $this->user_email];
-        $query = "SELECT user_id, user_password FROM users WHERE user_email = :email";
+        if(!filter_var($this->user_email, FILTER_VALIDATE_EMAIL)) {
+            $response->set_invalid();
+            $response->code = "invalid_email";
+        } else {        
 
-        $result = $GLOBALS['database']->make_query($query, $sql_types);
+            $sql_types = ['email' => $this->user_email];
+            $query = "SELECT user_id, user_password FROM users WHERE user_email = :email";
 
-        if(empty($result)) {
-            $response->set_status("puste1");
-        } else {
-            if(password_verify($this->user_password_1, $result[0]['user_password'])){
-                $this->identifier = $result[0]['user_id'];
+            $result = $GLOBALS['database']->make_query($query, $sql_types);
+
+            if(empty($result)) {
+                $response->set_invalid();
+                $response->code = "null_email";
             } else {
-                $response->set_status($result);
+                if(password_verify($this->user_password_1, $result[0]['user_password'])){
+                    $this->identifier = $result[0]['user_id'];
+                } else {
+                    $response->set_invalid();
+                    $response->code = "invalid_password";
+                }
             }
+            $this->last_response = $response;
         }
-        $this->last_response = $response;
     }
 
     public function update_data() {
@@ -89,10 +74,6 @@ class User{
 
     private function check_obj_create() {
         return TRUE; # TODO
-    }
-
-    public function logout() {
-        session_destroy();
     }
 
     public function create() {

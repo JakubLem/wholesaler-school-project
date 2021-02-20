@@ -28,19 +28,17 @@ function run_form($post_data) {
         $user->login();
 
         if($user->last_response->status == "OK") {
-            
+
             if($user->update_data()) {
                 $_SESSION['login'] = "OK";
                 $_SESSION['user'] = $user;
             } else {
-                $_SESSION['login'] = "FALSE1";
-                $_SESSION['user'] = $user;
+                $_SESSION['login'] = "INVALID";
             }
         } else {
-            $_SESSION['login'] = "FALSE2";
-            $_SESSION['user'] = $user;
+            $_SESSION['login'] = "INVALID";
         }
-        $_SESSION['response'] = $user->last_response->status;
+        $_SESSION['response'] = $user->last_response;
     }
 
     header("Location: ../account.php");

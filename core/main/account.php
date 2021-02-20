@@ -33,34 +33,24 @@ if(isset($_SESSION['register_ok'])) {
     }
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
-    echo "zalogowano";
+    if($_SESSION['login'] == "OK"){
+        echo "Witaj ".$_SESSION['user']->get_user_name()."!";
+    } else if($_SESSION['login'] == "INVALID") {
+        if($_SESSION['response']->code == "invalid_email") {
+
+        } else if($_SESSION['response']->code == "null_email") {
+
+        } else if($_SESSION['response']->code == "invalid_password") {
+
+        }
+        @include_once(__DIR__. '/login_and_register.php');
+    }
     ?>
         <a href="/wholesaler-school-project/core/main/logout.php">Wyloguj</a>
     <?php
 } else {
-    ?>
-        <div class="login-register-form-master">
-            <div class="login-register-form-slave">
-                <div class="login-form">
-                    <?php
-                        @include_once(__DIR__. '/login.php');
-                    ?>
-                </div>
-                <div class="register-form">
-                    <?php
-                        @include_once(__DIR__. '/register.php');
-                    ?>
-                </div>
-            </div>
-        </div>
-
-    <?php
+    @include_once(__DIR__. '/login_and_register.php');
 }
-
-
-
-
-
 @include_once(__DIR__. '/stop.php');
 ?>
 

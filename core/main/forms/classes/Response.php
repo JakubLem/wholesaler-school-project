@@ -4,6 +4,7 @@ class Response {
     public $last_id;
     public $message = array();
     public $status;
+    public $code;
 
     public function __construct() {
         $this->status = 'OK';
