@@ -2,9 +2,6 @@ from django.test import Client
 from .models import ownrandomstring
 
 
-# Create your tests here.
-# TODO WSP-5 - test test url
-
 class TestTest:
     def test_test(self):
         assert 1 == 1
