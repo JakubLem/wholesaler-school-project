@@ -1,4 +1,5 @@
 from django.test import Client
+from .models import ownrandomstring
 
 
 # Create your tests here.
@@ -13,6 +14,13 @@ class TestTest:
         response = c.get('/api/test/')
 
         assert response.status_code == 200
+
+
+class TestFunctions:
+    def test_ownrandomstring(self):
+        ors = ownrandomstring()
+        assert type(ors) == str
+        assert len(ownrandomstring()) == 20
 
 
 class TestAPI:
