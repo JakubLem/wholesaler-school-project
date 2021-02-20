@@ -4,6 +4,8 @@ require_once('Response.php');
 require_once('Address.php');
 
 class User{
+    public $identifier;
+
     public $user_name;
     public $user_surname;
     public $user_email;
@@ -18,6 +20,7 @@ class User{
     public $validate_status = FALSE;
     public $last_response;
 
+    /*
     public function __construct(
         $user_name,
         $user_surname,
@@ -42,6 +45,33 @@ class User{
         $this->address_country = $address_country;
         $this->user_firm_nip = $user_firm_nip;
     }
+    */
+
+    public function login() {
+        $response = new Response();
+
+        $sql_types = ['email' => $this->user_email];
+        $query = "SELECT user_id, user_password FROM users WHERE user_email = :email";
+
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+
+        if(empty($result)) {
+            $response->set_invalid();
+        } else {
+            if(password_verify($this->user_password_1, $result['user_password'])){
+                $this->identifier = $result['user_id'];
+            } else {
+                $response->set_invalid();
+            }
+        }
+
+        return $response;
+    }
+
+    public function update_data() {
+        $sql_types = ['email' => $this->user_email];
+        $query = "SELECT user_id, user_password FROM users WHERE user_email = :email";
+    }
 
     public function validate() {
         $this->validate_status = TRUE; // TODO
@@ -51,6 +81,9 @@ class User{
         return TRUE; # TODO
     }
 
+    public function logout() {
+        session_destroy();
+    }
 
     public function create() {
         $response = new Response();

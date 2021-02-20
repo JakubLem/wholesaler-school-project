@@ -6,6 +6,7 @@ $GLOBALS['header'] = 5;
 <?php
 @include_once(__DIR__. '/top.php');
 print_r($_SESSION);
+
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
         ?>
