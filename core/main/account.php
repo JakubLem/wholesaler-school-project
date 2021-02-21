@@ -3,6 +3,12 @@ $GLOBALS['header'] = 5;
 @include_once(__DIR__. '/start.php');
 ?>
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/account.css">
+<script>
+    let old_class_name = "register-form-form";
+    let new_class_name = "register-form-form-invalid";
+</script>
+<script src="scripts/red_form.js"></script>
+
 <?php
 @include_once(__DIR__. '/top.php');
 print_r($_SESSION);
@@ -25,11 +31,29 @@ if(isset($_SESSION['register_ok'])) {
             </div>
         <?php
     } else {
+        if($_SESSION['response_code'] == 'null_values') {
+            @include_once(__DIR__. '/login_and_register.php');
         ?>
+        <script>
+            let identifiers = new Array();
+            <?php
+                foreach ($_SESSION['null_array'] as &$value) {
+                    ?>
+                        identifiers.push(String("<?php echo $value; ?>"));
+                    <?php
+                }
+            ?>
+            make_inputs_red(
+                identifiers,
+                "register_error_response"
+            );
+        </script>
         <div class="register_false">
             <h2>Nie udało się utworzyć konta!</h2>
         </div>
+
         <?php
+        }
     }
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
@@ -38,35 +62,9 @@ if(isset($_SESSION['register_ok'])) {
     } else if($_SESSION['login'] == "INVALID") {
         @include_once(__DIR__. '/login_and_register.php');
         ?>
+        <script src="scripts/account_login.js"></script>
         <script>
-            function catch_login_errors() {
-                let response_code = String("<?php echo $_SESSION['response_code']; ?>");
-                let login_error_response_text = "";
-                let error_check = true;
-                switch (response_code) {
-                    case "invalid_email":
-                        login_error_response_text = "Podałeś niepoprawny adres email!"
-                        break;
-                    case "null_email":
-                        login_error_response_text = "Nie ma zarejestrowanego konta na podany adres email!"
-                        break;
-
-                    case "invalid_password":
-                        login_error_response_text = "Podałeś niepoprawne hasło!"
-                        break;
-                
-                    default:
-                        error_check = false;
-                        break;
-                }
-
-                if(error_check) {
-                    document.getElementById("login_error_response").innerHTML = login_error_response_text;
-                }
-            }
-
-            catch_login_errors();
-
+            catch_login_errors(String("<?php echo $_SESSION['response_code']; ?>"));
         </script>
         <?php
     }

@@ -2,6 +2,7 @@
 
 require_once('classes/Response.php');
 
+
 function general_form_validation($post_data, $required_data) {
     $response = new Response();
     foreach ($required_data as &$value) {
@@ -12,9 +13,15 @@ function general_form_validation($post_data, $required_data) {
     }
     return $response;
 }
-/*
-function user_create_validation($post_data) {
-    $response = new Response();
-    return $response;
+
+
+function check_null_values($post_data, $required_data) {
+    $null_array = array();
+    foreach ($required_data as &$value) {
+        if(empty($post_data[$value])) {
+            echo "testtest";
+            array_push($null_array, $value);
+        }
+    }
+    return $null_array;
 }
-*/
