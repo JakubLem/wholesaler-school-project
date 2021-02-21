@@ -2,4 +2,5 @@
     <input type="text" name="user_email" placeholder="Adres email">
     <input type="password" name="user_password" placeholder="Hasło">
     <input type="submit" value="Logowanie">
+    <p id="login_error_response"></p>
 </form>

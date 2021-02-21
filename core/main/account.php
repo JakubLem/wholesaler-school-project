@@ -36,18 +36,42 @@ if(isset($_SESSION['register_ok'])) {
     if($_SESSION['login'] == "OK") {
         echo "Witaj ".$_SESSION['user_name']."!";
     } else if($_SESSION['login'] == "INVALID") {
-        if($_SESSION['response_code'] == "invalid_email") {
-            echo "invalid email";
-        } else if($_SESSION['response_code'] == "null_email") {
-            echo "null_email";
-        } else if($_SESSION['response_code'] == "invalid_password") {
-            echo "invalid password";
-        }
         @include_once(__DIR__. '/login_and_register.php');
+        ?>
+        <script>
+            function catch_login_errors() {
+                let response_code = String("<?php echo $_SESSION['response_code']; ?>");
+                let login_error_response_text = "";
+                let error_check = true;
+                switch (response_code) {
+                    case "invalid_email":
+                        login_error_response_text = "Podałeś niepoprawny adres email!"
+                        break;
+                    case "null_email":
+                        login_error_response_text = "Nie ma zarejestrowanego konta na podany adres email!"
+                        break;
+
+                    case "invalid_password":
+                        login_error_response_text = "Podałeś niepoprawne hasło!"
+                        break;
+                
+                    default:
+                        error_check = false;
+                        break;
+                }
+
+                if(error_check) {
+                    document.getElementById("login_error_response").innerHTML = login_error_response_text;
+                }
+            }
+
+            catch_login_errors();
+
+        </script>
+        <?php
     }
 } else {
     @include_once(__DIR__. '/login_and_register.php');
 }
 @include_once(__DIR__. '/stop.php');
 ?>
-
