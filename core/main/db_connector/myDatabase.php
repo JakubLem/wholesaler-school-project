@@ -1,6 +1,6 @@
 <?php
 // @include_once('db_connector/db_connector.php');
-
+@include_once('connect_env.php');
 class MyDatabase {
     public $conn;
     public $valid;
@@ -16,12 +16,12 @@ class MyDatabase {
     }
 
 
-    public function get_connection() {
+    public function get_connection($data) {
         try {            
-            $host=$_ENV['HOST'];
-            $dbusername=$_ENV['USERNAME'];
-            $dbpassword=$_ENV['PASSWORD'];
-            $dbname=$_ENV['DBNAME'];
+            $host=$data['HOST'];
+            $dbusername=$data['USERNAME'];
+            $dbpassword=$data['PASSWORD'];
+            $dbname=$data['DBNAME'];
 
             $this->conn = new PDO('mysql:dbname='.$dbname.';host='.$host.';charset=utf8',
                 $dbusername,
@@ -75,5 +75,9 @@ class MyDatabase {
         } else {
             echo "FALSE";
         }
+    }
+
+    public function get_last_insert() {
+        return $this->conn->lastInsertId();
     }
 }
