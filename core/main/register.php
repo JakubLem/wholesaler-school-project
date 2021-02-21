@@ -10,5 +10,8 @@
     <input class="register-form-form" id="address_country" type="text" name="address_country" placeholder="Kraj" value="Polska" onclick="reset_input(id)">
     <input class="register-form-form" id="user_firm_nip" type="text" name="user_firm_nip" placeholder="NIP firmy" onclick="reset_input(id)">
     <input class="register-form-form" type="submit" value="Rejestrajca">
-    <p id="register_error_response"></p>
+    <div class="register_false">
+        <p id="register_error_response"></p>
+    </div>
+    
 <form>

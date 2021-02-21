@@ -2,7 +2,7 @@
     color: rgb(60, 223, 60);
 }
 
-.register_false > h2 {
+.register_false > p {
     color: rgb(223, 79, 60);
 }
 
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    background-color: blueviolet;
+    
     width: 75%;
     height: 600px;
 }
@@ -47,7 +47,7 @@
 }
 
 .register-form-form-invalid {
-    background-color: #ff0000;
+    background-color: #ff000086;
     border: solid;
     color: rgb(0, 0, 0);
     margin-top: 5px;

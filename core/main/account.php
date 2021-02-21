@@ -48,9 +48,6 @@ if(isset($_SESSION['register_ok'])) {
                 "register_error_response"
             );
         </script>
-        <div class="register_false">
-            <h2>Nie udało się utworzyć konta!</h2>
-        </div>
 
         <?php
         }
