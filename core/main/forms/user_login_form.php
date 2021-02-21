@@ -31,14 +31,14 @@ function run_form($post_data) {
 
             if($user->update_data()) {
                 $_SESSION['login'] = "OK";
-                $_SESSION['user'] = $user;
+                $_SESSION['user_name'] = $user->user_name;
             } else {
                 $_SESSION['login'] = "INVALID";
             }
         } else {
             $_SESSION['login'] = "INVALID";
         }
-        $_SESSION['response'] = $user->last_response;
+        $_SESSION['response_code'] = $user->last_response->code;
     }
 
     header("Location: ../account.php");

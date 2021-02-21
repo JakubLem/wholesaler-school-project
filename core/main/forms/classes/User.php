@@ -47,9 +47,9 @@ class User{
                     $response->set_invalid();
                     $response->code = "invalid_password";
                 }
-            }
-            $this->last_response = $response;
+            }  
         }
+        $this->last_response = $response;
     }
 
     public function update_data() {

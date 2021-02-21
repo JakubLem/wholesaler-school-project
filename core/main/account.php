@@ -33,21 +33,18 @@ if(isset($_SESSION['register_ok'])) {
     }
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
-    if($_SESSION['login'] == "OK"){
-        echo "Witaj ".$_SESSION['user']->get_user_name()."!";
+    if($_SESSION['login'] == "OK") {
+        echo "Witaj ".$_SESSION['user_name']."!";
     } else if($_SESSION['login'] == "INVALID") {
-        if($_SESSION['response']->code == "invalid_email") {
-
-        } else if($_SESSION['response']->code == "null_email") {
-
-        } else if($_SESSION['response']->code == "invalid_password") {
-
+        if($_SESSION['response_code'] == "invalid_email") {
+            echo "invalid email";
+        } else if($_SESSION['response_code'] == "null_email") {
+            echo "null_email";
+        } else if($_SESSION['response_code'] == "invalid_password") {
+            echo "invalid password";
         }
         @include_once(__DIR__. '/login_and_register.php');
     }
-    ?>
-        <a href="/wholesaler-school-project/core/main/logout.php">Wyloguj</a>
-    <?php
 } else {
     @include_once(__DIR__. '/login_and_register.php');
 }
