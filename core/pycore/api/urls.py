@@ -8,6 +8,6 @@ from django.urls import path
 
 urlpatterns = [
     url(r'test/', views.GetTestViewSet.as_view(), name='test'),
-    path('notes/', views.NoteViewSet, name='notes'),
+    url(r'notes/', views.NoteViewSet, name='notes'),
     url(r'^graph/', GraphQLView.as_view(graphiql=True, schema=schema)),
 ]

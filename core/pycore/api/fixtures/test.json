@@ -1,0 +1,4 @@
+[
+    {"model": "api.note", "pk": 1, "fields": {"string": "test"}},
+    {"model": "api.note", "pk": 2, "fields": {"string": "tes2t"}}
+]

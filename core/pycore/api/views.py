@@ -11,5 +11,5 @@ class GetTestViewSet(APIView):
 
 
 class NoteViewSet(ModelViewSet):
-    queryset = Note.objects.all()
     serializer_class = serializers.NoteSerializer
+    queryset = Note.objects.all()
