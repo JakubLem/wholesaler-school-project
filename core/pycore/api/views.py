@@ -13,4 +13,3 @@ class GetTestViewSet(APIView):
 class NoteViewSet(ModelViewSet):
     queryset = Note.objects.all()
     serializer_class = serializers.NoteSerializer
-    lookup_field = "id"
