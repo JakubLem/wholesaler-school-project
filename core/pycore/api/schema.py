@@ -1,12 +1,16 @@
 import graphene
+from graphene_django import DjangoObjectType
+
+from .models import Note
+
+
+class NoteType(DjangoObjectType):
+    class Meta:
+        model = Note
+        fields = ("id", "string")
+
 
 class Query(graphene.ObjectType):
-
-    searcher = graphene.JSONString(name=graphene.JSONString(default_value='{"first": 100}'))
-
-    def resolve_searcher(self, type, passed_json):
-        some_result = do_some_with_json(passed_json)
-        return some_result
-
+    all_notes = graphene.List(NoteType)
 
 schema = graphene.Schema(query=Query)
