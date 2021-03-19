@@ -11,6 +11,9 @@ class NoteType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    all_notes = graphene.List(NoteType)
+    notes = graphene.List(NoteType)
+
+    def resolve_notes(self, info):
+        return Note.objects.all()
 
 schema = graphene.Schema(query=Query)
