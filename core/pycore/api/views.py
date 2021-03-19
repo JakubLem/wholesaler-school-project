@@ -14,4 +14,6 @@ class NoteViewSet(ModelViewSet):
     serializer_class = serializers.NoteSerializer
     queryset = Note.objects.all()
 
-   
+
+class PriceListViewSet(ModelViewSet):
+    pass

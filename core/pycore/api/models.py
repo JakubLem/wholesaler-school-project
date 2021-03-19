@@ -6,3 +6,11 @@ class Note(models.Model):
 
     def __str__(self):
         return f'{self.string}'
+
+
+class Option(models.Model):
+    max_weight = models.FloatField()
+    price = models.FloatField()
+
+    def __str__(self):
+        return f'{self.max_weight, self.price}'
