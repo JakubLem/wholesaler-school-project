@@ -8,16 +8,28 @@ $GLOBALS['header'] = 3;
 $curl = curl_init();
 
 
-curl_setopt($curl, CURLOPT_URL, "https://github.com/user/repo/main/db.json");
+curl_setopt($curl, CURLOPT_URL, "http://localhost:8000/api/graph/");
 
 
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 
 $output = curl_exec($curl);
-echo $output;
+// echo $output;
 
 curl_close($curl);
 
+require_once('functions/graphql.php');
+
+$query = <<<'GRAPHQL'
+query {
+    notes {
+        id
+        string 
+    }
+}
+GRAPHQL;
+
+print_r(graphql_query('http://localhost:8000/api/graph/', $query, [], null));
 
 @include_once(__DIR__. '/stop.php');
