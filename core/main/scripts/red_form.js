@@ -1,3 +1,6 @@
+
+
+
 function reset_input(identifier) {
     document.getElementById(identifier).classList.remove(new_class_name);
     document.getElementById(identifier).classList.add(old_class_name);

@@ -4,8 +4,8 @@ $GLOBALS['header'] = 5;
 ?>
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/account.css">
 <script>
-    let old_class_name = "register-form-form";
-    let new_class_name = "register-form-form-invalid";
+let old_class_name = "register-form-form";
+let new_class_name = "register-form-form-invalid";
 </script>
 <script src="scripts/red_form.js"></script>
 
@@ -50,6 +50,8 @@ if(isset($_SESSION['register_ok'])) {
         </script>
 
         <?php
+        } else if($_SESSION['response_code'] == 'data_validate_errors') {
+            echo '123';
         }
     }
     unset($_SESSION['register_ok']);

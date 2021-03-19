@@ -69,7 +69,10 @@ class User{
     }
 
     public function validate() {
-        $this->validate_status = TRUE; // TODO
+        $data_validate = true;
+        $data_validate_errors = array();
+
+        $this->validate_status = $data_validate; // TODO
     }
 
     private function check_obj_create() {
