@@ -14,3 +14,7 @@ class Option(models.Model):
 
     def __str__(self):
         return f'{self.max_weight, self.price}'
+
+
+class PriceList(models.Model):
+    quantity = models.IntegerField()
