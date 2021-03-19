@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.test import Client
 import pytest
 from . import models
-
 import json
 from graphene_django.utils.testing import GraphQLTestCase
 
@@ -36,9 +35,3 @@ class TestAPI:
         for note in notes_list:
             response = c.post('/api/notes/', note)
             assert response.status_code == 201
-
-
-
-
-        
-        

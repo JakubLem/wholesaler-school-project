@@ -6,7 +6,6 @@ from django.utils.crypto import get_random_string
 
 @pytest.fixture
 def my_client(settings):
-
     def client(**kwargs):
         return Client()
 
@@ -30,4 +29,3 @@ def notes():
         return result
 
     return array
-
