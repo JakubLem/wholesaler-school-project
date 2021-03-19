@@ -1,4 +1,37 @@
 from django.test import TestCase
+from django.test import Client
+import pytest
+from . import models
+import json
+from graphene_django.utils.testing import GraphQLTestCase
 
-# Create your tests here.
-# TODO WSP-5 - test test url
+
+class TestTest:
+    def test_test(self):
+        assert 1 == 1
+
+
+class TestFunctions:
+    def test_function(self):
+        assert 1 == 1
+
+
+@pytest.mark.django_db
+class TestAPI:
+    def test_test_url(self, my_client):
+        c = my_client()
+        response = c.get('/api/test/')
+
+        assert response.status_code == 200
+
+    def test_notes(self, my_client, notes):
+        c = my_client()
+        response = c.get('/api/notes/')
+        assert response.status_code == 200
+
+        quantity = 5
+        notes_list = notes(quantity)
+
+        for note in notes_list:
+            response = c.post('/api/notes/', note)
+            assert response.status_code == 201
