@@ -19,7 +19,6 @@ function check_null_values($post_data, $required_data) {
     $null_array = array();
     foreach ($required_data as &$value) {
         if(empty($post_data[$value])) {
-            echo "testtest";
             array_push($null_array, $value);
         }
     }

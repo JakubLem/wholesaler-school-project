@@ -1,6 +1,7 @@
 <?php
 
 require_once('Response.php');
+require_once('Manufacturer.php');
 
 class Product{
     public $identifier;
@@ -23,7 +24,26 @@ function get_all_products() {
     JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
     GROUP BY p.product_id
     ";
-    $result = $GLOBALS['database']->make_query($query, $sql_types);
-    return $result;
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 
+    $result = array();
+
+    foreach ($db_result as &$obj) {
+        $product = new Product;
+        $manufacturer = new Manufacturer;
+
+        $product->identifier = $obj['product_id'];
+        $product->product_name = $obj['product_name'];
+        $product->product_quantity = $obj['product_quantity'];
+        $product->product_display_price = $obj['product_display_price'];
+        $product->product_netto_price = $obj['product_netto_price'];
+
+        $manufacturer->manufacturer_id = $obj['product_manufacturer_id'];
+        $manufacturer->manufacturer_name = $obj['manufacturer_name'];
+
+        $product->manufacturer = $manufacturer;
+
+        array_push($result, $product);
+    }
+    return $result;
 }
