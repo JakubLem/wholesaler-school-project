@@ -1,6 +1,6 @@
 <?php
 
-require_once('classes/Response.php');
+require_once('Response.php');
 
 class Product{
     public $identifier;
@@ -14,12 +14,16 @@ class Product{
 
 
 function get_all_products() {
-    $result = array();
 
     $sql_types = [];
     $query = 
     "
-    SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price,p.product_manufacturer_id, m.manufacturer_name
-    FROM
+    SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
+    FROM products p
+    JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
+    GROUP BY p.product_id
     ";
+    $result = $GLOBALS['database']->make_query($query, $sql_types);
+    return $result;
+
 }
