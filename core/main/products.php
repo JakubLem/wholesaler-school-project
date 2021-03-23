@@ -5,11 +5,9 @@ $GLOBALS['header'] = 2;
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/products.css">
 <?php
 @include_once(__DIR__. '/top.php');
-echo "XD";
 
 require_once('forms/classes/Product.php');
 $products = get_all_products();
-print_r($products);
 
 $header = array(
     "Nazwa produktu",
@@ -22,30 +20,32 @@ $header = array(
 ?>
 
 <hr><br>
-<table>
+<table class="products-table">
     <thead>
         <tr>
             <?php
                 foreach ($header as &$col_name) {
-                    echo "<th>".$col_name."</th>";
+                    echo '<th class="head-row">'.$col_name.'</th>';
                 }
             ?>
         <tr>
-    <thead>
+    </thead>
+    <tbody>
         <?php
             foreach ($products as &$product) {
                 echo "<tr>";
                 $product_list_format = $product->list_format();
                 // TODO WSP-24 create product.php relation view
-                echo "<th>".$product->product_name."</th>";
+                echo '<th class="value-name">'.$product->product_name."</th>";
                 foreach ($product_list_format as &$value) {
-                    echo "<th>".$value."</th>";
+                    echo '<th class="value">'.$value."</th>";
                 }
-                echo "<th>Dodaj do koszyka</th>";
+                echo '<th class="buy">Dodaj do koszyka</th>';
                 echo "</tr>";
                 // TODO WSP-25 create custom listing quantity
             }
         ?>
+    </tbody>
 </table>
 <?php
 
