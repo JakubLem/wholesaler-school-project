@@ -50,8 +50,6 @@ if(isset($_SESSION['register_ok'])) {
         </script>
 
         <?php
-        } else if($_SESSION['response_code'] == 'data_validate_errors') {
-            echo '123';
         }
     }
     unset($_SESSION['register_ok']);
@@ -69,6 +67,15 @@ if(isset($_SESSION['register_ok'])) {
     }
 } else {
     @include_once(__DIR__. '/login_and_register.php');
+    if($_SESSION['response_code'] == 'EMAIL_EXISTS') {
+    ?>
+        <script>
+            let register_false_obj = document.getElementById("register_error_response");
+            register_false_obj.innerHTML = "Jest już konto zarejestrowane na podany adres e-mail!";
+        </script>
+    <?php
+    }
+    
 }
 @include_once(__DIR__. '/stop.php');
 ?>
