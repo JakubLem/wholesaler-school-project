@@ -36,11 +36,14 @@ $header = array(
             foreach ($products as &$product) {
                 echo "<tr>";
                 $product_list_format = $product->list_format();
+                // TODO WSP-24 create product.php relation view
+                echo "<th>".$product->product_name."</th>";
                 foreach ($product_list_format as &$value) {
                     echo "<th>".$value."</th>";
                 }
                 echo "<th>Dodaj do koszyka</th>";
                 echo "</tr>";
+                // TODO WSP-25 create custom listing quantity
             }
         ?>
 </table>
