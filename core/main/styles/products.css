@@ -38,3 +38,8 @@ th {
     font-weight: normal;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.add-cart-link {
+    text-decoration: none;
+    color: chocolate;
+}
