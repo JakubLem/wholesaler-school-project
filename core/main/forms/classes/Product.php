@@ -11,6 +11,16 @@ class Product{
     public $product_display_price;
     public $product_netto_price;
     public $manufacturer;
+
+    public function list_format() {
+        $result = array(
+            $this->manufacturer->manufacturer_name,
+            $this->product_quantity,
+            $this->product_display_price,
+            $this->product_netto_price
+        );
+        return $result;
+    }
 }
 
 
