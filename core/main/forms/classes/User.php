@@ -69,6 +69,7 @@ class User{
     }
 
     public function validate() {
+        // TODO WSP-28
         $data_validate = true;
         $data_validate_errors = array();
 

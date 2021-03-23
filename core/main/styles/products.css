@@ -3,7 +3,7 @@
     border-color: black; 
     border-style: solid; 
     border-width: 1px;
-    background-color: rgba(128, 177, 137, 0.548);
+    background-color: #cfd7e2;
 }
 
 th {
@@ -18,7 +18,7 @@ th {
 .buy {
     background-color: rgb(58, 207, 58);
     font-size: 24px;
-    font-family: fantasy;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: normal;
 }
 
