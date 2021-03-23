@@ -56,6 +56,9 @@ if(isset($_SESSION['register_ok'])) {
 } else if(isset($_SESSION['login'])) {
     if($_SESSION['login'] == "OK") {
         echo "Witaj ".$_SESSION['user_name']."!";
+        @include_once(__DIR__.'/forms/classes/Cart.php');
+        $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
+        print_r($_SESSION['cart']);
     } else if($_SESSION['login'] == "INVALID") {
         @include_once(__DIR__. '/login_and_register.php');
         ?>
@@ -67,13 +70,15 @@ if(isset($_SESSION['register_ok'])) {
     }
 } else {
     @include_once(__DIR__. '/login_and_register.php');
-    if($_SESSION['response_code'] == 'EMAIL_EXISTS') {
-    ?>
-        <script>
-            let register_false_obj = document.getElementById("register_error_response");
-            register_false_obj.innerHTML = "Jest już konto zarejestrowane na podany adres e-mail!";
-        </script>
-    <?php
+    if(isset($_SESSION['response_code'])){
+        if($_SESSION['response_code'] == 'EMAIL_EXISTS') {
+        ?>
+            <script>
+                let register_false_obj = document.getElementById("register_error_response");
+                register_false_obj.innerHTML = "Jest już konto zarejestrowane na podany adres e-mail!";
+            </script>
+        <?php
+        }
     }
     
 }

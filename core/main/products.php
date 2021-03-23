@@ -40,7 +40,11 @@ $header = array(
                 foreach ($product_list_format as &$value) {
                     echo '<th class="value">'.$value."</th>";
                 }
-                echo '<th class="buy">Dodaj do koszyka</th>';
+                if(isset($_SESSION['login'])) {
+                    if($_SESSION['login'] == "OK") {
+                        echo '<th class="buy"><a class="add-cart-link" href="buy.php?id='.$product->identifier.'">Dodaj do koszyka</a></th>';
+                    }
+                }
                 echo "</tr>";
                 // TODO WSP-25 create custom listing quantity
             }
