@@ -32,6 +32,7 @@ function run_form($post_data) {
             if($user->update_data()) {
                 $_SESSION['login'] = "OK";
                 $_SESSION['user_name'] = $user->user_name;
+                $_SESSION['user_identifier'] = $user->identifier;
             } else {
                 $_SESSION['login'] = "INVALID";
             }
