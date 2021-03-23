@@ -11,7 +11,6 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
-print_r($_SESSION);
 
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
@@ -55,10 +54,32 @@ if(isset($_SESSION['register_ok'])) {
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
     if($_SESSION['login'] == "OK") {
-        echo "Witaj ".$_SESSION['user_name']."!";
+        ?>
+            <div class="hello-div">
+                <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
+            </div>
+        <?php
         @include_once(__DIR__.'/forms/classes/Cart.php');
         $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
-        print_r($_SESSION['cart']);
+
+        ?>
+            <div class="grid-container">
+                <div class="center-container">
+
+                </div>
+                <div class="data">
+                    <p>Dane konta</p>
+                </div>
+                <div class="orders">
+                    Twoje zamówienia
+                </div>
+                <div class="cart">
+                    Twój koszyk
+                </div>
+            </div>
+        <?php
+
+
     } else if($_SESSION['login'] == "INVALID") {
         @include_once(__DIR__. '/login_and_register.php');
         ?>
