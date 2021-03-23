@@ -69,11 +69,22 @@ class User{
     }
 
     public function validate() {
-        // TODO WSP-28
-        $data_validate = true;
-        $data_validate_errors = array();
+        $response = new Response();
+        $data_validate_status = true;
 
-        $this->validate_status = $data_validate; // TODO
+        $sql_types = ['email' => $this->user_email];
+        $query = "SELECT * FROM users WHERE user_email = :email";
+
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+        print_r($result);
+
+        if(!empty($result)) {
+            $response->set_invalid();
+            $response->code = "EMAIL_EXISTS";
+        }
+
+        $this->last_response = $response;
+        $this->validate_status = $data_validate_status;
     }
 
     private function check_obj_create() {

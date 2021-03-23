@@ -57,11 +57,20 @@ function run_form($post_data) {
             
 
             $user->validate();
-            $user->create();
-            $_SESSION['response'] = $user->last_response;
-            if($user->last_response->status == "OK") {
-                $_SESSION['register_ok'] = "OK";
+            
+            if($user->last_response->status != 'INVALID'){
+                $user->create();
+                $_SESSION['response'] = $user->last_response;
+                if($user->last_response->status == "OK") {
+                    $_SESSION['register_ok'] = "OK";
+                }
+            } else {
+                $_SESSION['register_ok'] = "INVALID";
+                $_SESSION['response'] = $user->last_response;
+                $_SESSION['response_code'] = 'EMAIL_EXISTS';
             }
+
+            
         }
     } else {
         $_SESSION['register_ok'] = "INVALID";
