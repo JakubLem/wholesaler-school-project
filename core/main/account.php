@@ -68,22 +68,24 @@ if(isset($_SESSION['register_ok'])) {
                     <script src="scripts/account_view.js"></script>
                     <div id="center-container-data" class="center-container-on">
                         <div class="center-container-row">
-                            <?php
-                                if(isset($_SESSION['account_view'])) {
-                                    foreach ($_SESSION['account_view'] as $key => $value) {
-                                        echo "<h3>".$key."</h3>";
-                                        echo "<p>".$value."</p>";
+                            <div class="account_data-container">
+                                <?php
+                                    if(isset($_SESSION['account_view'])) {
+                                        $counter = 0;
+                                        foreach ($_SESSION['account_view'] as $key => $value) {
+                                            echo '<div class="key-'.$counter.'"> '.$key.' </div>';
+                                            echo '<div class="value-'.$counter.'"> '.$value.' </div>';
+                                            $counter++;
+                                        }
+                                    } else {
+                                        echo "Nie udało się załadować danych użytkownika!";
                                     }
-                                } else {
-                                    echo "Nie udało się załadować danych użytkownika!";
-                                }
-                            ?>
-                            <h2></h2>
-                            <p></p>
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <div id="center-container-orders" class="center-container-off">
-                        2
+                        Tutaj będą widoczne twoje zamówienia
                     </div>
                     <div id="center-container-cart" class="center-container-off">
                         3

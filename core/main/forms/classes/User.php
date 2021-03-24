@@ -59,8 +59,8 @@ class User{
         $result = $GLOBALS['database']->make_query($query, $sql_types);
 
         $this->user_name = $result[0]['user_name'];
-        $this->user_surname = $result[0]['user_name'];
-        $this->user_email = $result[0]['user_name'];
+        $this->user_surname = $result[0]['user_surname'];
+        $this->user_email = $result[0]['user_email'];
 
         $this->user_firm_nip = $result[0]['user_firm_id'];
 
