@@ -10,12 +10,14 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class PriceListSerializer(serializers.ModelSerializer):
+    options = serializers.SlugRelatedField(many=True, read_only=True, slug_field='id')
+    
     class Meta:
         model = PriceList
-        fields = ('main_identifier', 'quantity', 'options')
+        fields = ('id', 'main_identifier', 'quantity', 'options')
 
 
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ('max_weight', 'price')
+        fields = ('id', 'max_weight', 'price')
