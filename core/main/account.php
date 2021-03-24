@@ -88,6 +88,13 @@ if(isset($_SESSION['register_ok'])) {
                         Tutaj będą widoczne twoje zamówienia
                     </div>
                     <div id="center-container-cart" class="center-container-off">
+                        <div class="account-cart-container">
+                            <div class="product_name">Nazwa produktu</div>
+                            <div class="producer_name">Producent</div>
+                            <div class="netto_price">Cena NETTO</div>
+                            <div class="quantity">Ilość</div>
+                            <div class="value">Wartość</div>
+                        </div>
                         <?php 
                             foreach ($_SESSION['cart'] as &$cart) {
                                 echo '<div class="account-cart-container">';
@@ -95,7 +102,8 @@ if(isset($_SESSION['register_ok'])) {
                                 echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
                                 echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
                                 echo '<div class="quantity">'.$cart->quantity.'</div>';
-                                echo '<div class="value">'.$cart->quantity.'</div>';
+                                echo '<div class="value">'.$cart->quantity*$cart->product->get_price().'</div>';
+                                echo '<div class="delete"><a href="delete.php?id='.$cart->product->identifier.'">Usuń z koszyka</a></div>';
                                 echo '</div>';
                             }
                         ?>

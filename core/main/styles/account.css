@@ -168,9 +168,12 @@
 
 .account-cart-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 8px;
+    font-size: 18px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas:
-      "product_name producer_name netto_price quantity value";
+      "product_name producer_name netto_price quantity value delete";
 }
+
