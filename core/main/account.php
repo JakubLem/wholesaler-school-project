@@ -11,7 +11,6 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
-print_r($_SESSION);
 
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
@@ -55,10 +54,56 @@ if(isset($_SESSION['register_ok'])) {
     unset($_SESSION['register_ok']);
 } else if(isset($_SESSION['login'])) {
     if($_SESSION['login'] == "OK") {
-        echo "Witaj ".$_SESSION['user_name']."!";
+        ?>
+            <div class="hello-div">
+                <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
+            </div>
+        <?php
         @include_once(__DIR__.'/forms/classes/Cart.php');
         $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
-        print_r($_SESSION['cart']);
+
+        ?>
+            <div class="grid-container">
+                <div class="center-container">
+                    <script src="scripts/account_view.js"></script>
+                    <div id="center-container-data" class="center-container-on">
+                        <div class="center-container-row">
+                            <div class="account_data-container">
+                                <?php
+                                    if(isset($_SESSION['account_view'])) {
+                                        $counter = 0;
+                                        foreach ($_SESSION['account_view'] as $key => $value) {
+                                            echo '<div class="key-'.$counter.'"> '.$key.' :</div>';
+                                            echo '<div class="value-'.$counter.'"> '.$value.' </div>';
+                                            $counter++;
+                                        }
+                                    } else {
+                                        echo "Nie udało się załadować danych użytkownika!";
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="center-container-orders" class="center-container-off">
+                        Tutaj będą widoczne twoje zamówienia
+                    </div>
+                    <div id="center-container-cart" class="center-container-off">
+                        3
+                    </div>   
+                </div>
+                <div id="to-switch-data" class="data" onclick="switch_account_view(id)">
+                    <p>Dane konta</p>
+                </div>
+                <div id="to-switch-orders" class="orders" onclick="switch_account_view(id)">
+                    Twoje zamówienia
+                </div>
+                <div id="to-switch-cart" class="cart" onclick="switch_account_view(id)">
+                    Twój koszyk
+                </div>
+            </div>
+        <?php
+
+
     } else if($_SESSION['login'] == "INVALID") {
         @include_once(__DIR__. '/login_and_register.php');
         ?>

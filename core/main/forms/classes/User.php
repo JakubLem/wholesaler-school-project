@@ -59,10 +59,22 @@ class User{
         $result = $GLOBALS['database']->make_query($query, $sql_types);
 
         $this->user_name = $result[0]['user_name'];
-        $this->user_surname = $result[0]['user_name'];
-        $this->user_email = $result[0]['user_name'];
+        $this->user_surname = $result[0]['user_surname'];
+        $this->user_email = $result[0]['user_email'];
 
-        // $sql_types = ['id' => $this->identifier];
+        $this->user_firm_nip = $result[0]['user_firm_id'];
+
+        $sql_types = ['id' => $result[0]['user_address_id']];
+        $query = "SELECT * FROM address WHERE address_id = :id";
+
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+        print_r($result);
+
+        $this->address_address = $result[0]['address_address'];
+        $this->address_city = $result[0]['address_city'];
+        $this->address_country = $result[0]['address_country'];
+        $this->address_postal_code = $result[0]['address_postal_code'];
+
 
 
         return true;
@@ -139,5 +151,19 @@ class User{
         } else {
             $response->set_invalid(); # TODO response here
         }
+    }
+
+    public function account_view() {
+        $result =  array(
+            "Imię"  => $this->user_name,
+            "Nazwisko" => $this->user_surname,
+            "Adres e-mail" => $this->user_email,
+            "Miasto" => $this->address_city,
+            "Adres" => $this->address_address,
+            "Kod pocztowy" => $this->address_postal_code,
+            "Państwo" => $this->address_country,
+            "Numer NIP firmy" => $this->user_firm_nip
+        );
+        return $result;
     }
 }
