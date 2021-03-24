@@ -9,7 +9,11 @@ class Note(models.Model):
 
 
 class PriceList(models.Model):
+    main_identifier = models.CharField(max_length=100)
     quantity = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.main_identifier, self.quantity}'
 
 
 class Option(models.Model):
