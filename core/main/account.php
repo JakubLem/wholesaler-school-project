@@ -67,7 +67,12 @@ if(isset($_SESSION['register_ok'])) {
                 <div class="center-container">
                     <script src="scripts/account_view.js"></script>
                     <div id="center-container-data" class="center-container-on">
-                        1
+                        <div class="center-container-row">
+                            <?php
+                            ?>
+                            <h2></h2>
+                            <p></p>
+                        </div>
                     </div>
                     <div id="center-container-orders" class="center-container-off">
                         2

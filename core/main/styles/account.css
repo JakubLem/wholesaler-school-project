@@ -118,3 +118,7 @@
 .center-container-off {
     display: none;
 }
+
+.center-container > div {
+    margin: 15px;
+}

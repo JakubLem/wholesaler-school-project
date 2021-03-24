@@ -140,4 +140,17 @@ class User{
             $response->set_invalid(); # TODO response here
         }
     }
+
+    public function account_view() {
+        return array(
+            "user_name"  => $this->user_name,
+            "user_surname" => $this->user_surname,
+            "user_email" => $this->user_email,
+            "address_city" => $this->user_city,
+            "address_address" => $this->user_address,
+            "address_postal_code" => $this->user_postal_code,
+            "address_address_country" => $this->address_country,
+            "user_firm_nip" => $this->user_firm_nip
+        );
+    }
 }
