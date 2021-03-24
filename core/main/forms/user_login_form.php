@@ -33,6 +33,8 @@ function run_form($post_data) {
                 $_SESSION['login'] = "OK";
                 $_SESSION['user_name'] = $user->user_name;
                 $_SESSION['user_identifier'] = $user->identifier;
+                // TODO WSP-33 replace all user values into account_view
+                $_SESSION['account_view'] = $user->account_view();
             } else {
                 $_SESSION['login'] = "INVALID";
             }
