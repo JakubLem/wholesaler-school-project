@@ -1,13 +1,15 @@
 <?php
 
 require_once('Response.php');
-
+require_once('Product.php');
 
 class Cart{
     public $master_cart_id;
     public $user_id;
     public $product_id;
     public $quantity;
+
+    public $product;
 }
 
 
@@ -31,6 +33,8 @@ function get_product_identifiers_from_user_cart($user_id) {
         $cart->user_id = $user_id;
         $cart->product_id = $product_id;
         $cart->quantity = $quantity;
+
+        $cart->product = get_product_by_id($product_id);
 
         array_push($result, $cart);
     }

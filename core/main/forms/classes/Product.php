@@ -21,6 +21,10 @@ class Product{
         );
         return $result;
     }
+
+    public function get_price() {
+        return min($this->product_display_price, $this->product_netto_price);
+    }
 }
 
 
@@ -56,4 +60,34 @@ function get_all_products() {
         array_push($result, $product);
     }
     return $result;
+}
+
+function get_product_by_id($id) {
+    $sql_types = ['id' => $id];
+    $query = 
+    "
+    SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
+    FROM products p
+    JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
+    WHERE product_id = :id
+    ";
+
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+
+    $product = new Product;
+    $manufacturer = new Manufacturer;
+
+    $obj = $db_result[0];
+
+    $product->identifier = $obj['product_id'];
+    $product->product_name = $obj['product_name'];
+    $product->product_quantity = $obj['product_quantity'];
+    $product->product_display_price = $obj['product_display_price'];
+    $product->product_netto_price = $obj['product_netto_price'];
+    $manufacturer->manufacturer_id = $obj['product_manufacturer_id'];
+    $manufacturer->manufacturer_name = $obj['manufacturer_name'];
+
+    $product->manufacturer = $manufacturer;
+
+    return $product;
 }

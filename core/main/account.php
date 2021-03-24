@@ -68,7 +68,7 @@ if(isset($_SESSION['register_ok'])) {
                     <script src="scripts/account_view.js"></script>
                     <div id="center-container-data" class="center-container-on">
                         <div class="center-container-row">
-                            <div class="account_data-container">
+                            <div class="account-data-container">
                                 <?php
                                     if(isset($_SESSION['account_view'])) {
                                         $counter = 0;
@@ -88,17 +88,29 @@ if(isset($_SESSION['register_ok'])) {
                         Tutaj będą widoczne twoje zamówienia
                     </div>
                     <div id="center-container-cart" class="center-container-off">
-                        3
+                        <?php 
+                            foreach ($_SESSION['cart'] as &$cart) {
+                                echo '<div class="account-cart-container">';
+                                echo '<div class="product_name">'.$cart->product->product_name.'</div>';
+                                echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
+                                echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
+                                echo '<div class="quantity">'.$cart->quantity.'</div>';
+                                echo '<div class="value">'.$cart->quantity.'</div>';
+                                echo '</div>';
+                            }
+                        ?>
+                        <div class="account-cart-container">
+                        </div>
                     </div>   
                 </div>
                 <div id="to-switch-data" class="data" onclick="switch_account_view(id)">
                     <p>Dane konta</p>
                 </div>
                 <div id="to-switch-orders" class="orders" onclick="switch_account_view(id)">
-                    Twoje zamówienia
+                    <p>Twoje zamówienia</p>
                 </div>
                 <div id="to-switch-cart" class="cart" onclick="switch_account_view(id)">
-                    Twój koszyk
+                    <p>Twój koszyk</p>
                 </div>
             </div>
         <?php
