@@ -62,7 +62,19 @@ class User{
         $this->user_surname = $result[0]['user_name'];
         $this->user_email = $result[0]['user_name'];
 
-        // $sql_types = ['id' => $this->identifier];
+        $this->user_firm_nip = $result[0]['user_firm_id'];
+
+        $sql_types = ['id' => $result[0]['user_address_id']];
+        $query = "SELECT * FROM address WHERE address_id = :id";
+
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+        print_r($result);
+
+        $this->address_address = $result[0]['address_address'];
+        $this->address_city = $result[0]['address_city'];
+        $this->address_country = $result[0]['address_country'];
+        $this->address_postal_code = $result[0]['address_postal_code'];
+
 
 
         return true;
@@ -142,15 +154,16 @@ class User{
     }
 
     public function account_view() {
-        return array(
+        $result =  array(
             "user_name"  => $this->user_name,
             "user_surname" => $this->user_surname,
             "user_email" => $this->user_email,
-            "address_city" => $this->user_city,
-            "address_address" => $this->user_address,
-            "address_postal_code" => $this->user_postal_code,
+            "address_city" => $this->address_city,
+            "address_address" => $this->address_address,
+            "address_postal_code" => $this->address_postal_code,
             "address_address_country" => $this->address_country,
             "user_firm_nip" => $this->user_firm_nip
         );
+        return $result;
     }
 }

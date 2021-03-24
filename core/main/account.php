@@ -69,6 +69,14 @@ if(isset($_SESSION['register_ok'])) {
                     <div id="center-container-data" class="center-container-on">
                         <div class="center-container-row">
                             <?php
+                                if(isset($_SESSION['account_view'])) {
+                                    foreach ($_SESSION['account_view'] as $key => $value) {
+                                        echo "<h3>".$key."</h3>";
+                                        echo "<p>".$value."</p>";
+                                    }
+                                } else {
+                                    echo "Nie udało się załadować danych użytkownika!";
+                                }
                             ?>
                             <h2></h2>
                             <p></p>
