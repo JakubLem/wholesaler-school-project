@@ -25,7 +25,7 @@ if(isset($_GET['id']) && isset($_SESSION['user_identifier'])){
                     $master_cart_id = $obj['master_cart_id'];
                     $new_quantity = $obj['quantity'] + 1;
                 }
-            }          
+            }  
         }
 
         if($master_cart_id != 0 && $new_quantity != 0) {
@@ -34,7 +34,7 @@ if(isset($_GET['id']) && isset($_SESSION['user_identifier'])){
         } else {
             $query = "INSERT INTO cart (user_id, product_id, quantity) VALUES (".$user_id.", ".$product_id.", 1);";
             $db_result = $GLOBALS['database']->make_query($query, []);
-        }   
+        }
     }
 }
 

@@ -1,7 +1,5 @@
 <?php
 
-print_r($_GET);
-
 require_once('connect_db.php');
 require_once('forms/session/start.php');
 
@@ -14,5 +12,5 @@ if(isset($_GET['id']) && isset($_SESSION['user_identifier'])){
 
     $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 }
-
+$_SESSION['cart_important'] = true; // TODO WSP-36
 header("Location: account.php");

@@ -66,6 +66,16 @@ if(isset($_SESSION['register_ok'])) {
             <div class="grid-container">
                 <div class="center-container">
                     <script src="scripts/account_view.js"></script>
+                    <?php
+                        // TODO WSP-36
+                        if(isset($_SESSION['cart_important'])){
+                            ?>
+                                <script>
+                                    switch_account_view("to-switch-cart");
+                                </script>
+                            <?php
+                        }
+                    ?>
                     <div id="center-container-data" class="center-container-on">
                         <div class="center-container-row">
                             <div class="account-data-container">
@@ -88,23 +98,33 @@ if(isset($_SESSION['register_ok'])) {
                         Tutaj będą widoczne twoje zamówienia
                     </div>
                     <div id="center-container-cart" class="center-container-off">
-                        <div class="account-cart-container">
-                            <div class="product_name">Nazwa produktu</div>
-                            <div class="producer_name">Producent</div>
-                            <div class="netto_price">Cena NETTO</div>
-                            <div class="quantity">Ilość</div>
-                            <div class="value">Wartość</div>
-                        </div>
-                        <?php 
-                            foreach ($_SESSION['cart'] as &$cart) {
-                                echo '<div class="account-cart-container">';
-                                echo '<div class="product_name">'.$cart->product->product_name.'</div>';
-                                echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
-                                echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
-                                echo '<div class="quantity">'.$cart->quantity.'</div>';
-                                echo '<div class="value">'.$cart->quantity*$cart->product->get_price().'</div>';
-                                echo '<div class="delete"><a href="delete.php?id='.$cart->product->identifier.'">Usuń z koszyka</a></div>';
-                                echo '</div>';
+                        <?php
+                        if(empty($_SESSION['cart'])){
+                            echo "Twój koszyk jest pusty!";
+                        } else {
+                        ?>
+                            <div class="account-cart-container">
+                                <div class="product_name">Nazwa produktu</div>
+                                <div class="producer_name">Producent</div>
+                                <div class="netto_price">Cena NETTO</div>
+                                <div class="quantity">Ilość</div>
+                                <div class="value">Wartość</div>
+                            </div>
+                            <?php 
+                                foreach ($_SESSION['cart'] as &$cart) {
+                                    echo '<div class="account-cart-container">';
+                                    echo '<div class="product_name">'.$cart->product->product_name.'</div>';
+                                    echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
+                                    echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
+                                    echo '<div class="quantity">';
+                                    echo '➖  ';
+                                    echo $cart->quantity;
+                                    echo '  ➕';
+                                    echo '</div>';
+                                    echo '<div class="value">'.$cart->quantity*$cart->product->get_price().'</div>';
+                                    echo '<div class="delete"><a href="delete.php?id='.$cart->product->identifier.'">Usuń z koszyka</a></div>';
+                                    echo '</div>';
+                                }
                             }
                         ?>
                         <div class="account-cart-container">
