@@ -7,6 +7,7 @@ class Cart{
     public $master_cart_id;
     public $user_id;
     public $product_id;
+    public $quantity;
 }
 
 
@@ -24,10 +25,12 @@ function get_product_identifiers_from_user_cart($user_id) {
         $master_cart_id = $obj['master_cart_id'];
         $user_id = $obj['user_id'];
         $product_id = $obj['product_id'];
+        $quantity = $obj['quantity'];
 
         $cart->master_cart_id = $master_cart_id;
         $cart->user_id = $user_id;
         $cart->product_id = $product_id;
+        $cart->quantity = $quantity;
 
         array_push($result, $cart);
     }
