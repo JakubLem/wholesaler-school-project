@@ -73,7 +73,7 @@ if(isset($_SESSION['register_ok'])) {
                                     if(isset($_SESSION['account_view'])) {
                                         $counter = 0;
                                         foreach ($_SESSION['account_view'] as $key => $value) {
-                                            echo '<div class="key-'.$counter.'"> '.$key.' </div>';
+                                            echo '<div class="key-'.$counter.'"> '.$key.' :</div>';
                                             echo '<div class="value-'.$counter.'"> '.$value.' </div>';
                                             $counter++;
                                         }

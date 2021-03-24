@@ -155,14 +155,14 @@ class User{
 
     public function account_view() {
         $result =  array(
-            "user_name"  => $this->user_name,
-            "user_surname" => $this->user_surname,
-            "user_email" => $this->user_email,
-            "address_city" => $this->address_city,
-            "address_address" => $this->address_address,
-            "address_postal_code" => $this->address_postal_code,
-            "address_address_country" => $this->address_country,
-            "user_firm_nip" => $this->user_firm_nip
+            "Imię"  => $this->user_name,
+            "Nazwisko" => $this->user_surname,
+            "Adres e-mail" => $this->user_email,
+            "Miasto" => $this->address_city,
+            "Adres" => $this->address_address,
+            "Kod pocztowy" => $this->address_postal_code,
+            "Państwo" => $this->address_country,
+            "Numer NIP firmy" => $this->user_firm_nip
         );
         return $result;
     }
