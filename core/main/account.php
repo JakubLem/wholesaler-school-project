@@ -65,15 +65,24 @@ if(isset($_SESSION['register_ok'])) {
         ?>
             <div class="grid-container">
                 <div class="center-container">
-
+                    <script src="scripts/account_view.js"></script>
+                    <div id="center-container-data" class="center-container-on">
+                        1
+                    </div>
+                    <div id="center-container-orders" class="center-container-off">
+                        2
+                    </div>
+                    <div id="center-container-cart" class="center-container-off">
+                        3
+                    </div>   
                 </div>
-                <div class="data">
+                <div id="to-switch-data" class="data" onclick="switch_account_view(id)">
                     <p>Dane konta</p>
                 </div>
-                <div class="orders">
+                <div id="to-switch-orders" class="orders" onclick="switch_account_view(id)">
                     Twoje zamówienia
                 </div>
-                <div class="cart">
+                <div id="to-switch-cart" class="cart" onclick="switch_account_view(id)">
                     Twój koszyk
                 </div>
             </div>

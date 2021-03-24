@@ -110,3 +110,11 @@
 .hello {
     font-size: 24px;
 }
+
+.center-container-on {
+    display: block;
+}
+
+.center-container-off {
+    display: none;
+}
