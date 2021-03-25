@@ -47,6 +47,8 @@ class TestAPI:
         for note in notes_list:
             response = c.post(MAIN_API_PATH + 'notes/', note)
             assert response.status_code == 201
+        
+        assert models.Note.objects.count() == 5
 
     def test_price_list_and_options(self, my_client):
         c = my_client()
