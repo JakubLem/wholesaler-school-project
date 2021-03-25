@@ -1,11 +1,9 @@
-### ----------------------------------
-### Environment config
-### ----------------------------------
+### --------------------------------------------------------------------------------------------------------------------
+# Environment config
+### --------------------------------------------------------------------------------------------------------------------
 
 
---
 # Download repo and creating local directory
---
 
 To download a project, go to the directory in the console `htdocs/` in the directory `xampp/`.
 Execute the command `git clone https://github.com/JakubLem/wholesaler-school-project.git`
@@ -13,9 +11,7 @@ Execute the command `git clone https://github.com/JakubLem/wholesaler-school-pro
 Then enter the folder `wholesaler-school-project/` using: 
 ```cd wholesaler-school-project```
 
---
 # Creating a virtual Django environment
---
 
 At this point, make sure that python is installed by executing the command: `python --version`
 If you using Unix Environment propably you should use `python3 --version`
@@ -27,7 +23,7 @@ Then start the virtual environment:
 MAC/Linux: `source venv/bin/activate`
 Windows: `venv\Scripts\activate`
 
-After starting the environment, its name should appear before the path --> `(venv)`, 
+After starting the environment, its name should appear before the path> `(venv)`, 
 Then install the needed packages with the command:
 
 `pip install -r requirements.txt`
@@ -44,15 +40,11 @@ you must run a get query: `localhost:8000/api/loaddata_startdata/`
 - load dump data: 
 run: `python manage.py loaddata startdata`
 
---
 # Testing Django App
---
 
 In directory `/core/pycore/` run `pytest -x -vv`
 
---
 # Setting up PHP application
---
 
 Make sure you have installed composer in computer
 In command line run command: `composer install`
@@ -60,15 +52,11 @@ In command line run command: `composer install`
 After creating the vendor folder, make sure it is in `/core/main/db_connector/`
 If not, move this folder there
 
---
 # Setting up DATABASE
---
 
 After entering the `localhost/phpmyadmin/` website, import the database using the `/docs/database.sql`
 
---
 # Setting up dotenv
---
 
 In directory `/core/main/db_connector/` create `.env` file
 Specific variables should be assigned appropriately in this file:
@@ -83,7 +71,9 @@ DBNAME=your_db_name
 # Starting the application
 
 !!! IMPORTANT !!!
+
 For the application to work properly, both services must be running: the djano application and the php application
+
 !!! IMPORTANT !!!
 
 To run the Django application, execute the command:
@@ -97,14 +87,10 @@ You must start the services in the `XAMPP Control Panel`:
 
 In the browser, enter the link: `localhost/wholesaler-school-project/`
 
---
 # Application closing:
---
 
 Services must be disabled:
 - disable Apache and MySQL services in XAMPP Control Panel
-- execute `CTRL + C` or `CTRL + D` in the console to stop the application
-and `deactivate` to disable the virtual environment
+- execute `CTRL + C` or `CTRL + D` in the console to stop the application and `deactivate` to disable the virtual environment
 
-
-### ----------------------------------
+### --------------------------------------------------------------------------------------------------------------------
