@@ -27,7 +27,7 @@ class TestAPI:
             'options': 'http://testserver/api/options/', 
             'pricelists': 'http://testserver/api/pricelists/'
         }
-        
+
     def test_test_url(self, my_client):
         c = my_client()
         response = c.get('/api/test/')
@@ -46,5 +46,5 @@ class TestAPI:
             response = c.post('/api/notes/', note)
             assert response.status_code == 201
 
-    
-
+    def test_price_list_and_options(self):
+        pass    
