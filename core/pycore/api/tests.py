@@ -18,6 +18,16 @@ class TestFunctions:
 
 @pytest.mark.django_db
 class TestAPI:
+    def test_api_urls(self, my_client):
+        c = my_client()
+        response = c.get('/api/')
+
+        assert response.json() == {
+            'notes': 'http://testserver/api/notes/', 
+            'options': 'http://testserver/api/options/', 
+            'pricelists': 'http://testserver/api/pricelists/'
+        }
+        
     def test_test_url(self, my_client):
         c = my_client()
         response = c.get('/api/test/')
@@ -35,3 +45,6 @@ class TestAPI:
         for note in notes_list:
             response = c.post('/api/notes/', note)
             assert response.status_code == 201
+
+    
+
