@@ -59,3 +59,17 @@ class TestAPI:
         })
 
         assert response.status_code == 201
+        assert response.json() == {
+            'id': 1,
+            'main_identifier': 'test',
+            'quantity': 0,
+            'options': []
+        }
+
+        response = c.post(MAIN_API_PATH + 'options/', {
+            'max_weight': 19,
+            'price': 15.99,
+            'price_list': 1 # TODO
+        })
+
+        assert response.json() == 'test'
