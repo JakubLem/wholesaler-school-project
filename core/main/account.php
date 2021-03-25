@@ -117,7 +117,7 @@ if(isset($_SESSION['register_ok'])) {
                                     echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
                                     echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
                                     echo '<div class="quantity">';
-                                    echo '➖  ';
+                                    echo '<a href="cart_subtract.php?master_cart_id='.$cart->master_cart_id.'">➖  </a>';
                                     echo $cart->quantity;
                                     echo '  ➕';
                                     echo '</div>';
