@@ -37,13 +37,18 @@
     box-sizing: border-box;
 }
 
-.register-form-form {
+.register-form-form, .message-register-form-form {
     background-color: #cfd7e2;
     border: none;
     color: rgb(0, 0, 0);
     margin-top: 5px;
     height: 25px;
     padding: 6px 20px;
+}
+
+.message-register-form-form {
+    resize: none;
+    height: 280px;
 }
 
 .register-form-form-invalid {
