@@ -23,3 +23,12 @@ class Option(models.Model):
 
     def __str__(self):
         return f'{self.max_weight, self.price}'
+
+    @property
+    def json_view(self):
+        result = {
+            'id': self.id,
+            'max_weight': self.max_weight,
+            'price': self.price
+        }
+        return result

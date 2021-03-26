@@ -10,6 +10,8 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'notes', views.NoteViewSet)
+router.register(r'pricelists', views.PriceListViewSet)
+router.register(r'options', views.OptionViewSet)
 
 urlpatterns = [
     url(r'test/', views.GetTestViewSet.as_view(), name='test'),
