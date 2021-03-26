@@ -49,6 +49,14 @@ if(isset($_SESSION['register_ok'])) {
         </script>
 
         <?php
+        } else if($_SESSION['response_code'] == 'EMAIL_EXISTS') {
+            @include_once(__DIR__. '/login_and_register.php');
+            ?>
+                <script>
+                    let register_false_obj = document.getElementById("register_error_response");
+                    register_false_obj.innerHTML = "Jest już konto zarejestrowane na podany adres e-mail!";
+                </script>
+            <?php
         }
     }
     unset($_SESSION['register_ok']);
