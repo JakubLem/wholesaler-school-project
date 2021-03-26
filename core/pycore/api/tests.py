@@ -54,14 +54,14 @@ class TestAPI:
         c = my_client()
 
         response = c.post(MAIN_API_PATH + 'pricelists/', {
-            'main_identifier': 'test',
+            'main_identifier': 'test_identifier',
             'quantity': 0
         })
 
         assert response.status_code == 201
         assert response.json() == {
             'id': 1,
-            'main_identifier': 'test',
+            'main_identifier': 'test_identifier',
             'quantity': 0,
             'options': []
         }
@@ -69,7 +69,31 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'options/', {
             'max_weight': 19,
             'price': 15.99,
-            'price_list': 1 # TODO
+            'price_list': 'test_identifier'
         })
+        assert response.status_code == 201
 
-        assert response.json() == 'test'
+        response = c.post(MAIN_API_PATH + 'options/', {
+            'max_weight': 25,
+            'price': 26.99,
+            'price_list': 'test_identifier'
+        })
+        assert response.status_code == 201
+        assert models.Option.objects.count()
+
+        response = c.get(MAIN_API_PATH + 'pricelists/test_identifier/')
+        assert response.json() == {
+            'price_list': 'test_identifier', 
+            'options': [
+                {
+                    'id': 1, 
+                    'max_weight': 19.0, 
+                    'price': 15.99
+                }, 
+                {
+                    'id': 2, 
+                    'max_weight': 25.0, 
+                    'price': 26.99
+                }
+            ]
+        }
