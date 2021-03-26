@@ -128,7 +128,7 @@
     margin: 25px;
 }
 
-.account_data-container {
+.account-data-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -169,4 +169,29 @@
 .value-8 {
     font-size: 24px;
     font-family: cursive;
+}
+
+.account-cart-container {
+    display: grid;
+    margin: 8px;
+    font-size: 18px;
+    background-color: #e6e7e9;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "product_name producer_name netto_price quantity value delete";
+}
+
+
+.product_name,
+.producer_name,
+.netto_price,
+.quantity,
+.value,
+.delete {
+    display: flex;
+    border: darkgray solid 1px;
+    justify-content: center;
+    align-items: center;
 }
