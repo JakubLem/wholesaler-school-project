@@ -11,7 +11,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class PriceListSerializer(serializers.ModelSerializer):
-    options = serializers.SlugRelatedField(many=True, read_only=True, slug_field='main_identifier')
+    options = serializers.SlugRelatedField(many=True, read_only=True, slug_field='id')
     
     class Meta:
         model = PriceList
@@ -19,7 +19,7 @@ class PriceListSerializer(serializers.ModelSerializer):
 
 
 class OptionSerializer(serializers.ModelSerializer):
-    price_list = serializers.CharField(max_length=150)
+    price_list = serializers.CharField(max_length=100)
 
     class Meta:
         model = Option
@@ -29,8 +29,8 @@ class OptionSerializer(serializers.ModelSerializer):
         try:
             price_list = get_object_or_404(PriceList, main_identifier=data['price_list'])
         except Exception:
-            raise ValidationError("PriceList with identifier {identifier} doesn't exist".format(
-                identifier=data['price_list']
+            raise ValidationError("PriceList with main_identifier {main_identifier} doesn't exist".format(
+                main_identifier=data['price_list']
             ))
         data['price_list'] = price_list
 
