@@ -66,16 +66,6 @@ if(isset($_SESSION['register_ok'])) {
             <div class="grid-container">
                 <div class="center-container">
                     <script src="scripts/account_view.js"></script>
-                    <?php
-                        // TODO WSP-36
-                        if(isset($_SESSION['cart_important'])){
-                            ?>
-                                <script>
-                                    switch_account_view("to-switch-cart");
-                                </script>
-                            <?php
-                        }
-                    ?>
                     <div id="center-container-data" class="center-container-on">
                         <div class="center-container-row">
                             <div class="account-data-container">
@@ -119,7 +109,7 @@ if(isset($_SESSION['register_ok'])) {
                                     echo '<div class="quantity">';
                                     echo '<a href="cart_subtract.php?master_cart_id='.$cart->master_cart_id.'">➖  </a>';
                                     echo $cart->quantity;
-                                    echo '  ➕';
+                                    echo '<a href="cart_add.php?master_cart_id='.$cart->master_cart_id.'">  ➕</a>';
                                     echo '</div>';
                                     echo '<div class="value">'.$cart->quantity*$cart->product->get_price().'</div>';
                                     echo '<div class="delete"><a href="delete.php?id='.$cart->product->identifier.'">Usuń z koszyka</a></div>';
@@ -142,7 +132,13 @@ if(isset($_SESSION['register_ok'])) {
                 </div>
             </div>
         <?php
-
+            if(isset($_SESSION['cart_important'])){
+                ?>
+                    <script>
+                        switch_account_view("to-switch-cart");
+                    </script>
+                <?php
+            }
 
     } else if($_SESSION['login'] == "INVALID") {
         @include_once(__DIR__. '/login_and_register.php');
