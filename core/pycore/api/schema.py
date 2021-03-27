@@ -1,13 +1,25 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import Note
+from .models import Note, Option, PriceList
 
 
 class NoteType(DjangoObjectType):
     class Meta:
         model = Note
         fields = ("id", "string")
+
+
+class OptionType(DjangoObjectType):
+    class Meta:
+        model = Option
+        fields = ("max_weight", "price")
+
+
+class PriceListType(DjangoObjectType):
+    class Meta:
+        model = PriceList
+        fields = ("main_identifier", "options")
 
 
 class Query(graphene.ObjectType):
