@@ -26,6 +26,6 @@ GRAPHQL;
 
 $result = (graphql_query('http://localhost:8000/api/graph/', $query, [], null));
 
-
+$options = null;
 
 @include_once(__DIR__. '/stop.php');
