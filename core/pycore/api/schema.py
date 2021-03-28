@@ -16,24 +16,16 @@ class OptionType(DjangoObjectType):
         fields = ("max_weight", "price")
 
 
-class PriceListFilter(django_filters.FilterSet):
-    class Meta:
-        model = PriceList
-        fields = ['main_identifier']
-
 class PriceListType(DjangoObjectType):
     class Meta:
         model = PriceList
-        # filterset_class = PriceListFilter
-        # interfaces = (graphene.relay.Node, )
-        fields = ("id", "main_identifier", "options")
+        fields = ("main_identifier", "options")
 
 
 class Query(graphene.ObjectType):
     notes = graphene.List(NoteType)
     options = graphene.List(OptionType)
-    pricelists = graphene.List(PriceListType)
-    # pricelist = graphene.relay.Node.Field(PriceListType)
+    pricelist = graphene.Field(PriceListType, main_identifier=graphene.String())
 
     def resolve_notes(self, info):
         return Note.objects.all()
@@ -41,17 +33,18 @@ class Query(graphene.ObjectType):
     def resolve_options(self, info):
         return Option.objects.all()
 
-    def resolve_pricelists(self, info, **args):
+    def resolve_pricelist(self, info, **args):
         main_identifier = args.get('main_identifier')
-        print(main_identifier)
-        return PriceList.objects.get(main_identifier=main_identifier)
+        if main_identifier:
+            return PriceList.objects.get(main_identifier=main_identifier)
+        return None
 
 schema = graphene.Schema(query=Query)
 
 
 """
 query {
-    pricelists {
+    pricelist (mainIdentifier: "mainwsppricelist"){
         mainIdentifier,
         options {
             maxWeight
