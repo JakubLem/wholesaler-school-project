@@ -23,9 +23,12 @@ require_once('functions/graphql.php');
 
 $query = <<<'GRAPHQL'
 query {
-    notes {
-        id
-        string 
+    pricelist (mainIdentifier: "mainwsppricelist"){
+        mainIdentifier,
+        options {
+            maxWeight
+            price
+        }
     }
 }
 GRAPHQL;
