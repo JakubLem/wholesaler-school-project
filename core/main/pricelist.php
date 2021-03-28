@@ -24,8 +24,14 @@ query {
 }
 GRAPHQL;
 
-$result = (graphql_query('http://localhost:8000/api/graph/', $query, [], null));
+$options_data = (graphql_query('http://localhost:8000/api/graph/', $query, [], null));
+@include_once(__DIR__.'/forms/classes/Option.php');
+$options = get_all_price_list_options($options_data);
 
-$options = null;
+if(count($options) == 0) {
+    // TODO WSP-43 validation
+} else {
+    
+}
 
 @include_once(__DIR__. '/stop.php');
