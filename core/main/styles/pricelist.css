@@ -20,14 +20,13 @@
     font-family: cursive;
 }
 
-
-
 .price-list-header {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
+
 .price-list-header > h1 {
     font-size: 40px;
 }
