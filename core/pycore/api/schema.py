@@ -1,6 +1,5 @@
 import graphene
 from graphene_django import DjangoObjectType
-import django_filters
 from .models import Note, Option, PriceList
 
 
