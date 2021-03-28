@@ -22,10 +22,17 @@ if(isset($_GET['master_cart_id']) && isset($_SESSION['user_identifier'])){
         }
     }
 
-    $query = "UPDATE cart SET quantity = ".$new_quantity." WHERE master_cart_id = ".$master_cart_id.";";
-    $db_result = $GLOBALS['database']->make_query($query, []);
+    if($new_quantity != 0) {
+        $sql_types = [];
+        $query = "UPDATE cart SET quantity = ".$new_quantity." WHERE master_cart_id = ".$master_cart_id.";";
+    } else {
+        $sql_types = ['master_cart_id' => $master_cart_id];
+        $query = "DELETE FROM cart WHERE master_cart_id = :master_cart_id";
+    }
+    
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 
 }
 
-$_SESSION['cart_important'] = true; // TODO WSP-36
+$_SESSION['cart_important'] = true;
 header("Location: account.php");

@@ -77,7 +77,7 @@ function run_form($post_data) {
         $_SESSION['response'] = $response_general;
         $_SESSION['response_code'] = 'none';
     }
-    header("Location: ../account.php");
+    
 }
-
+header("Location: ../account.php");
 run_form($_POST);
