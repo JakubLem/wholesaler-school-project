@@ -3,13 +3,23 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from .models import Note, PriceList, Option
 from django.shortcuts import get_object_or_404
-from . import serializers
+
+from . import serializers, validators
 
 
 class GetTestViewSet(APIView):
     def get(self, request):
         return Response("OK")
 
+
+class LoadStartDataViewSet(APIView):
+    def post(self, request):
+        validators.validate_load_start_data(request)
+        
+
+
+        return Response("load")
+        
 
 class NoteViewSet(ModelViewSet):
     serializer_class = serializers.NoteSerializer
