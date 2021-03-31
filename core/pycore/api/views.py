@@ -13,13 +13,23 @@ class GetTestViewSet(APIView):
 
 
 class LoadStartDataViewSet(APIView):
+    @staticmethod
+    def check():
+        try:
+            main_pricelist = PriceList.objects.get(main_identifier='mainwsppricelistss')
+            return False
+        except:
+            return True
+        return True
+
     def post(self, request):
         validators.validate_load_start_data(request)
         
-
-
-        return Response("load")
+        # TODO WSP-42 TOKEN VALIDATE
         
+        if self.check():
+            return Response("load")
+        return Response("exists")
 
 class NoteViewSet(ModelViewSet):
     serializer_class = serializers.NoteSerializer
