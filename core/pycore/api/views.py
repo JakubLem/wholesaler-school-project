@@ -13,10 +13,11 @@ class GetTestViewSet(APIView):
 
 
 class LoadStartDataViewSet(APIView):
-    @staticmethod
-    def check():
+    MAIN_PRICELIST_IDENTIFIER = 'mainwsppricelist'
+
+    def check(self):
         try:
-            main_pricelist = PriceList.objects.get(main_identifier='mainwsppricelistss')
+            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)
             return False
         except:
             return True
@@ -28,6 +29,27 @@ class LoadStartDataViewSet(APIView):
         # TODO WSP-42 TOKEN VALIDATE
         
         if self.check():
+            pricelistarray = [
+                {'max_weight': 10,'price': 9},
+                {'max_weight': 35,'price': 19},
+                {'max_weight': 50,'price': 29},
+                {'max_weight': 65,'price': 49},
+                {'max_weight': 80,'price': 59},
+                {'max_weight': 90,'price': 69},
+                {'max_weight': 100,'price': 79},
+                {'max_weight': 125,'price': 99},
+                {'max_weight': 150,'price': 119},
+                {'max_weight': 175,'price': 199},
+                {'max_weight': 20000000,'price': 249},
+            ]
+
+            PriceList.objects.create(
+                main_identifier=self.MAIN_PRICELIST_IDENTIFIER,
+                quantity=len(pricelistarray)
+            )
+
+            for option in pricelistarray:
+                Option.objects.create(max_weight=option['max_weight'], price=option['price'], price_list=self.MAIN_PRICELIST_IDENTIFIER)
             return Response("load")
         return Response("exists")
 
