@@ -27,8 +27,9 @@ class LoadStartDataViewSet(APIView):
         validators.validate_load_start_data(request)
         
         # TODO WSP-42 TOKEN VALIDATE
-        
+        code = "The pricelist data has already existed on the instance"
         if self.check():
+            
             pricelistarray = [
                 {'max_weight': 10,'price': 9},
                 {'max_weight': 35,'price': 19},
@@ -52,9 +53,9 @@ class LoadStartDataViewSet(APIView):
             for option in pricelistarray:
                 o = Option.objects.create(max_weight=option['max_weight'], price=option['price'], price_list=pricelist)
                 o.save()
+                code = "The pricelist data has been loaded correctly"
 
-            return Response("load")
-        return Response("exists")
+        return Response({"status": "OK", "code": code})
 
 class NoteViewSet(ModelViewSet):
     serializer_class = serializers.NoteSerializer
