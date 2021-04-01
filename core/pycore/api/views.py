@@ -43,13 +43,16 @@ class LoadStartDataViewSet(APIView):
                 {'max_weight': 20000000,'price': 249},
             ]
 
-            PriceList.objects.create(
+            pricelist = PriceList.objects.create(
                 main_identifier=self.MAIN_PRICELIST_IDENTIFIER,
                 quantity=len(pricelistarray)
             )
+            pricelist.save()
 
             for option in pricelistarray:
-                Option.objects.create(max_weight=option['max_weight'], price=option['price'], price_list=self.MAIN_PRICELIST_IDENTIFIER)
+                o = Option.objects.create(max_weight=option['max_weight'], price=option['price'], price_list=pricelist)
+                o.save()
+
             return Response("load")
         return Response("exists")
 
