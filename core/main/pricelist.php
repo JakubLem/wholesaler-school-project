@@ -27,27 +27,37 @@ query {
 }
 GRAPHQL;
 
-$options_data = (graphql_query('http://localhost:8000/api/graph/', $query, [], null));
 @include_once(__DIR__.'/forms/classes/Option.php');
-$options = get_all_price_list_options($options_data);
 
-if(count($options) == 0) {
-    // TODO WSP-43 validation
-} else {
-    ?>
-        <div class="price-list-header"><h1>Cennik transportu</h1></div>
-        <div class="price-list-option">
-            <div class="max_weight">WAGA DO</div>
-            <div class="price">CENA</div>
-        </div>
-
-    <?php
-        foreach ($options as &$option) {
-            echo '<div class="price-list-option">';
-            echo '<div class="max_weight">'.$option->max_weight.'</div>';
-            echo '<div class="price">'.$option->price.'</div>';
-            echo '</div>';
-        }
+try {
+    $options_data = (graphql_query('http://localhost:8000/api/graph/', $query, [], null));
+    $options = get_all_price_list_options($options_data);
+    if(count($options) == 0) {
+        // TODO WSP-43 validation
+        echo "Nie udało się załadować danych cennika!";
+    } else {
+        ?>
+            <div class="price-list-header"><h1>Cennik transportu</h1></div>
+            <div class="price-list-option">
+                <div class="max_weight">WAGA DO</div>
+                <div class="price">CENA</div>
+            </div>
+    
+        <?php
+            foreach ($options as &$option) {
+                echo '<div class="price-list-option">';
+                echo '<div class="max_weight">'.$option->max_weight.'</div>';
+                echo '<div class="price">'.$option->price.'</div>';
+                echo '</div>';
+            }
+    }
+} catch (Exception $e) {
+    echo "Nie udało się załadować danych cennika!";
+    echo "<br>";
 }
+
+
+
+
 
 @include_once(__DIR__. '/stop.php');
