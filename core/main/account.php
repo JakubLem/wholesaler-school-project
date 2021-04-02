@@ -168,6 +168,13 @@ if(isset($_SESSION['register_ok'])) {
             </script>
         <?php
         }
+    } else if ($_SESSION['response_code'] == 'same_passwords') {
+        ?>
+            <script>
+                let register_false_obj = document.getElementById("register_error_response");
+                register_false_obj.innerHTML = "Hasła nie są takie same!";
+            </script>
+        <?php
     }
     
 }

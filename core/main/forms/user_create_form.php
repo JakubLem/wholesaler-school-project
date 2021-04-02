@@ -28,6 +28,9 @@ function run_form($post_data) {
             $_SESSION['register_ok'] = "INVALID";
             $_SESSION['response_code'] = 'null_values';
             $_SESSION['null_array'] = $null_array;
+        } else if ($post_data['user_password_1'] != $post_data['user_password_2']) {
+            $_SESSION['register_ok'] = "INVALID";
+            $_SESSION['response_code'] = 'same_passwords';
         } else {
             $user_name = $post_data['user_name'];
             $user_surname = $post_data['user_surname'];
