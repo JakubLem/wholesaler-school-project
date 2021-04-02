@@ -11,7 +11,6 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
-
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
         ?>
@@ -55,6 +54,14 @@ if(isset($_SESSION['register_ok'])) {
                 <script>
                     let register_false_obj = document.getElementById("register_error_response");
                     register_false_obj.innerHTML = "Jest już konto zarejestrowane na podany adres e-mail!";
+                </script>
+            <?php
+        } else if ($_SESSION['response_code'] == 'invalid_passwords') {
+            @include_once(__DIR__. '/login_and_register.php');
+            ?>
+                <script>
+                    let register_false_obj = document.getElementById("register_error_response");
+                    register_false_obj.innerHTML = "Hasła nie są takie same!";
                 </script>
             <?php
         }
@@ -168,6 +175,13 @@ if(isset($_SESSION['register_ok'])) {
             </script>
         <?php
         }
+    } else if ($_SESSION['response_code'] == 'invalid_passwords') {
+        ?>
+            <script>
+                let register_false_obj = document.getElementById("register_error_response");
+                register_false_obj.innerHTML = "Hasła nie są takie same!";
+            </script>
+        <?php
     }
     
 }
