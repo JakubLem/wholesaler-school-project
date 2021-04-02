@@ -1,0 +1,45 @@
+.products-table, tr {
+    width: 100%;
+    border-color: black; 
+    border-style: solid; 
+    border-width: 1px;
+    background-color: #cfd7e2;
+}
+
+th {
+    border-bottom: blueviolet;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-style: solid; 
+    border-width: 1px;
+}
+
+.buy {
+    background-color: rgb(58, 207, 58);
+    font-size: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
+.head-row {
+    font-size: 23px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.value {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.value-name {
+    font-size: 20px;
+    font-weight: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.add-cart-link {
+    text-decoration: none;
+    color: chocolate;
+}

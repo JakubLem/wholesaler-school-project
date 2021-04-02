@@ -1,0 +1,197 @@
+.register_ok > h2 {
+    color: rgb(60, 223, 60);
+}
+
+.register_false > p {
+    color: rgb(223, 79, 60);
+}
+
+.login-register-form-master {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-register-form-slave {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    
+    width: 75%;
+    height: 600px;
+}
+
+.login-form {
+    width: 80%;
+}
+
+.register-form {
+    width: 80%;
+}
+
+.register-form-form-parent {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.register-form-form, .message-register-form-form {
+    background-color: #cfd7e2;
+    border: none;
+    color: rgb(0, 0, 0);
+    margin-top: 5px;
+    height: 25px;
+    padding: 6px 20px;
+}
+
+.message-register-form-form {
+    resize: none;
+    height: 280px;
+}
+
+.register-form-form-invalid {
+    background-color: #ff000086;
+    border: solid;
+    color: rgb(0, 0, 0);
+    margin-top: 5px;
+    height: 25px;
+    padding: 6px 20px;
+}
+
+.grid-container {
+    margin-top: 85px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "data center-container center-container center-container"
+      "orders center-container center-container center-container"
+      "cart center-container center-container center-container"
+      ". center-container center-container center-container";
+  }
+  
+.center-container { 
+      grid-area: center-container;
+      width: 750px;
+      height: 550px;
+      background-color: #cfd7e2;
+      margin: 10px;
+}
+
+.data, .orders, .cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background-color: #cfd7e2;
+    width: 200px;
+    height: 83px;
+    margin: 10px;
+}
+  
+.data { 
+    grid-area: data;
+}
+
+.orders { 
+    grid-area: orders;
+}
+
+.cart { 
+    grid-area: cart;
+}
+
+.hello-div {
+    display: flex;
+    margin-top: 65px;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.hello {
+    font-size: 24px;
+}
+
+.center-container-on {
+    display: block;
+}
+
+.center-container-off {
+    display: none;
+}
+
+.center-container > div {
+    margin: 25px;
+}
+
+.account-data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "key-0 value-0"
+      "key-1 value-1"
+      "key-2 value-2"
+      "key-3 value-3"
+      "key-4 value-4"
+      "key-5 value-5"
+      "key-6 value-6"
+      "key-7 value-7"
+      "key-8 value-8";
+  }
+
+.key-0,
+.key-1,
+.key-2,
+.key-3,
+.key-4,
+.key-5,
+.key-6,
+.key-7,
+.key-8 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.value-0,
+.value-1,
+.value-2,
+.value-3,
+.value-4,
+.value-5,
+.value-6,
+.value-7,
+.value-8 {
+    font-size: 24px;
+    font-family: cursive;
+}
+
+.account-cart-container {
+    display: grid;
+    margin: 8px;
+    font-size: 18px;
+    background-color: #e6e7e9;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "product_name producer_name netto_price quantity value delete";
+}
+
+
+.product_name,
+.producer_name,
+.netto_price,
+.quantity,
+.value,
+.delete {
+    display: flex;
+    border: darkgray solid 1px;
+    justify-content: center;
+    align-items: center;
+}
