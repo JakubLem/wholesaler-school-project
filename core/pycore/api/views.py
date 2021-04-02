@@ -3,13 +3,59 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from .models import Note, PriceList, Option
 from django.shortcuts import get_object_or_404
-from . import serializers
+
+from . import serializers, validators
 
 
 class GetTestViewSet(APIView):
     def get(self, request):
         return Response("OK")
 
+
+class LoadStartDataViewSet(APIView):
+    MAIN_PRICELIST_IDENTIFIER = 'mainwsppricelist'
+
+    def check(self):
+        try:
+            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)
+            return False
+        except:
+            return True
+        return True
+
+    def post(self, request):
+        validators.validate_load_start_data(request)
+        
+        # TODO WSP-42 TOKEN VALIDATE
+        code = "The pricelist data has already existed on the instance"
+        if self.check():
+            
+            pricelistarray = [
+                {'max_weight': 10,'price': 9},
+                {'max_weight': 35,'price': 19},
+                {'max_weight': 50,'price': 29},
+                {'max_weight': 65,'price': 49},
+                {'max_weight': 80,'price': 59},
+                {'max_weight': 90,'price': 69},
+                {'max_weight': 100,'price': 79},
+                {'max_weight': 125,'price': 99},
+                {'max_weight': 150,'price': 119},
+                {'max_weight': 175,'price': 199},
+                {'max_weight': 20000000,'price': 249},
+            ]
+
+            pricelist = PriceList.objects.create(
+                main_identifier=self.MAIN_PRICELIST_IDENTIFIER,
+                quantity=len(pricelistarray)
+            )
+            pricelist.save()
+
+            for option in pricelistarray:
+                o = Option.objects.create(max_weight=option['max_weight'], price=option['price'], price_list=pricelist)
+                o.save()
+                code = "The pricelist data has been loaded correctly"
+
+        return Response({"status": "OK", "code": code})
 
 class NoteViewSet(ModelViewSet):
     serializer_class = serializers.NoteSerializer

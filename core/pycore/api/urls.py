@@ -15,6 +15,7 @@ router.register(r'options', views.OptionViewSet)
 
 urlpatterns = [
     url(r'test/', views.GetTestViewSet.as_view(), name='test'),
+    url(r'loaddata_startdata/', views.LoadStartDataViewSet.as_view(), name='loaddata_startdata'),
     url(r'^graph/', GraphQLView.as_view(graphiql=True, schema=schema)),
     url(r'^', include(router.urls)),
 ]
