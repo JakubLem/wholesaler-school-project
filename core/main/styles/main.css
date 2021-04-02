@@ -417,5 +417,16 @@ footer {
   width: 75%;
   margin: 25px;
   height: 200px;
-  background-color: #fff;
+  border-radius: 25%;
+  color: aliceblue;
+  background-color: #7e82b8;
+}
+
+.footer-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "contact-col-1 contact-col-2";
 }
