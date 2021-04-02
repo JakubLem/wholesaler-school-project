@@ -30,7 +30,8 @@ function run_form($post_data) {
             $_SESSION['null_array'] = $null_array;
         } else if ($post_data['user_password_1'] != $post_data['user_password_2']) {
             $_SESSION['register_ok'] = "INVALID";
-            $_SESSION['response_code'] = 'same_passwords';
+            $_SESSION['response_code'] = 'invalid_passwords';
+            header("Location: ../account.php");
         } else {
             $user_name = $post_data['user_name'];
             $user_surname = $post_data['user_surname'];
@@ -80,7 +81,7 @@ function run_form($post_data) {
         $_SESSION['response'] = $response_general;
         $_SESSION['response_code'] = 'none';
     }
-    
+    header("Location: ../account.php");
 }
-header("Location: ../account.php");
+
 run_form($_POST);
