@@ -7,16 +7,16 @@ require_once('session/start.php');
 
 function run_form($post_data) {
     $REQUIRED_FORM_FIELDS = array(
-        'user_email',
-        'user_password',
+        'login_user_email',
+        'login_user_password',
     );
 
     $response_general = general_form_validation($post_data, $REQUIRED_FORM_FIELDS);
 
     if($response_general->status != 'INVALID') {
 
-        $user_email = $post_data['user_email'];
-        $user_password = $post_data['user_password'];
+        $user_email = $post_data['login_user_email'];
+        $user_password = $post_data['login_user_password'];
 
         require_once('classes/User.php');
 
