@@ -4,6 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from .models import Note, PriceList, Option
 from django.shortcuts import get_object_or_404
+from openpyxl import load_workbook
 from . import serializers
 
 
@@ -43,10 +44,16 @@ class PriceListViewSet(ModelViewSet):
 
     @action(detail=False, methods=['post'], serializer_class=serializers.XlsxPriceListSerializer)
     def upload_mainwsppricelist(self, request):
-        return Response("ok")
+        file_object = serializer.validated_data['pricelistfile']
+        workbook = load_workbook(file_object)
+        worksheet = workbook.active
+        worksheet_size = worksheet.max_row + 1
+        for i in range(2, worksheet_size, 1):
+            option_max_weight = worksheet[f'A{i}'].value
+            option_price = worksheet[f'B{i}'].value
+        return Response("OK")
 
 
 class OptionViewSet(ModelViewSet):
     serializer_class = serializers.OptionSerializer
     queryset = Option.objects.all()
-
