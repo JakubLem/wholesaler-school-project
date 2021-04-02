@@ -97,3 +97,11 @@ class TestAPI:
                 }
             ]
         }
+
+    def test_load_data(self, my_client):
+        c = my_client()
+        response = c.post(MAIN_API_PATH + 'loaddata_startdata/')
+        assert response.json() == {'status': 'OK', 'code': 'The pricelist data has been loaded correctly'}
+
+        response = c.post(MAIN_API_PATH + 'loaddata_startdata/')
+        assert response.json() == {'status': 'OK', 'code': 'The pricelist data has already existed on the instance'}

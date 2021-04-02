@@ -22,7 +22,8 @@ function validate() {
     if(response.length != 0) {
         make_inputs_red(
             response,
-            "register_error_response"
+            "register_error_response",
+            "Musisz uzupełnić wszystkie pola w formularzu!"
         );
         return false;
     } else {

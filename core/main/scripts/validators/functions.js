@@ -7,3 +7,14 @@ function null_values(array) {
     });
     return invalid_keys;
 }
+
+
+function validateEmail(mail) {
+    // TODO
+    let regcheck = new RegExp("[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)");
+    if(regcheck.test(mail)){
+        return true;
+    } else {
+        return false
+    }
+}

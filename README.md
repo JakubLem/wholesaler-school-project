@@ -7,8 +7,11 @@ Tablica Trello: https://trello.com/b/v95LHnUI/wholesaler-school-project
 Repozytorium: https://github.com/JakubLem/wholesaler-school-project
 
 # Konfiguracja środowiska:
+
 `./docs/venv.md`
-# Pełna dokumentacja o projekcie:
+https://github.com/JakubLem/wholesaler-school-project/blob/main/docs/venv.md
+
+# Pełna dokumentacja projektu:
 `./docs/dokumentacja_techniczna.docx`
 
 # Dokumentacja ogólna:
