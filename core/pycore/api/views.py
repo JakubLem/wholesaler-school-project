@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 from .models import Note, PriceList, Option
 from django.shortcuts import get_object_or_404
 from . import serializers
@@ -39,6 +40,10 @@ class PriceListViewSet(ModelViewSet):
             )
 
         return Response(response)
+
+    @action(detail=False, methods=['post'], serializer_class=serializers.XlsxPriceListSerializer)
+    def upload_mainwsppricelist(self, request):
+        return Response("ok")
 
 
 class OptionViewSet(ModelViewSet):
