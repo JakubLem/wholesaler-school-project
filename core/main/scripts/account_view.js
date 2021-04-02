@@ -7,13 +7,11 @@ function switch_account_view(id) {
 
     containers.forEach(element => {
         if(element.id == main_id) {
-            console.log("popranwe");
             element.classList.remove("center-container-off");
             element.classList.add("center-container-on");
         } else {
             element.classList.remove("center-container-on");
             element.classList.add("center-container-off");
-            console.log(element);
         }
     });
 }
