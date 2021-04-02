@@ -8,7 +8,6 @@ function reset_input(identifier) {
 
 function make_inputs_red(identifiers, pid) {
     identifiers.forEach(id => {
-        console.log(id);
         document.getElementById(id).classList.remove(old_class_name);
         document.getElementById(id).classList.add(new_class_name);
     });
