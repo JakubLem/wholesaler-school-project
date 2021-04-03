@@ -4,6 +4,7 @@
     height: 170px;
     align-items: center;
     justify-content: center;
+    background-color: rgb(228, 238, 228);
 }
 
 .center-text-animated > p {
@@ -36,13 +37,11 @@
     font-size: 22px;
 }
 
-/* Container styles */
 body {
   background-color: #fff;
   color: #333;
   font-family: 'Lato';
 }
-
 
 .chart {
   position: relative;
@@ -59,7 +58,7 @@ body {
   border: 20px solid #f0f0f0;
   border-radius: 100px;
   line-height: 50px;
-  font-size: 45px;
+  font-size: 33px;
 }
 
 .description {
@@ -100,7 +99,6 @@ body {
   transition: stroke-dashoffset 1s;
   -webkit-animation-play-state: running;
   
-  /* firefox bug fix - won't rotate at 90deg angles */
   -moz-transform: rotate(-89deg) translateX(-190px);
 }
 
@@ -108,14 +106,17 @@ body {
   stroke-dashoffset: 534 !important;
   -webkit-animation-play-state: paused;
 }
-/* END Circle colors and graphic positions */
 
+.chart[data-percent='100'] .outer {
+    stroke-dashoffset: 0;
+    -webkit-animation: show100 2s;
+    animation: show100 2s;
+  }
 
-/* Set the initial values for the animation */
 .chart[data-percent='98'] .outer {
   stroke-dashoffset: 20;
   -webkit-animation: show98 2s;
-  animation: show100 2s;
+  animation: show98 2s;
 }
 
 .chart[data-percent='75'] .outer {
@@ -135,9 +136,7 @@ body {
   -webkit-animation: show25 2s;
   animation: show25 2s;
 }
-/* END set initial animation values */
 
-/* Keyframes for the initial animation */
 @-webkit-keyframes show98 {
   from {
     stroke-dashoffset: 537;
@@ -237,4 +236,3 @@ body {
       stroke-dashoffset: 0;
     }
   }
-
