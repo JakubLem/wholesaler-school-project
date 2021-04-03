@@ -352,6 +352,7 @@
     overflow: hidden;
     background-color: #7176bb;
     padding: 15px 20px;
+    z-index: 999;
   }
   
   .header a {
