@@ -7,7 +7,7 @@ $GLOBALS['header'] = 1;
 @include_once(__DIR__. '/top.php');
 ?>
 
-<center><h1>Hurtownia Dostarcz Kamienia</h1></center>
+<center><h1>Hurtownia Dostarcz Paczunie</h1></center>
 
 <div class="main-photo">
     <img class="photo" src="/wholesaler-school-project/core/main/files/photos/businessman.jpg">
