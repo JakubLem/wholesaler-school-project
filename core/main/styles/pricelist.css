@@ -1,0 +1,32 @@
+.price-list-option {
+    display: grid;
+    padding-left: 25%;
+    padding-right: 25%;
+    margin: 8px;
+    font-size: 18px;
+    background-color: #e6e7e9;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "max_weight price";
+}
+
+.max_weight, .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    font-family: cursive;
+}
+
+.price-list-header {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-list-header > h1 {
+    font-size: 40px;
+}

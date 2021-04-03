@@ -395,5 +395,38 @@
     }
   }
 
-  
-  
+footer {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 250px;
+  background-color: #7176bb;
+  text-align: center;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "col-1 col-2 col-3";
+}
+
+.col-1, .col-2, .col-3 {
+  width: 75%;
+  margin: 25px;
+  height: 200px;
+  border-radius: 25%;
+  color: aliceblue;
+  background-color: #7e82b8;
+}
+
+.footer-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "contact-col-1 contact-col-2";
+}
