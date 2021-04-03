@@ -2,6 +2,7 @@
 $GLOBALS['header'] = 5;
 @include_once(__DIR__. '/start.php');
 ?>
+
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/account.css">
 <script>
 let old_class_name = "register-form-form";
