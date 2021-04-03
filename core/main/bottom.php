@@ -45,3 +45,14 @@
         </div>
     </div>
 </footer>
+<script>
+    // TODO WSP-52
+    let body = document.body,
+        html = document.documentElement;
+
+    let height = Math.max( body.scrollHeight, body.offsetHeight, 
+                        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    if(height < 1000) {
+        document.getElementsByTagName("footer")[0].style.position = "absolute";
+    }
+</script>

@@ -27,7 +27,7 @@ $html_header = array(
     ?>
     <a id="identifier-header-5" href="/wholesaler-school-project/core/main/account.php" ><?php echo $html_header[4]; ?></a>
 </div>
-<div class="header-skip">x</div>
+<div class="header-skip"></div>
 
 <script src="scripts/header.js"></script>
 

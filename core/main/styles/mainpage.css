@@ -11,6 +11,7 @@
 }
 
 .main-photo {
+    margin-bottom: 50px;
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr;
@@ -28,9 +29,10 @@
     margin-left: 50px;
 }
 
-.main-photo > .description {
+.main-photo, .description {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    font-size: 22px;
 }
 

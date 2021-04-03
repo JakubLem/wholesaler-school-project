@@ -10,7 +10,7 @@ $GLOBALS['header'] = 1;
 <div class="center-text-animated"><p>Jasteśmy najpopularniejszym dostawcą towarów w Europie!</p></div>
 
 <div class="main-photo">
-    <img class="photo" src="/wholesaler-school-project/core/main/files/photos/mainimg.jpg">
+    <img class="photo" src="/wholesaler-school-project/core/main/files/photos/businessman.jpg">
     <div class="description">
         <p>
             Witaj! <br>
@@ -18,6 +18,18 @@ $GLOBALS['header'] = 1;
         </p>    
     </div>
 </div>
+<div class="main-photo">
+    <div class="description">
+        <p>
+            Witaj! <br>
+            Na rynku działamy ponad 35 lat. Dostarczamy produkty do ponad 40 państw w Europie.
+        </p>    
+    </div>
+    <img class="photo" src="/wholesaler-school-project/core/main/files/photos/mainimg.jpg">
+</div>
+</br>
+<hr>
+</br>
 
 <?php
 @include_once(__DIR__. '/stop.php');
