@@ -35,3 +35,10 @@ class OptionSerializer(serializers.ModelSerializer):
         data['price_list'] = price_list
 
         return data
+
+
+class XlsxPriceListSerializer(serializers.Serializer):
+    def validate(self, data):
+        return data
+
+    pricelistfile = serializers.FileField()
