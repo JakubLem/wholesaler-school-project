@@ -44,8 +44,8 @@ $GLOBALS['header'] = 1;
 <div class="main-photo">
     <div class="main-description">
         <p>
-            Witaj <br>
-            Na rynku działamy ponad 40 lat. Dostarczamy produkty do ponad 35 państw w Europie.
+            Witaj! <br>
+            Na rynku działamy ponad 40 lat. Dostarczamy produkty do ponad 35 państw w Europie. Sprzedajemy różnorodne towary, przydają się one różnym firmom i ich filiom. Gwarantujemy wysąką jakość produktów.
         </p>    
     </div>
     <img class="photo" src="/wholesaler-school-project/core/main/files/photos/mainimg.jpg">

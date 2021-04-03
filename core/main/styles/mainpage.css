@@ -4,7 +4,7 @@
     height: 170px;
     align-items: center;
     justify-content: center;
-    background-color: rgb(228, 238, 228);
+    background-color: rgb(204, 204, 224);
 }
 
 .center-text-animated > p {
@@ -38,7 +38,6 @@
 }
 
 body {
-  background-color: #fff;
   color: #333;
   font-family: 'Lato';
 }
