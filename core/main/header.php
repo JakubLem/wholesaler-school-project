@@ -11,7 +11,7 @@ $html_header = array(
 
 ?>
 
-<div class="header">
+<div class="header sticky">
     <a id="identifier-header-1" href="/wholesaler-school-project/core/main/main_page.php" class="active"><?php echo $html_header[0]; ?></a>
     <a id="identifier-header-2" href="/wholesaler-school-project/core/main/products.php"><?php echo $html_header[1]; ?></a>
     <a id="identifier-header-3" href="/wholesaler-school-project/core/main/pricelist.php" ><?php echo $html_header[2]; ?></a>
@@ -27,6 +27,7 @@ $html_header = array(
     ?>
     <a id="identifier-header-5" href="/wholesaler-school-project/core/main/account.php" ><?php echo $html_header[4]; ?></a>
 </div>
+<div class="header-skip">x</div>
 
 <script src="scripts/header.js"></script>
 

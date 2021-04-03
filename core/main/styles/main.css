@@ -430,3 +430,24 @@ footer {
     grid-template-areas:
       "contact-col-1 contact-col-2";
 }
+
+.content {
+  padding: 2px;
+}
+
+.header-skip {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  top: 500px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 98%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
