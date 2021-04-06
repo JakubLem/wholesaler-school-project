@@ -118,18 +118,19 @@ class User{
         ";
         $result = $GLOBALS['database']->make_query($query, $sql_types);
 
-        // $sql_types = [
-        //     'id' => $this->identifier,
-        //     'user_name' => $this->user_name,
-        //     'user_surname' => $this->user_surname
-        // ];
-        // $query = "
-        // UPDATE users
-        // SET user_name = :user_name,
-        // user_surname = :user_surname,
-        // WHERE user_id = :id
-        // ";
-        // $result = $GLOBALS['database']->make_query($query, $sql_types);
+        $sql_types = [
+            'id' => $this->identifier,
+            'user_name' => $this->user_name,
+            'user_surname' => $this->user_surname
+        ];
+        $query = "
+        UPDATE users
+        SET user_name = :user_name,
+        user_surname = :user_surname
+        WHERE user_id = :id
+        ";
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+
         $this->update_data();
         return true;
     }
