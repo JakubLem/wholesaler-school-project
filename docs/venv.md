@@ -23,7 +23,7 @@ Then start the virtual environment:
 MAC/Linux: `source venv/bin/activate`
 Windows: `venv\Scripts\activate`
 
-After starting the environment, its name should appear before the path> `(venv)`, 
+After starting the environment, its name should appear before the path `(venv)`, 
 Then install the needed packages with the command:
 
 `pip install -r requirements.txt`
@@ -39,6 +39,23 @@ you must run a get query: `localhost:8000/api/loaddata_startdata/`
 
 - load dump data: 
 run: `python manage.py loaddata startdata`
+
+# Creating a code audit Django environment
+
+You should go to the directory `/core/pycore/`
+
+Execute the command: `python -m venv audit` or if you're using Unix `python3 -m venv audit`
+Then start the virtual environment:
+
+MAC/Linux: `source audit/bin/activate`
+Windows: `audit\Scripts\activate`
+
+After starting the environment, its name should appear before the path `(audit)`, 
+Then install the needed packages with the command:
+
+`pip install -r requirements.txt` ! Important --> audit requirements is located in `/core/pycore/`
+
+If you want to test code audit run: `pylama`
 
 # Testing Django App
 
