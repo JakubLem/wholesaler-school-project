@@ -93,6 +93,47 @@ class User{
         return true;
     }
 
+    public function update_user_data($user_email) {
+        $sql_types = ['user_email' => $user_email];
+        $query = "SELECT user_id, user_name, user_surname, user_email, user_firm_id, user_address_id FROM users WHERE user_email = :user_email";
+        
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+        $this->identifier = $result[0]['user_id'];
+
+        $sql_types = [
+            'id' => $result[0]['user_address_id'],
+            'address_address' => $this->address_address,
+            'address_city' => $this->address_city,
+            'address_country' => $this->address_country,
+            'address_postal_code' => $this->address_postal_code
+        ];
+
+        $query = "
+        UPDATE address
+        SET address_address = :address_address,
+        address_city = :address_city,
+        address_country = :address_country,
+        address_postal_code = :address_postal_code
+        WHERE address_id = :id
+        ";
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+
+        // $sql_types = [
+        //     'id' => $this->identifier,
+        //     'user_name' => $this->user_name,
+        //     'user_surname' => $this->user_surname
+        // ];
+        // $query = "
+        // UPDATE users
+        // SET user_name = :user_name,
+        // user_surname = :user_surname,
+        // WHERE user_id = :id
+        // ";
+        // $result = $GLOBALS['database']->make_query($query, $sql_types);
+        $this->update_data();
+        return true;
+    }
+
     public function validate() {
         $response = new Response();
         $data_validate_status = true;

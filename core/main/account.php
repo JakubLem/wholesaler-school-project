@@ -118,7 +118,21 @@ if(isset($_SESSION['register_ok'])) {
             }
             unset($_SESSION['change_data_status']);
         } else if (isset($_SESSION['change_user_data_status'])){
-            
+            if(isset($_SESSION['change_user_data_code'])) {
+                if($_SESSION['change_user_data_code'] == "VALIDATION_ERROR") {
+                    ?>
+                        <center><div class="hello" id="change-data-error"></div><center>
+                        <script>
+                            document.getElementById("change-data-error").innerHTML = "Nie udało się zmienić Twoich danych!";
+                        </script>
+                    <?php
+                }
+            } else {
+                if($_SESSION['change_user_data_status'] == "OK") {
+                    echo "Poprawnie zmieniono dane";
+                }
+            }
+            unset($_SESSION['change_user_data_status']);
         }
 
         @include_once(__DIR__.'/forms/classes/Cart.php');

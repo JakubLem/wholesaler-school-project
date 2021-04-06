@@ -16,7 +16,6 @@ let new_class_name = "register-form-form-invalid";
 <form name="register-form" class="register-form-form-parent" action="forms/user_edit_form.php" method="post">
     <input class="register-form-form" id="user_name" type="text" name="user_name" placeholder="Imię" value="<?php echo $_SESSION['account_view']["Imię"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="user_surname" type="text" name="user_surname" placeholder="Nazwisko" value="<?php echo $_SESSION['account_view']["Nazwisko"];?>" onclick="reset_input(id)">
-    <input class="register-form-form" id="user_email" type="text" name="user_email" placeholder="Adres email" value="<?php echo $_SESSION['account_view']["Adres e-mail"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="address_address" type="text" name="address_address" placeholder="Ulica/osiedle" value="<?php echo $_SESSION['account_view']["Adres"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="address_postal_code" type="text" name="address_postal_code" placeholder="Kod pocztowy" value="<?php echo $_SESSION['account_view']["Kod pocztowy"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="address_city" type="text" name="address_city" placeholder="Miasto" value="<?php echo $_SESSION['account_view']["Miasto"];?>" onclick="reset_input(id)">
