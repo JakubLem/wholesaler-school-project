@@ -16,8 +16,6 @@ function run_form($post_data) {
 
     if($response_general->status != 'INVALID') {
 
-
-
         $user_email = $_SESSION['account_view']["Adres e-mail"];
         $user_password = $post_data['user_old_password'];
 
@@ -44,9 +42,7 @@ function run_form($post_data) {
                     $_SESSION['change_data_status'] = "INVALID";
                     $_SESSION['change_data_code'] = "OTHER"; 
                 }
-
             }
-
         } else {
             $_SESSION['change_data_status'] = "INVALID";
             $_SESSION['change_data_code'] = "INVALID_OLD_PASSWORD"; 
@@ -55,7 +51,6 @@ function run_form($post_data) {
         $_SESSION['change_data_status'] = "INVALID";
         $_SESSION['change_data_code'] = "VALIDATION_ERROR";
     }
-
     header("Location: ../account.php");
 }
 

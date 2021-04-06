@@ -74,10 +74,38 @@ if(isset($_SESSION['register_ok'])) {
             <div class="hello-div">
                 <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
             </div>
+            <div id="change-data-error"></div>
         <?php
         if(isset($_SESSION['change_data_status'])){
             if($_SESSION['change_data_status'] == 'INVALID') {
-                echo "nie udalo sie zmienic hasla";
+                if(isset($_SESSION['change_data_code'] )){
+                    ?>
+                        <script>
+                            let change_data_code = String("<?php echo $_SESSION['change_data_code']; ?>");
+                            let change_data_text = "";
+                            switch (change_data_code) {
+                                case 'invalid_passwords':
+                                    change_data_text = "Nowe hasła nie są takie same!";
+                                    break;
+                                case "OTHER":
+                                    change_data_text = "Uzupełnij wszystkie pola w formularzu!";
+                                    break;
+                                case "INVALID_OLD_PASSWORD":
+                                    change_data_text = "Twoje stare hasło nie jest poprawne";
+                                    break;
+                                case "VALIDATION_ERROR":
+                                    change_data_text = "Uzupełnij wszystkie pola w formularzu!";
+                                break;
+
+                                default:
+                                    console.log("ERROR");
+                                    break;    
+                            }
+                            document.getElementById("change-data-error").innerHTML = change_data_text;
+
+                        </script>
+                    <?php
+                }
             } else {
                 if($_SESSION['change_data_status'] == 'OK') {
                     ?>
@@ -173,6 +201,7 @@ if(isset($_SESSION['register_ok'])) {
                         switch_account_view("to-switch-cart");
                     </script>
                 <?php
+                unset($_SESSION['cart_important']);
             }
 
     } else if($_SESSION['login'] == "INVALID") {

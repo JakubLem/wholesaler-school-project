@@ -28,4 +28,4 @@ let new_class_name = "register-form-form-invalid";
     </div>
 <form>
 <script src="scripts/validators/functions.js"></script>
-<script src="scripts/validators/register.js"></script>
+<script src="scripts/validators/edit_user.js"></script>

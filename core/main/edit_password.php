@@ -13,7 +13,7 @@ let new_class_name = "register-form-form-invalid";
 @include_once(__DIR__. '/top.php');
 ?>
 
-<form name="register-form" class="register-form-form-parent" action="forms/user_edit_password_form.php" method="post" onsubmit="return register_validate()">
+<form name="edit-password-form" class="register-form-form-parent" action="forms/user_edit_password_form.php" method="post" onsubmit="return change_password_validate()">
     <input class="register-form-form" id="user_old_password" type="password" name="user_old_password" placeholder="Stare hasło" onclick="reset_input(id)">
     <input class="register-form-form" id="user_new_password" type="password" name="user_new_password" placeholder="Nowe hasło" onclick="reset_input(id)">
     <input class="register-form-form" id="user_new_password_re" type="password" name="user_new_password_re" placeholder="Powtórz hasło" onclick="reset_input(id)">
@@ -23,4 +23,4 @@ let new_class_name = "register-form-form-invalid";
     </div>
 <form>
 <script src="scripts/validators/functions.js"></script>
-<script src="scripts/validators/register.js"></script>
+<script src="scripts/validators/edit_password.js"></script>
