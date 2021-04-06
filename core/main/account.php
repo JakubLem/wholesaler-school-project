@@ -75,6 +75,21 @@ if(isset($_SESSION['register_ok'])) {
                 <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
             </div>
         <?php
+        if(isset($_SESSION['change_data_status'])){
+            if($_SESSION['change_data_status'] == 'INVALID') {
+                echo "nie udalo sie zmienic hasla";
+            } else {
+                if($_SESSION['change_data_status'] == 'OK') {
+                    ?>
+                        <div class="register_ok">
+                            <h2>Poprawnie zmieniono hasło!</h2>
+                        </div>
+                    <?php
+                }
+            }
+            unset($_SESSION['change_data_status']);
+        }
+
         @include_once(__DIR__.'/forms/classes/Cart.php');
         $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
 
