@@ -73,13 +73,14 @@ if(isset($_SESSION['register_ok'])) {
         ?>
             <div class="hello-div">
                 <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
+                
             </div>
-            <div id="change-data-error"></div>
         <?php
         if(isset($_SESSION['change_data_status'])){
             if($_SESSION['change_data_status'] == 'INVALID') {
                 if(isset($_SESSION['change_data_code'] )){
                     ?>
+                        <center><div class="hello" id="change-data-error"></div><center>
                         <script>
                             let change_data_code = String("<?php echo $_SESSION['change_data_code']; ?>");
                             let change_data_text = "";
@@ -91,7 +92,7 @@ if(isset($_SESSION['register_ok'])) {
                                     change_data_text = "Uzupełnij wszystkie pola w formularzu!";
                                     break;
                                 case "INVALID_OLD_PASSWORD":
-                                    change_data_text = "Twoje stare hasło nie jest poprawne";
+                                    change_data_text = "Twoje stare hasło nie jest poprawne!";
                                     break;
                                 case "VALIDATION_ERROR":
                                     change_data_text = "Uzupełnij wszystkie pola w formularzu!";

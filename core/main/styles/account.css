@@ -96,6 +96,12 @@
     grid-area: data;
 }
 
+#change-data-error {
+    font-size: 25px;
+    color: red;
+    width: 100%;
+}
+
 .orders { 
     grid-area: orders;
 }
