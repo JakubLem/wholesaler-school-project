@@ -117,6 +117,8 @@ if(isset($_SESSION['register_ok'])) {
                 }
             }
             unset($_SESSION['change_data_status']);
+        } else if (isset($_SESSION['change_user_data_status'])){
+            
         }
 
         @include_once(__DIR__.'/forms/classes/Cart.php');

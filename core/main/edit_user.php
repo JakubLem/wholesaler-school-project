@@ -13,7 +13,7 @@ let new_class_name = "register-form-form-invalid";
 @include_once(__DIR__. '/top.php');
 ?>
 
-<form name="register-form" class="register-form-form-parent" action="forms/user_edit_form.php" method="post" onsubmit="return register_validate()">
+<form name="register-form" class="register-form-form-parent" action="forms/user_edit_form.php" method="post">
     <input class="register-form-form" id="user_name" type="text" name="user_name" placeholder="Imię" value="<?php echo $_SESSION['account_view']["Imię"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="user_surname" type="text" name="user_surname" placeholder="Nazwisko" value="<?php echo $_SESSION['account_view']["Nazwisko"];?>" onclick="reset_input(id)">
     <input class="register-form-form" id="user_email" type="text" name="user_email" placeholder="Adres email" value="<?php echo $_SESSION['account_view']["Adres e-mail"];?>" onclick="reset_input(id)">
@@ -27,5 +27,3 @@ let new_class_name = "register-form-form-invalid";
         <p id="register_error_response"></p>
     </div>
 <form>
-<script src="scripts/validators/functions.js"></script>
-<script src="scripts/validators/edit_user.js"></script>
