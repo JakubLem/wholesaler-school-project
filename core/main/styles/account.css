@@ -168,6 +168,7 @@
 .key-8 {
     font-size: 24px;
     margin-bottom: 15px;
+    color: black;
 }
 
 .value-0,
@@ -180,6 +181,7 @@
 .value-7,
 .value-8 {
     font-size: 24px;
+    color: black;
     font-family: cursive;
 }
 
@@ -189,7 +191,7 @@
     background-color: #fff;
     width: 135px;
     padding: 27px;
-    font-size: 25px;
+    font-size: 35px;
     left: 0;
     font-family: cursive;
 }
