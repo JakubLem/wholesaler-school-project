@@ -73,8 +73,72 @@ if(isset($_SESSION['register_ok'])) {
         ?>
             <div class="hello-div">
                 <p class="hello">Witaj <?php echo $_SESSION['user_name'] ?>!</p>
+                
             </div>
         <?php
+        if(isset($_SESSION['change_data_status'])){
+            if($_SESSION['change_data_status'] == 'INVALID') {
+                if(isset($_SESSION['change_data_code'] )){
+                    ?>
+                        <center><div class="hello" id="change-data-error"></div><center>
+                        <script>
+                            let change_data_code = String("<?php echo $_SESSION['change_data_code']; ?>");
+                            let change_data_text = "";
+                            switch (change_data_code) {
+                                case 'invalid_passwords':
+                                    change_data_text = "Nowe hasła nie są takie same!";
+                                    break;
+                                case "OTHER":
+                                    change_data_text = "Uzupełnij wszystkie pola w formularzu!";
+                                    break;
+                                case "INVALID_OLD_PASSWORD":
+                                    change_data_text = "Twoje stare hasło nie jest poprawne!";
+                                    break;
+                                case "VALIDATION_ERROR":
+                                    change_data_text = "Uzupełnij wszystkie pola w formularzu!";
+                                break;
+
+                                default:
+                                    console.log("ERROR");
+                                    break;    
+                            }
+                            document.getElementById("change-data-error").innerHTML = change_data_text;
+
+                        </script>
+                    <?php
+                }
+            } else {
+                if($_SESSION['change_data_status'] == 'OK') {
+                    ?>
+                        <div class="register_ok">
+                            <h2>Poprawnie zmieniono hasło!</h2>
+                        </div>
+                    <?php
+                }
+            }
+            unset($_SESSION['change_data_status']);
+        } else if (isset($_SESSION['change_user_data_status'])){
+            if(isset($_SESSION['change_user_data_code'])) {
+                if($_SESSION['change_user_data_code'] == "VALIDATION_ERROR") {
+                    ?>
+                        <center><div class="hello" id="change-data-error"></div><center>
+                        <script>
+                            document.getElementById("change-data-error").innerHTML = "Nie udało się zmienić Twoich danych!";
+                        </script>
+                    <?php
+                }
+            } else {
+                if($_SESSION['change_user_data_status'] == "OK") {
+                    ?>
+                        <div class="register_ok">
+                            <h2>Poprawnie zmieniono dane!</h2>
+                        </div>
+                    <?php
+                }
+            }
+            unset($_SESSION['change_user_data_status']);
+        }
+
         @include_once(__DIR__.'/forms/classes/Cart.php');
         $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
 
@@ -93,6 +157,10 @@ if(isset($_SESSION['register_ok'])) {
                                             echo '<div class="value-'.$counter.'"> '.$value.' </div>';
                                             $counter++;
                                         }
+                                        ?>
+                                            <a href="edit_password.php" class="key-<?php echo $counter; ?>"><p>Edytuj hasło</p></a>
+                                            <a href="edit_user.php" class="value-<?php echo $counter; ?>"><p>Edytuj dane</p></a>
+                                        <?php
                                     } else {
                                         echo "Nie udało się załadować danych użytkownika!";
                                     }
@@ -154,6 +222,7 @@ if(isset($_SESSION['register_ok'])) {
                         switch_account_view("to-switch-cart");
                     </script>
                 <?php
+                unset($_SESSION['cart_important']);
             }
 
     } else if($_SESSION['login'] == "INVALID") {

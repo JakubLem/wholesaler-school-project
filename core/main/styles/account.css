@@ -1,3 +1,9 @@
+.register_ok {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .register_ok > h2 {
     color: rgb(60, 223, 60);
 }
@@ -96,6 +102,12 @@
     grid-area: data;
 }
 
+#change-data-error {
+    font-size: 25px;
+    color: red;
+    width: 100%;
+}
+
 .orders { 
     grid-area: orders;
 }
@@ -168,6 +180,17 @@
 .value-7,
 .value-8 {
     font-size: 24px;
+    font-family: cursive;
+}
+
+.value-8 > p , .key-8 > p{
+    text-decoration: none;
+    border-radius: 10%;
+    background-color: #fff;
+    width: 135px;
+    padding: 27px;
+    font-size: 25px;
+    left: 0;
     font-family: cursive;
 }
 
