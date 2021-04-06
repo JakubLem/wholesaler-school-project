@@ -80,6 +80,19 @@ class User{
         return true;
     }
 
+    public function change_password($new_password) {
+        $password = password_hash($new_password, PASSWORD_BCRYPT);
+        $sql_types = [
+            'id' => $this->identifier,
+            'password' => $password,
+        ];
+
+        $query = "UPDATE users SET user_password = :password WHERE user_id = :id";
+        $result = $GLOBALS['database']->make_query($query, $sql_types);
+        print_r($result);
+        return true;
+    }
+
     public function validate() {
         $response = new Response();
         $data_validate_status = true;
