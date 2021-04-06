@@ -61,13 +61,13 @@ function get_all_products($param) {
         }
         return $result;
     } else {
-        $sql_types = ['param' => $param];
+        $sql_types = [];
         $query = 
         '
         SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
         FROM products p
         JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
-        WHERE p.product_name LIKE "%$:param%"
+        WHERE p.product_name LIKE "%'.$param.'%"
         GROUP BY p.product_id
         ';
         $db_result = $GLOBALS['database']->make_query($query, $sql_types);
