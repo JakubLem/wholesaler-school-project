@@ -1,3 +1,9 @@
+.register_ok {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .register_ok > h2 {
     color: rgb(60, 223, 60);
 }

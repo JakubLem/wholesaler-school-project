@@ -49,7 +49,6 @@ function run_form($post_data) {
             // TODO WSP-33 replace all user values into account_view
             $_SESSION['account_view'] = $user->account_view();
         }
-
         
     } else {
         $_SESSION['change_user_data_status'] = "INVALID";

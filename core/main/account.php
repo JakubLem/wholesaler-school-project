@@ -129,7 +129,11 @@ if(isset($_SESSION['register_ok'])) {
                 }
             } else {
                 if($_SESSION['change_user_data_status'] == "OK") {
-                    echo "Poprawnie zmieniono dane";
+                    ?>
+                        <div class="register_ok">
+                            <h2>Poprawnie zmieniono dane!</h2>
+                        </div>
+                    <?php
                 }
             }
             unset($_SESSION['change_user_data_status']);
