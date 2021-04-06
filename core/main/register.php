@@ -1,4 +1,4 @@
-<form name="register-form" class="register-form-form-parent" action="forms/user_create_form.php" method="post" onsubmit="return validate()">
+<form name="register-form" class="register-form-form-parent" action="forms/user_create_form.php" method="post" onsubmit="return register_validate()">
     <input class="register-form-form" id="user_name" type="text" name="user_name" placeholder="Imię" value="" onclick="reset_input(id)">
     <input class="register-form-form" id="user_surname" type="text" name="user_surname" placeholder="Nazwisko" value="" onclick="reset_input(id)">
     <input class="register-form-form" id="user_email" type="text" name="user_email" placeholder="Adres email" onclick="reset_input(id)">
