@@ -28,38 +28,71 @@ class Product{
 }
 
 
-function get_all_products() {
+function get_all_products($param) {
+    if($param == "") {
+        $sql_types = [];
+        $query = 
+        "
+        SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
+        FROM products p
+        JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
+        GROUP BY p.product_id
+        ";
+        $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 
-    $sql_types = [];
-    $query = 
-    "
-    SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
-    FROM products p
-    JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
-    GROUP BY p.product_id
-    ";
-    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+        $result = array();
 
-    $result = array();
+        foreach ($db_result as &$obj) {
+            $product = new Product;
+            $manufacturer = new Manufacturer;
 
-    foreach ($db_result as &$obj) {
-        $product = new Product;
-        $manufacturer = new Manufacturer;
+            $product->identifier = $obj['product_id'];
+            $product->product_name = $obj['product_name'];
+            $product->product_quantity = $obj['product_quantity'];
+            $product->product_display_price = $obj['product_display_price'];
+            $product->product_netto_price = $obj['product_netto_price'];
 
-        $product->identifier = $obj['product_id'];
-        $product->product_name = $obj['product_name'];
-        $product->product_quantity = $obj['product_quantity'];
-        $product->product_display_price = $obj['product_display_price'];
-        $product->product_netto_price = $obj['product_netto_price'];
+            $manufacturer->manufacturer_id = $obj['product_manufacturer_id'];
+            $manufacturer->manufacturer_name = $obj['manufacturer_name'];
 
-        $manufacturer->manufacturer_id = $obj['product_manufacturer_id'];
-        $manufacturer->manufacturer_name = $obj['manufacturer_name'];
+            $product->manufacturer = $manufacturer;
 
-        $product->manufacturer = $manufacturer;
+            array_push($result, $product);
+        }
+        return $result;
+    } else {
+        $sql_types = ['param' => $param];
+        $query = 
+        '
+        SELECT p.product_id, p.product_name, p.product_quantity, p.product_display_price, p.product_netto_price, p.product_manufacturer_id, m.manufacturer_name
+        FROM products p
+        JOIN manufacturers m ON p.product_manufacturer_id = m.manufacturer_id
+        WHERE p.product_name LIKE "%$:param%"
+        GROUP BY p.product_id
+        ';
+        $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 
-        array_push($result, $product);
+        $result = array();
+
+        foreach ($db_result as &$obj) {
+            $product = new Product;
+            $manufacturer = new Manufacturer;
+
+            $product->identifier = $obj['product_id'];
+            $product->product_name = $obj['product_name'];
+            $product->product_quantity = $obj['product_quantity'];
+            $product->product_display_price = $obj['product_display_price'];
+            $product->product_netto_price = $obj['product_netto_price'];
+
+            $manufacturer->manufacturer_id = $obj['product_manufacturer_id'];
+            $manufacturer->manufacturer_name = $obj['manufacturer_name'];
+
+            $product->manufacturer = $manufacturer;
+
+            array_push($result, $product);
+        }
+        return $result;
     }
-    return $result;
 }
 
 function get_product_by_id($id) {
