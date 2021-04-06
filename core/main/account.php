@@ -93,6 +93,10 @@ if(isset($_SESSION['register_ok'])) {
                                             echo '<div class="value-'.$counter.'"> '.$value.' </div>';
                                             $counter++;
                                         }
+                                        ?>
+                                            <div class="key-8"></div>
+                                            <a href="edit_user.php" class="value-<?php echo $counter; ?>"><p>Edytuj dane</p></a>
+                                        <?php
                                     } else {
                                         echo "Nie udało się załadować danych użytkownika!";
                                     }

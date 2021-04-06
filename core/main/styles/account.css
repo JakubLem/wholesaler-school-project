@@ -171,6 +171,15 @@
     font-family: cursive;
 }
 
+.value-8 > p {
+    border-radius: 10%;
+    background-color: #fff;
+    width: 135px;
+    padding: 27px;
+    font-size: 25px;
+    left: 0;
+}
+
 .account-cart-container {
     display: grid;
     margin: 8px;
