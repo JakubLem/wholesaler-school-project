@@ -171,13 +171,15 @@
     font-family: cursive;
 }
 
-.value-8 > p {
+.value-8 > p , .key-8 > p{
+    text-decoration: none;
     border-radius: 10%;
     background-color: #fff;
     width: 135px;
     padding: 27px;
     font-size: 25px;
     left: 0;
+    font-family: cursive;
 }
 
 .account-cart-container {

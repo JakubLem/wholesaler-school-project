@@ -94,7 +94,7 @@ if(isset($_SESSION['register_ok'])) {
                                             $counter++;
                                         }
                                         ?>
-                                            <div class="key-8"></div>
+                                            <a href="edit_password.php" class="key-<?php echo $counter; ?>"><p>Edytuj hasło</p></a>
                                             <a href="edit_user.php" class="value-<?php echo $counter; ?>"><p>Edytuj dane</p></a>
                                         <?php
                                     } else {
