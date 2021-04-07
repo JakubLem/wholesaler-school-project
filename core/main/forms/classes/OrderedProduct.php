@@ -14,7 +14,12 @@ class OrderedProduct {
 
     public function add() {
         if($this->is_set) {
-            
+            $query = 
+            "
+            INSERT INTO orderedproducts
+            (ordered_product)
+            ";
+
         }
     }
 
