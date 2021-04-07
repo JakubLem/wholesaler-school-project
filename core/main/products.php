@@ -7,7 +7,14 @@ $GLOBALS['header'] = 2;
 @include_once(__DIR__. '/top.php');
 
 require_once('forms/classes/Product.php');
-$products = get_all_products();
+
+$search_param = "";
+if(isset($_SESSION['search_param'])){
+    $search_param = $_SESSION['search_param'];
+}
+
+$products = get_all_products($search_param);
+unset($_SESSION['search_param']);
 
 $header = array(
     "Nazwa produktu",
@@ -19,7 +26,21 @@ $header = array(
 
 ?>
 
-<hr><br>
+<br><br><br><br>
+
+<div class="search-location">
+    <div class="wrap">
+        <form class="search" action="./search_products.php" method="post">
+            <input type="text" name="search_param" class="search-term" placeholder="Czego szukasz?">
+            <button type="submit" class="search-button">
+                🔎
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
 <table class="products-table">
     <thead>
         <tr>
