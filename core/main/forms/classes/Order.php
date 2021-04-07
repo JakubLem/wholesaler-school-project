@@ -31,8 +31,22 @@ class Order {
         $products = get_product_identifiers_from_user_cart($this->user_id);
         foreach ($products as &$cart) {
             $op = new OrderedProduct;
+
+            $product_identifier = $cart->product->identifier;
             $product_name = $cart->product->product_name;
-            // $product_price
+            $product_price = $cart->product->get_price();
+            $product_manufacturer = $cart->product->manufacturer;
+            $ordered_quantity = $cart->quantity;
+
+            $op->set_ordered_product(
+                $product_identifier,
+                $product_name,
+                $product_price,
+                $product_manufacturer,
+                $ordered_quantity,
+                $this->identifier
+            );
+            $op->add();
         }
         
         
