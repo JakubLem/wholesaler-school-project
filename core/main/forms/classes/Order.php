@@ -1,6 +1,7 @@
 <?php
 
 require_once('Cart.php');
+require_once('OrderedProdu.php');
 
 class Order {
     public $identifier;
@@ -25,14 +26,18 @@ class Order {
 
     public function make_order($user_id) {
         $this->user_id = $user_id;
-        $order_id = $this->create_order();
+        $this->identifier = $this->create_order();
 
         $products = get_product_identifiers_from_user_cart($this->user_id);
-
-
+        foreach ($products as &$cart) {
+            $op = new OrderedProduct;
+            $product_name = $cart->product->product_name;
+            // $product_price
+        }
+        
         
 
-        echo $order_id;
+        echo $this->identifier;
     }
 }
 ?>
