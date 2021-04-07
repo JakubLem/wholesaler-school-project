@@ -183,6 +183,7 @@ if(isset($_SESSION['register_ok'])) {
                                 <div class="netto_price">Cena NETTO</div>
                                 <div class="quantity">Ilość</div>
                                 <div class="value">Wartość</div>
+                                <div class="delete"><a href="make_order.php?user_id=<?php echo $_SESSION['user_identifier']; ?>">Zamawiam</a></div>
                             </div>
                             <?php 
                                 foreach ($_SESSION['cart'] as &$cart) {
