@@ -1,17 +1,15 @@
 .products-table, tr {
     width: 100%;
-    border-color: black; 
-    border-style: solid; 
-    border-width: 1px;
-    background-color: #cfd7e2;
+}
+
+.products-table {
+  background-color: #fff;
 }
 
 th {
-    border-bottom: blueviolet;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-style: solid; 
+    background-color: rgba(230, 217, 217, 0.774);
+    border-color: rgb(43, 107, 226);
+    border-style: solid;
     border-width: 1px;
 }
 
@@ -23,6 +21,8 @@ th {
 }
 
 .head-row {
+    background-color: #8f93ce;
+    height: 60px;
     font-size: 23px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -104,7 +104,6 @@ th {
   font-size: 20px;
 }
 
-/*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 75%;
   position: absolute;
