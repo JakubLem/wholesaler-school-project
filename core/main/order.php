@@ -54,7 +54,6 @@ if(isset($_GET['order_id'])){
                             echo '<th class="value">'.$product->product_price*$product->ordered_quantity."</th>";
                             echo '<th class="value"><a href="show_product.php?product_name='.$product->product_name.'">Pokaż produkt</a></th>';
                             echo "</tr>";
-                            // TODO WSP-25 create custom listing quantity
                         }
                     ?>
                 </tbody>
@@ -62,8 +61,4 @@ if(isset($_GET['order_id'])){
         <?php
     }
 }
-
-
 ?>
-
-
