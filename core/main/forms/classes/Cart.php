@@ -41,3 +41,9 @@ function get_product_identifiers_from_user_cart($user_id) {
 
     return $result;
 }
+
+function clear_cart_by_user_id($user_id) {
+    $sql_types = ['id' => $user_id];
+    $query = "DELETE FROM cart WHERE user_id = :id";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+}

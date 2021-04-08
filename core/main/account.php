@@ -12,6 +12,7 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
+
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
         ?>
@@ -137,6 +138,13 @@ if(isset($_SESSION['register_ok'])) {
                 }
             }
             unset($_SESSION['change_user_data_status']);
+        } else if(isset($_SESSION['cart_message'])){
+            ?>
+                <div class="register_ok">
+                <h2><?php echo $_SESSION['cart_message']; ?></h2>
+                </div>
+            <?php
+            unset($_SESSION['cart_message']);
         }
 
         @include_once(__DIR__.'/forms/classes/Cart.php');

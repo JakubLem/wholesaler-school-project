@@ -1,7 +1,7 @@
 <?php
 
 require_once('Cart.php');
-require_once('OrderedProdu.php');
+require_once('OrderedProduct.php');
 
 class Order {
     public $identifier;
@@ -28,6 +28,8 @@ class Order {
         $this->user_id = $user_id;
         $this->identifier = $this->create_order();
 
+        $order_sum_cost = 0.0; 
+
         $products = get_product_identifiers_from_user_cart($this->user_id);
         foreach ($products as &$cart) {
             $op = new OrderedProduct;
@@ -35,23 +37,35 @@ class Order {
             $product_identifier = $cart->product->identifier;
             $product_name = $cart->product->product_name;
             $product_price = $cart->product->get_price();
-            $product_manufacturer = $cart->product->manufacturer;
+            $product_manufacturer_id = $cart->product->manufacturer->manufacturer_id;
             $ordered_quantity = $cart->quantity;
 
             $op->set_ordered_product(
                 $product_identifier,
                 $product_name,
                 $product_price,
-                $product_manufacturer,
+                $product_manufacturer_id,
                 $ordered_quantity,
                 $this->identifier
             );
             $op->add();
-        }
-        
-        
 
-        echo $this->identifier;
+            $order_sum_cost = $order_sum_cost + $op->get_full_price();
+        }
+
+        $sql_types = [
+            'id' => $this->identifier,
+            'order_sum_cost' => $order_sum_cost
+        ];
+        $query = 
+        "
+        UPDATE orders
+        SET order_sum_cost = :order_sum_cost
+        WHERE order_id = :id
+        ";
+        $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+        clear_cart_by_user_id($this->user_id);
+        $_SESSION['cart_message'] = "Zamówienie zostało złożone pomyślnie!";
     }
 }
 ?>

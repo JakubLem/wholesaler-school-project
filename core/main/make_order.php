@@ -13,3 +13,4 @@ $user_id = $_GET['user_id'];
 
 $order = new Order;
 $order->make_order($user_id);
+header("Location: account.php");
