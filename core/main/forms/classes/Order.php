@@ -7,7 +7,11 @@ class Order {
     public $identifier;
     public $user_id;
     public $ordered_products;
+
     public $status;
+
+    public $order_sum_cost;
+    public $order_transport_cost;
 
     private function create_order() {
         $sql_types = [
@@ -68,4 +72,39 @@ class Order {
         $_SESSION['cart_message'] = "Zamówienie zostało złożone pomyślnie!";
     }
 }
+
+function get_orders_by_db_result($db_result) {
+    $result = array();
+    foreach ($db_result as &$obj) {
+        $order = new Order;
+
+        $identifier = $obj['order_id'];
+        $user_id = $obj['user_id'];
+        $status = $obj['order_status'];
+        $order_sum_cost = $obj['order_sum_cost'];
+        $order_transport_cost = $obj['order_transport_cost'];
+        $ordered_products = get_ordered_producs_by_order_id($identifier);
+        
+        $order->identifier = $identifier;
+        $order->user_id = $user_id;
+        $order->status = $status;
+        $order->order_sum_cost = $order_sum_cost;
+        $order->order_transport_cost = $order_transport_cost;
+        $order->ordered_products = $ordered_products;
+
+        array_push($result, $order);
+    }
+    return $result;
+
+}
+
+function get_orders_by_user_id($user_id) {
+    $sql_types = [
+        'id' => $user_id
+    ];
+    $query = "SELECT * FROM orders WHERE user_id = :id";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+    return get_orders_by_db_result($db_result);
+}
+
 ?>
