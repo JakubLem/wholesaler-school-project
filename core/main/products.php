@@ -21,7 +21,8 @@ $header = array(
     "Producent",
     "Stan magazynowy",
     "Cena promocyjna NETTO",
-    "Cena główna NETTO"
+    "Cena główna NETTO",
+    "Dodaj do koszyka"
 );
 
 ?>

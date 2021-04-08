@@ -12,6 +12,7 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
+
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
         ?>
@@ -137,6 +138,13 @@ if(isset($_SESSION['register_ok'])) {
                 }
             }
             unset($_SESSION['change_user_data_status']);
+        } else if(isset($_SESSION['cart_message'])){
+            ?>
+                <div class="register_ok">
+                <h2><?php echo $_SESSION['cart_message']; ?></h2>
+                </div>
+            <?php
+            unset($_SESSION['cart_message']);
         }
 
         @include_once(__DIR__.'/forms/classes/Cart.php');
@@ -169,7 +177,36 @@ if(isset($_SESSION['register_ok'])) {
                         </div>
                     </div>
                     <div id="center-container-orders" class="center-container-off">
-                        Tutaj będą widoczne twoje zamówienia
+                        <?php
+                            @include_once(__DIR__.'/forms/classes/Order.php');
+                            $orders = get_orders_by_user_id($_SESSION['user_identifier']);
+                            if(empty($orders)){
+                                echo "Tutaj będą widoczne twoje zamówienia";
+                            } else {
+                                ?>
+                                    <div class="account-cart-container">
+                                        <div class="product_name">Identyfikator zamówienia</div>
+                                        <div class="producer_name">Liczba produktów</div>
+                                        <div class="netto_price">Koszt produktów</div>
+                                        <div class="quantity">Koszt dostawy</div>
+                                        <div class="value">Status</div>
+                                        <div class="delete">Szczegóły</div>
+                                    </div>
+                                <?php
+                                foreach ($orders as &$order) {
+                                    echo '<div class="account-cart-container">';
+                                    echo '<div class="product_name">'.$order->identifier.'</div>';
+                                    echo '<div class="netto_price">'.count($order->ordered_products).'</div>';
+                                    echo '<div class="producer_name">'.$order->order_sum_cost.'</div>';
+                                    echo '<div class="quantity">'.$order->order_transport_cost.'</div>';
+                                    echo '<div class="value">'.$order->status.'</div>';
+                                    echo '<div class="delete"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></div>';
+                                    echo '</div>';
+                                }
+                            }
+                            
+                        ?>
+                        
                     </div>
                     <div id="center-container-cart" class="center-container-off">
                         <?php
@@ -183,6 +220,7 @@ if(isset($_SESSION['register_ok'])) {
                                 <div class="netto_price">Cena NETTO</div>
                                 <div class="quantity">Ilość</div>
                                 <div class="value">Wartość</div>
+                                <div class="delete"><a href="make_order.php?user_id=<?php echo $_SESSION['user_identifier']; ?>">Zamawiam</a></div>
                             </div>
                             <?php 
                                 foreach ($_SESSION['cart'] as &$cart) {
