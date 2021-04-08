@@ -200,7 +200,7 @@ if(isset($_SESSION['register_ok'])) {
                                     echo '<div class="producer_name">'.$order->order_sum_cost.'</div>';
                                     echo '<div class="quantity">'.$order->order_transport_cost.'</div>';
                                     echo '<div class="value">'.$order->status.'</div>';
-                                    echo '<div class="delete"><a href="order.php?id='.$order->identifier.'">Pokaż szczegóły</div>';
+                                    echo '<div class="delete"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></div>';
                                     echo '</div>';
                                 }
                             }

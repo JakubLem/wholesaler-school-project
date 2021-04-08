@@ -107,4 +107,8 @@ function get_orders_by_user_id($user_id) {
     return get_orders_by_db_result($db_result);
 }
 
+function order_user_check($user_id, $order_id) {
+    return true;
+}
+
 ?>
