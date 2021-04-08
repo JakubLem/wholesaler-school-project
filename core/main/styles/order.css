@@ -1,0 +1,34 @@
+.info {
+    left: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.account-data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "key-0 value-0"
+      "key-1 value-1"
+      "key-2 value-2";
+  }
+
+.key-0,
+.key-1,
+.key-2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: black;
+    padding: 15px;
+}
+
+.value-0,
+.value-1,
+.value-2 {
+    font-size: 24px;
+    color: black;
+    font-family: cursive;
+    padding: 15px;
+}

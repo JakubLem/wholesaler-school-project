@@ -3,6 +3,7 @@ $GLOBALS['header'] = 5;
 @include_once(__DIR__. '/start.php');
 ?>
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/products.css">
+<link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/order.css">
 <?php
 @include_once(__DIR__. '/top.php');
 @include_once(__DIR__.'/forms/classes/Order.php');
@@ -11,8 +12,21 @@ $GLOBALS['header'] = 5;
 if(isset($_GET['order_id'])){
     if(order_user_check($_SESSION['user_identifier'], $_GET['order_id'])){
         $order_id = $_GET['order_id'];
+        $order = get_order_by_order_id($order_id);
         $ordered_products = get_ordered_producs_by_order_id($order_id);
         ?>
+            <div class="info">
+                <div class="account-data-container">
+                    <div class="key-0">Identyfikator zamówienia:</div>
+                    <div class="value-0"><?php echo $order->identifier; ?></div>
+
+                    <div class="key-1">Status zamówienia:</div>
+                    <div class="value-1"><?php echo $order->status; ?></div>
+
+                    <div class="key-2">Łączny koszt zamówienia</div>
+                    <div class="value-2"><?php echo $order->order_sum_cost; ?></div>
+                </div>
+            </div>
             <table class="products-table">
                 <thead>
                     <tr>

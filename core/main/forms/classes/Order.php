@@ -111,4 +111,14 @@ function order_user_check($user_id, $order_id) {
     return true;
 }
 
+function get_order_by_order_id($order_id) {
+    $sql_types = [
+        'id' => $order_id
+    ];
+    $query = "SELECT * FROM orders WHERE order_id = :id";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+    return get_orders_by_db_result($db_result)[0];
+}
+
+
 ?>
