@@ -14,10 +14,19 @@ class OrderedProduct {
 
     public function add() {
         if($this->is_set) {
+            $sql_types = [
+                'order_id' => $this->order_id,
+                'product_id' => $this->product_identifier,
+                'product_name' => $this->product_name,
+                'product_price' => $this->product_price,
+                'manufacturer_id' => $this->manufacturer->identifier,
+                'ordered_quantity' => $this->ordered_quantity
+            ];
             $query = 
             "
             INSERT INTO orderedproducts
-            (ordered_product)
+            (order_id, product_id, product_name, product_price, manufacturer_id, ordered_quantity)
+            VALUES(:order_id, :product_id, :product_name, :product_price, :manufacturer_id, :ordered_quantity)
             ";
 
         }
