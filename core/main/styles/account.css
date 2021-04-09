@@ -86,7 +86,7 @@
   
 .center-container { 
       grid-area: center-container;
-      width: 750px;
+      width: 900px;
       height: 550px;
       background-color: #cfd7e2;
       margin: 10px;
