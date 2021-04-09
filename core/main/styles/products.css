@@ -14,10 +14,13 @@ th {
 }
 
 .buy {
-    background-color: rgb(58, 207, 58);
-    font-size: 24px;
+    background-color: rgb(33, 133, 33);
+    font-size: 70px;
+    width: 70px;
+    margin: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: normal;
+    border-radius: 50%;
 }
 
 .head-row {
@@ -41,7 +44,7 @@ th {
 
 .add-cart-link {
     text-decoration: none;
-    color: chocolate;
+    color: rgb(255, 255, 255);
 }
 
 :root {
