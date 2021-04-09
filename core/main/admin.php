@@ -34,7 +34,6 @@ $GLOBALS['header'] = 1;
 -->
 
 <?php
-print_r($_SESSION);
 if(isset($_SESSION['admin-login'])){
     header("Location: ./admin-panel.php");
 }
