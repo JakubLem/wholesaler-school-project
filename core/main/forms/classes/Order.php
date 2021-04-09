@@ -2,6 +2,7 @@
 
 require_once('Cart.php');
 require_once('OrderedProduct.php');
+require_once('User.php');
 
 class Order {
     public $identifier;
@@ -12,6 +13,10 @@ class Order {
 
     public $order_sum_cost;
     public $order_transport_cost;
+
+    function get_user() {
+        return get_user_by_id($this->user_id);
+    }
 
     private function create_order() {
         $sql_types = [
@@ -126,5 +131,7 @@ function get_all_orders() {
     $db_result = $GLOBALS['database']->make_query($query, $sql_types);
     return get_orders_by_db_result($db_result);
 }
+
+
 
 ?>

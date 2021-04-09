@@ -7,7 +7,7 @@ $GLOBALS['header'] = 2;
 @include_once('connect_db.php');
 @include_once('admin_header.php');
 if(isset($_SESSION['admin-login'])){
-    @include_once(__DIR__.'/forms/classes/Order.php');
+    include_once(__DIR__.'/forms/classes/Order.php');
     $orders = get_all_orders();
     ?>  
         <table class="products-table">
@@ -16,11 +16,13 @@ if(isset($_SESSION['admin-login'])){
                         <?php
                             $header = array(
                                 "Identyfikator zamówienia",
+                                "Identyfikator zamawiającego",
                                 "Imię zamawiającego",
                                 "Nazwisko zamawiającego",
                                 "Adres e-mail",
                                 "Liczba produktów",
                                 "Łączny koszt",
+                                "Status",
                                 "Pokaż szczegóły"
                             );
                             foreach ($header as &$col_name) {
@@ -32,11 +34,16 @@ if(isset($_SESSION['admin-login'])){
                 <tbody>
                     <?php
                         foreach ($orders as &$order) {
+                            $user = $order->get_user();
                             echo "<tr>";
                             echo '<th class="value-name">'.$order->identifier."</th>";
                             echo '<th class="value">'.$order->user_id."</th>";
-                            echo '<th class="value">'.$order->identifier."</th>";
-                            echo '<th class="value">'.$order->identifier."</th>";
+                            echo '<th class="value">'.$user->user_name."</th>";
+                            echo '<th class="value">'.$user->user_surname."</th>";
+                            echo '<th class="value">'.$user->user_email."</th>";
+                            echo '<th class="value">'.count($order->ordered_products)."</th>";
+                            echo '<th class="value">'.$order->order_sum_cost."</th>";
+                            echo '<th class="value">'.$order->status."</th>";
                             echo '<th class="value"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></th>';
                             echo "</tr>";
                         }

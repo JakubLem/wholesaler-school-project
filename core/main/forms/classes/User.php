@@ -223,7 +223,7 @@ class User{
     }
 }
 
-function translate_db_result($db_result) {
+function translate_user_db_result($db_result) {
     $result = array();
     foreach ($db_result as &$obj) {
         $user = new User;
@@ -240,5 +240,12 @@ function get_all_users() {
     $sql_types = [];
     $query = "SELECT * FROM users";
     $result = $GLOBALS['database']->make_query($query, $sql_types);
-    return translate_db_result($result);
+    return translate_user_db_result($result);
+}
+
+function get_user_by_id($user_id) {
+    $sql_types = ['id' => $user_id];
+    $query = "SELECT * FROM users WHERE user_id = :id";
+    $result = $GLOBALS['database']->make_query($query, $sql_types);
+    return translate_user_db_result($result)[0];
 }

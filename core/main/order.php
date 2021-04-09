@@ -5,7 +5,14 @@ $GLOBALS['header'] = 5;
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/products.css">
 <link rel="stylesheet" href="/wholesaler-school-project/core/main/styles/order.css">
 <?php
-@include_once(__DIR__. '/top.php');
+if(isset($_SESSION['admin-login'])){
+    $GLOBALS['header'] = 2;
+    @include_once('connect_db.php');
+    @include_once('admin_header.php');
+} else {
+    @include_once(__DIR__. '/top.php');
+}
+
 @include_once(__DIR__.'/forms/classes/Order.php');
 @include_once(__DIR__.'/forms/classes/OrderedProduct.php');
 $checker = false;
@@ -29,6 +36,15 @@ if(isset($_GET['order_id'])){
                     <div class="key-0">Identyfikator zamówienia:</div>
                     <div class="value-0"><?php echo $order->identifier; ?></div>
 
+                    <?php
+                        if(isset($_SESSION['admin-login'])){
+                            ?>
+                                <div class="key-0">Id klienta:</div>
+                                <div class="value-0"><?php echo $order->user_id; ?></div>
+                            <?php
+                        }
+                    ?>
+                    
                     <div class="key-1">Status zamówienia:</div>
                     <div class="value-1"><?php echo $order->status; ?></div>
 
