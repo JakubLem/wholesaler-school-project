@@ -8,9 +8,18 @@ $GLOBALS['header'] = 5;
 @include_once(__DIR__. '/top.php');
 @include_once(__DIR__.'/forms/classes/Order.php');
 @include_once(__DIR__.'/forms/classes/OrderedProduct.php');
-
+$checker = false;
 if(isset($_GET['order_id'])){
-    if(order_user_check($_SESSION['user_identifier'], $_GET['order_id'])){
+    if(isset($_SESSION['admin-login'])){
+        $checker = true;
+    } else {
+        if(isset($_SESSION['user_identifier'])){
+            if(order_user_check($_SESSION['user_identifier'], $_GET['order_id'])){
+                $checker = true;
+            }
+        }
+    }
+    if($checker){
         $order_id = $_GET['order_id'];
         $order = get_order_by_order_id($order_id);
         $ordered_products = get_ordered_producs_by_order_id($order_id);

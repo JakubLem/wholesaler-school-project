@@ -120,5 +120,11 @@ function get_order_by_order_id($order_id) {
     return get_orders_by_db_result($db_result)[0];
 }
 
+function get_all_orders() {
+    $sql_types = [];
+    $query = "SELECT * FROM orders";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+    return get_orders_by_db_result($db_result);
+}
 
 ?>

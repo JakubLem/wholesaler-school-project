@@ -9,7 +9,6 @@ $GLOBALS['header'] = 4;
 if(isset($_SESSION['admin-login'])){
     @include_once(__DIR__.'/forms/classes/Admin.php');
     $admins = get_all_admins();
-    print_r($admins);
     ?>  
         <table class="products-table">
                 <thead>
