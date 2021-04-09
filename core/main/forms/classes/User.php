@@ -222,3 +222,23 @@ class User{
         return $result;
     }
 }
+
+function translate_db_result($db_result) {
+    $result = array();
+    foreach ($db_result as &$obj) {
+        $user = new User;
+        $user->identifier = $obj['user_id'];
+        $user->user_name = $obj['user_name'];
+        $user->user_surname = $obj['user_surname'];
+        $user->user_email = $obj['user_email'];
+        array_push($result, $user);
+    }
+    return $result;
+}
+
+function get_all_users() {
+    $sql_types = [];
+    $query = "SELECT * FROM users";
+    $result = $GLOBALS['database']->make_query($query, $sql_types);
+    return translate_db_result($result);
+}

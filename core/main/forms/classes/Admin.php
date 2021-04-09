@@ -106,3 +106,23 @@ class Admin{
         return true;
     }
 }
+
+function translate_db_result($db_result) {
+    $result = array();
+    foreach ($db_result as &$obj) {
+        $admin = new Admin;
+        $admin->identifier = $obj['admin_id'];
+        $admin->admin_name = $obj['admin_name'];
+        $admin->admin_surname = $obj['admin_surname'];
+        $admin->admin_email = $obj['admin_email'];
+        array_push($result, $admin);
+    }
+    return $result;
+}
+
+function get_all_admins() {
+    $sql_types = [];
+    $query = "SELECT * FROM admins";
+    $result = $GLOBALS['database']->make_query($query, $sql_types);
+    return translate_db_result($result);
+}
