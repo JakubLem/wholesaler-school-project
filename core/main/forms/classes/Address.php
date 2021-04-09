@@ -1,6 +1,6 @@
 <?php
 
-require_once('classes/Response.php');
+require_once('Response.php');
 class AddressCreate{
     public $identifier;
 
