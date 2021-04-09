@@ -1,7 +1,6 @@
 <?php
 
 require_once('Response.php');
-require_once('Address.php');
 
 class Admin{
     public $identifier;

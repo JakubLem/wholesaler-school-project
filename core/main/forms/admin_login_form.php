@@ -30,9 +30,10 @@ function run_form($post_data) {
         if($admin->last_response->status == "OK") {
 
             if($admin->update_data()) {
-                $_SESSION['login'] = "OK";
+                $_SESSION['admin-login'] = "OK";
                 $_SESSION['admin_name'] = $admin->admin_name;
                 $_SESSION['admin_identifier'] = $admin->identifier;
+                header("Location: ../admin-panel.php");
             } else {
                 $_SESSION['admin_login'] = "INVALID";
             }
@@ -40,8 +41,13 @@ function run_form($post_data) {
             $_SESSION['admin_login'] = "INVALID";
         }
         $_SESSION['response_code'] = $admin->last_response->code;
+        if(isset($_SESSION['admin-login'])){
+            header("Location: ../admin-panel.php");
+        }
     }
-
+    if(isset($_SESSION['admin-login'])){
+        header("Location: ../admin-panel.php");
+    }
     header("Location: ../admin.php");
 }
 

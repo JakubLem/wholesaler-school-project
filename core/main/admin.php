@@ -17,7 +17,7 @@ $GLOBALS['header'] = 1;
 </form>
 <script src="scripts/validators/functions.js"></script>
 <script src="scripts/validators/login.js"></script>
-
+<!--
 <form name="register-form" class="register-form-form-parent" action="forms/admin_create_form.php" method="post" onsubmit="return register_validate()">
     <input class="register-form-form" id="user_name" type="text" name="user_name" placeholder="Imię" value="" onclick="reset_input(id)">
     <input class="register-form-form" id="user_surname" type="text" name="user_surname" placeholder="Nazwisko" value="" onclick="reset_input(id)">
@@ -31,7 +31,11 @@ $GLOBALS['header'] = 1;
 <form>
 <script src="scripts/validators/functions.js"></script>
 <script src="scripts/validators/register.js"></script>
+-->
 
 <?php
 print_r($_SESSION);
+if(isset($_SESSION['admin-login'])){
+    header("Location: ./admin-panel.php");
+}
 ?>
