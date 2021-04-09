@@ -2,6 +2,7 @@
 
 require_once('Cart.php');
 require_once('OrderedProduct.php');
+require_once('User.php');
 
 class Order {
     public $identifier;
@@ -12,6 +13,10 @@ class Order {
 
     public $order_sum_cost;
     public $order_transport_cost;
+
+    function get_user() {
+        return get_user_by_id($this->user_id);
+    }
 
     private function create_order() {
         $sql_types = [
@@ -120,5 +125,24 @@ function get_order_by_order_id($order_id) {
     return get_orders_by_db_result($db_result)[0];
 }
 
+function get_all_orders() {
+    $sql_types = [];
+    $query = "SELECT * FROM orders";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+    return get_orders_by_db_result($db_result);
+}
+
+function update_status($order_id, $new_status) {
+    $sql_types = [
+        'status' => $new_status,
+        'order_id' => $order_id
+    ];
+    $query = "
+    UPDATE orders
+    SET order_status = :status
+    WHERE order_id = :order_id
+    ";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+}
 
 ?>

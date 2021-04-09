@@ -73,6 +73,11 @@ If not, move this folder there
 
 After entering the `localhost/phpmyadmin/` website, import the database using the `/docs/database.sql`
 
+# ADMIN PANEL
+`http://localhost/wholesaler-school-project/core/main/admin.php`
+e-mail: `jakub.lemiesiewicz@wsp.pl`
+password: `admin`
+
 # Setting up dotenv
 
 In directory `/core/main/db_connector/` create `.env` file
