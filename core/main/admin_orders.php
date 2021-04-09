@@ -23,7 +23,8 @@ if(isset($_SESSION['admin-login'])){
                                 "Liczba produktów",
                                 "Łączny koszt",
                                 "Status",
-                                "Pokaż szczegóły"
+                                "Pokaż szczegóły",
+                                "Zmień status"
                             );
                             foreach ($header as &$col_name) {
                                 echo '<th class="head-row">'.$col_name.'</th>';
@@ -45,6 +46,7 @@ if(isset($_SESSION['admin-login'])){
                             echo '<th class="value">'.$order->order_sum_cost."</th>";
                             echo '<th class="value">'.$order->status."</th>";
                             echo '<th class="value"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></th>';
+                            echo '<th class="value"><a href="edit_status.php?order_id='.$order->identifier.'">Edycja</a></th>';
                             echo "</tr>";
                         }
                     ?>

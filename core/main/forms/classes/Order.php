@@ -132,6 +132,17 @@ function get_all_orders() {
     return get_orders_by_db_result($db_result);
 }
 
-
+function update_status($order_id, $new_status) {
+    $sql_types = [
+        'status' => $new_status,
+        'order_id' => $order_id
+    ];
+    $query = "
+    UPDATE orders
+    SET order_status = :status
+    WHERE order_id = :order_id
+    ";
+    $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+}
 
 ?>
