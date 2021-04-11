@@ -11,18 +11,18 @@
             <h3>Linki</h3>
             <div class="footer-contact">
                 <div class="contact-col-1">
-                    <h3>Facebook:</h3>
+                    <h3>Facebook</h3>
                 </div>
-                <div class="contact-col-2">
-                    <p>photo</p>
+                <div class="contact-col-1">
+                <h3>Instagram</h3>
                 </div>
             </div>
             <div class="footer-contact">
                 <div class="contact-col-1">
                     <h3>Linkedin</h3>
                 </div>
-                <div class="contact-col-2">
-                    <p>photo</p>
+                <div class="contact-col-1">
+                <h3>Twitter</h3>
                 </div>
             </div>
         </div>
