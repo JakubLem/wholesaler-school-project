@@ -2,6 +2,9 @@
 // | school project | Jakub Lemiesiewicz |
 // | Zespół Szkół Komunikacji w Poznaniu |
 -->
+<?php
+@require_once("get_static_data.php")
+?>
 <footer>
     <div class="footer-container">
         <div class="col-1">
@@ -35,7 +38,7 @@
                     <h3>Nr telefonu</h3>
                 </div>
                 <div class="contact-col-2">
-                    <p>999 999 999</p>
+                    <p><?php echo get_value_by_key("phone_number"); ?></p>
                 </div>
             </div>
             <div class="footer-contact">
@@ -43,7 +46,7 @@
                     <h3>Adres email</h3>
                 </div>
                 <div class="contact-col-2">
-                    <p>someemail@email.com</p>
+                    <p><?php echo get_value_by_key("email"); ?></p>
                 </div>
             </div>
         </div>
