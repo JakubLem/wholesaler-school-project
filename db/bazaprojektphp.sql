@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Kwi 2021, 14:34
+-- Czas generowania: 11 Kwi 2021, 20:58
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.2.12
 
@@ -96,7 +96,11 @@ CREATE TABLE `manufacturers` (
 INSERT INTO `manufacturers` (`manufacturer_id`, `manufacturer_name`) VALUES
 (1, 'testowa'),
 (2, 'Samsung'),
-(3, 'Nokia');
+(3, 'Nokia'),
+(4, 'Wiatrakownia'),
+(5, 'Klawiaturowo'),
+(6, 'Roślinowo'),
+(7, 'Solidne Drewno');
 
 -- --------------------------------------------------------
 
@@ -121,7 +125,12 @@ CREATE TABLE `orderedproducts` (
 INSERT INTO `orderedproducts` (`ordered_product_id`, `order_id`, `product_id`, `product_name`, `product_price`, `manufacturer_id`, `ordered_quantity`) VALUES
 (40, 30, 1, 'Telefon', 55.99, 1, 1),
 (41, 30, 2, 'Bateria testowa', 49.99, 2, 1),
-(42, 30, 3, 'Obudowa', 149.99, 1, 1);
+(42, 30, 3, 'Obudowa', 149.99, 1, 1),
+(43, 31, 1, 'Telefon', 55.99, 1, 5),
+(44, 31, 2, 'Bateria testowa', 49.99, 2, 1),
+(45, 31, 3, 'Obudowa', 149.99, 1, 3),
+(46, 32, 1, 'Telefon', 55.99, 1, 4),
+(47, 32, 3, 'Obudowa', 149.99, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -142,7 +151,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `order_sum_cost`, `order_transport_cost`, `order_status`) VALUES
-(30, 64, 255.97, 0, 'W trakcie przygotowania');
+(30, 64, 255.97, 0, 'Gotowe'),
+(31, 64, 779.91, 0, 'W trakcie przygotowania'),
+(32, 64, 373.95, 0, 'W trakcie przygotowania');
 
 -- --------------------------------------------------------
 
@@ -166,7 +177,30 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`product_id`, `product_name`, `product_quantity`, `product_display_price`, `product_netto_price`, `product_manufacturer_id`) VALUES
 (1, 'Telefon', 100, 55.99, 55.99, 1),
 (2, 'Bateria testowa', 100, 49.99, 49.99, 2),
-(3, 'Obudowa', 100, 149.99, 149.99, 1);
+(3, 'Obudowa', 100, 149.99, 149.99, 1),
+(4, 'Wkrętarka', 100, 12, 12, 7),
+(5, 'Zestaw śrubokrętów', 100, 50, 50, 4),
+(6, 'Dziadek do orzechów', 100, 99, 99, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `staticdata`
+--
+
+CREATE TABLE `staticdata` (
+  `static_data_id` int(11) NOT NULL,
+  `static_data_key` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `static_data_value` varchar(150) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `staticdata`
+--
+
+INSERT INTO `staticdata` (`static_data_id`, `static_data_key`, `static_data_value`) VALUES
+(1, 'phone_number', '789 123 456'),
+(3, 'email', 'someemail@wsp.pl');
 
 -- --------------------------------------------------------
 
@@ -238,6 +272,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indeksy dla tabeli `staticdata`
+--
+ALTER TABLE `staticdata`
+  ADD PRIMARY KEY (`static_data_id`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -263,31 +303,37 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT dla tabeli `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `master_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `master_cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `manufacturers`
 --
 ALTER TABLE `manufacturers`
-  MODIFY `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `orderedproducts`
 --
 ALTER TABLE `orderedproducts`
-  MODIFY `ordered_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ordered_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT dla tabeli `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT dla tabeli `staticdata`
+--
+ALTER TABLE `staticdata`
+  MODIFY `static_data_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
