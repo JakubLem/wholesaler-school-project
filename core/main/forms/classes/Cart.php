@@ -49,3 +49,4 @@ function clear_cart_by_user_id($user_id) {
     $query = "DELETE FROM cart WHERE user_id = :id";
     $db_result = $GLOBALS['database']->make_query($query, $sql_types);
 }
+?>

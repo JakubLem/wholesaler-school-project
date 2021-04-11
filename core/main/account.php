@@ -149,7 +149,8 @@ if(isset($_SESSION['register_ok'])) {
             unset($_SESSION['cart_message']);
         }
 
-        @include_once(__DIR__.'/forms/classes/Cart.php');
+        include_once(__DIR__.'/forms/classes/Cart.php');
+        $test = new Cart;
         $_SESSION['cart'] = get_product_identifiers_from_user_cart($_SESSION['user_identifier']);
 
         ?>
