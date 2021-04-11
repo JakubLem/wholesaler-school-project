@@ -1,3 +1,7 @@
+<!--
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
+-->
 <footer>
     <div class="footer-container">
         <div class="col-1">
