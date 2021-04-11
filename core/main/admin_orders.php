@@ -1,4 +1,6 @@
 <?php
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 $GLOBALS['header'] = 2;
 @include_once(__DIR__. '/start.php');
 ?>

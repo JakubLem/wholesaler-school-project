@@ -1,3 +1,5 @@
+# | school project | Jakub Lemiesiewicz |
+# | Zespół Szkół Komunikacji w Poznaniu |
 import graphene
 from graphene_django import DjangoObjectType
 from .models import Note, Option, PriceList

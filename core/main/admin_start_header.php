@@ -1,5 +1,6 @@
 <?php
-
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 $html_header = array(
     'Logowanie',
     'Wróć na stronę sklepu',

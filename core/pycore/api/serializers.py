@@ -1,3 +1,5 @@
+# | school project | Jakub Lemiesiewicz |
+# | Zespół Szkół Komunikacji w Poznaniu |
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError

@@ -1,5 +1,6 @@
 <?php
-
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 class Option {
     public $max_weight;
     public $price;

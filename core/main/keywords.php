@@ -1,5 +1,6 @@
 <?php
-
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 if(isset($GLOBALS['header'])) {
     $key_words = "wholesaler, hurtownia, ";
     switch ($GLOBALS['header']) {
