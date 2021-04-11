@@ -71,7 +71,7 @@ If not, move this folder there
 
 # Setting up DATABASE
 
-After entering the `localhost/phpmyadmin/` website, import the database using the `/docs/database.sql`
+After entering the `localhost/phpmyadmin/` website, import the database using the `/db/bazaprojektphp.sql`
 
 # ADMIN PANEL
 `http://localhost/wholesaler-school-project/core/main/admin.php`
