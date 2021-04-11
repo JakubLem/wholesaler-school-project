@@ -1,3 +1,5 @@
+# | school project | Jakub Lemiesiewicz |
+# | Zespół Szkół Komunikacji w Poznaniu |
 import pytest
 from django.test import Client
 from graphene_django.utils.testing import graphql_query
