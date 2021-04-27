@@ -1,14 +1,16 @@
 # | school project | Jakub Lemiesiewicz |
 # | Zespół Szkół Komunikacji w Poznaniu |
 import pytest
+
 from django.test import Client
-from graphene_django.utils.testing import graphql_query
 from django.utils.crypto import get_random_string
+
+from graphene_django.utils.testing import graphql_query
 
 
 @pytest.fixture
-def my_client(settings):
-    def client(**kwargs):
+def my_client():
+    def client():
         return Client()
 
     return client
@@ -24,9 +26,9 @@ def client_query(client):
 
 @pytest.fixture
 def notes():
-    def array(quantity, *args, **kwargs):
+    def array(quantity):
         result = list()
-        for i in range(quantity):
+        for i in range(quantity): # noqa:W0612
             result.append({'string': get_random_string(length=10)})
         return result
 
