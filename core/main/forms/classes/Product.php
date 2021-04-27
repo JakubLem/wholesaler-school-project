@@ -3,7 +3,7 @@
 // | Zespół Szkół Komunikacji w Poznaniu |
 require_once('Response.php');
 require_once('Manufacturer.php');
-
+require_once(__DIR__.'/../../functions/functions.php');
 class Product{
     public $identifier;
 
@@ -17,8 +17,8 @@ class Product{
         $result = array(
             $this->manufacturer->manufacturer_name,
             $this->product_quantity,
-            $this->product_display_price,
-            $this->product_netto_price
+            price_view($this->product_display_price),
+            price_view($this->product_netto_price)
         );
         return $result;
     }
