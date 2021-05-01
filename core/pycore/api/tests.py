@@ -10,6 +10,7 @@ from graphene_django.utils.testing import GraphQLTestCase
 
 MAIN_API_PATH = '/api/'
 
+
 class TestTest:
     def test_test(self):
         assert 1 == 1
