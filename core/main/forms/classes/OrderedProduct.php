@@ -1,6 +1,7 @@
 <?php
 // | school project | Jakub Lemiesiewicz |
 // | Zespół Szkół Komunikacji w Poznaniu |
+require_once("Product.php");
 class OrderedProduct {
     public $identifier;
 
@@ -13,6 +14,12 @@ class OrderedProduct {
     public $order_id;
 
     private $is_set = false;
+
+    public function substract_product() {
+        $product = get_product_by_id($this->product_identifier);
+        $new_quantity = $product->product_quantity - $this->ordered_quantity;
+        $product->update_quantity($new_quantity);
+    }
 
     public function add() {
         if($this->is_set) {
@@ -31,6 +38,7 @@ class OrderedProduct {
             VALUES(:order_id, :product_id, :product_name, :product_price, :manufacturer_id, :ordered_quantity)
             ";
             $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+            $this->substract_product();
             return true;
         }
     }

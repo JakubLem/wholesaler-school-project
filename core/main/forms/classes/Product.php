@@ -26,6 +26,20 @@ class Product{
     public function get_price() {
         return min($this->product_display_price, $this->product_netto_price);
     }
+
+    public function update_quantity($new_quantity) {
+        $sql_types = [
+            'new_quantity' => $new_quantity,
+            'product_id' => $this->identifier
+        ];
+        $query = 
+        "
+        UPDATE products
+        SET product_quantity = :new_quantity
+        WHERE product_id = :product_id
+        ";
+        $db_result = $GLOBALS['database']->make_query($query, $sql_types);
+    }
 }
 
 
