@@ -35,17 +35,17 @@ class LoadStartDataViewSet(APIView):
         if self.check():
             
             pricelistarray = [
-                {'max_weight': 10,'price': 9},
-                {'max_weight': 35,'price': 19},
-                {'max_weight': 50,'price': 29},
-                {'max_weight': 65,'price': 49},
-                {'max_weight': 80,'price': 59},
-                {'max_weight': 90,'price': 69},
-                {'max_weight': 100,'price': 79},
-                {'max_weight': 125,'price': 99},
-                {'max_weight': 150,'price': 119},
-                {'max_weight': 175,'price': 199},
-                {'max_weight': 20000000,'price': 249},
+                {'max_weight': 10, 'price': 9},
+                {'max_weight': 35, 'price': 19},
+                {'max_weight': 50, 'price': 29},
+                {'max_weight': 65, 'price': 49},
+                {'max_weight': 80, 'price': 59},
+                {'max_weight': 90, 'price': 69},
+                {'max_weight': 100, 'price': 79},
+                {'max_weight': 125, 'price': 99},
+                {'max_weight': 150, 'price': 119},
+                {'max_weight': 175, 'price': 199},
+                {'max_weight': 20000000, 'price': 249},
             ]
 
             pricelist = PriceList.objects.create(
