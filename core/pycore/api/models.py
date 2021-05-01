@@ -42,8 +42,14 @@ class Producer(models.Model):
     year_of_created = models.IntegerField()
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=150)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, null=False, blank=False, on_delete=models.CASCADE, related_name='products')
     price = models.FloatField()
     promo_price = models.FloatField()
     status = models.BooleanField()
