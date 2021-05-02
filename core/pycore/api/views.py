@@ -23,7 +23,7 @@ class LoadStartDataViewSet(APIView):
         try:
             main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)  # noqa:W0612
             return False
-        except:
+        except Exception as e:  # noqa:W0612
             return True
         return True
 
@@ -61,12 +61,13 @@ class LoadStartDataViewSet(APIView):
 
         return Response({"status": "OK", "code": code})
 
-class NoteViewSet(ModelViewSet):
+
+class NoteViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.NoteSerializer
     queryset = Note.objects.all()
 
 
-class PriceListViewSet(ModelViewSet):
+class PriceListViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.PriceListSerializer
     queryset = PriceList.objects.all()
     lookup_field = 'main_identifier'
@@ -100,8 +101,8 @@ class PriceListViewSet(ModelViewSet):
             try:
                 mainwsppricelist = get_object_or_404(PriceList, main_identifier='mainwsppricelist')
                 mainwsppricelist.delete()
-            except:
-                pass            
+            except Exception as e:  # noqa
+                pass
 
         delete()
 
@@ -120,12 +121,12 @@ class PriceListViewSet(ModelViewSet):
             option = Option(max_weight=option_max_weight, price=option_price, price_list=mainwsppricelist)
             option.save()
             options.append(option)
-        
+
         mainwsppricelist.quantity = len(options)
         mainwsppricelist.save()
         return Response({"OK": len(options)})
 
 
-class OptionViewSet(ModelViewSet):
+class OptionViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.OptionSerializer
     queryset = Option.objects.all()

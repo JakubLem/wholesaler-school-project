@@ -40,8 +40,8 @@ class Query(graphene.ObjectType):
             return PriceList.objects.get(main_identifier=main_identifier)
         return None
 
-schema = graphene.Schema(query=Query)
 
+schema = graphene.Schema(query=Query)
 
 """
 query {

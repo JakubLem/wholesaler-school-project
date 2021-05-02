@@ -1,11 +1,7 @@
 # | school project | Jakub Lemiesiewicz |
 # | Zespół Szkół Komunikacji w Poznaniu |
-from django.test import TestCase
-from django.test import Client
 import pytest
 from . import models
-import json
-from graphene_django.utils.testing import GraphQLTestCase
 
 
 MAIN_API_PATH = '/api/'

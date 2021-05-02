@@ -29,16 +29,21 @@ class OptionSerializer(serializers.ModelSerializer):
 
     def validate(self, data):  # noqa:W0221
         try:
-            price_list = get_object_or_404(PriceList, main_identifier=data['price_list'])
-        except Exception as e:
-            raise ValidationError(f"PriceList with main_identifier {main_identifier} doesn't exist")
+            identifier = data['price_list']
+        except Exception as e:  # noqa:W0612
+            raise ValidationError("price_list argument is missing")  # noqa
+
+        try:
+            price_list = get_object_or_404(PriceList, main_identifier=identifier)
+        except Exception as e:  # noqa:W0612
+            raise ValidationError("PriceList with main_identifier {identifier} does not exist".format(identifier=identifier))  # noqa
         data['price_list'] = price_list
 
         return data
 
 
 class XlsxPriceListSerializer(serializers.Serializer):
-    def validate(self, data):
+    def validate(self, data):  # noqa:W0221
         return data
 
     pricelistfile = serializers.FileField()
