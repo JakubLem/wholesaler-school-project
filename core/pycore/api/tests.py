@@ -86,16 +86,16 @@ class TestAPI:
 
         response = c.get(MAIN_API_PATH + 'pricelists/test_identifier/')
         assert response.json() == {
-            'price_list': 'test_identifier', 
+            'price_list': 'test_identifier',
             'options': [
                 {
-                    'id': 1, 
-                    'max_weight': 19.0, 
+                    'id': 1,
+                    'max_weight': 19.0,
                     'price': 15.99
-                }, 
+                },
                 {
-                    'id': 2, 
-                    'max_weight': 25.0, 
+                    'id': 2,
+                    'max_weight': 25.0,
                     'price': 26.99
                 }
             ]

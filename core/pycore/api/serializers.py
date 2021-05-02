@@ -30,8 +30,8 @@ class OptionSerializer(serializers.ModelSerializer):
     def validate(self, data):  # noqa:W0221
         try:
             price_list = get_object_or_404(PriceList, main_identifier=data['price_list'])
-        except Exception:
-            raise ValidationError("PriceList with main_identifier {main_identifier} doesn't exist")
+        except Exception as e:
+            raise ValidationError(f"PriceList with main_identifier {main_identifier} doesn't exist")
         data['price_list'] = price_list
 
         return data

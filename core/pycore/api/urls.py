@@ -7,7 +7,6 @@ from api.schema import schema
 from . import views
 
 
-
 router = routers.DefaultRouter()
 router.register(r'notes', views.NoteViewSet)
 router.register(r'pricelists', views.PriceListViewSet)

@@ -4,15 +4,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from .models import Note, PriceList, Option
-from django.shortcuts import get_object_or_404
+
 from openpyxl import load_workbook
+from django.shortcuts import get_object_or_404
+from .models import Note, PriceList, Option
 from . import serializers, validators
 
 
-
 class GetTestViewSet(APIView):
-    def get(self, request):
+    def get(self, request):  # noqa:W0613
         return Response("OK")
 
 
@@ -21,7 +21,7 @@ class LoadStartDataViewSet(APIView):
 
     def check(self):
         try:
-            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)
+            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)  # noqa:W0612
             return False
         except:
             return True
@@ -29,11 +29,11 @@ class LoadStartDataViewSet(APIView):
 
     def post(self, request):
         validators.validate_load_start_data(request)
-        
+
         # TODO WSP-42 TOKEN VALIDATE
         code = "The pricelist data has already existed on the instance"
         if self.check():
-            
+
             pricelistarray = [
                 {'max_weight': 10, 'price': 9},
                 {'max_weight': 35, 'price': 19},
@@ -72,7 +72,7 @@ class PriceListViewSet(ModelViewSet):
     lookup_field = 'main_identifier'
     lookup_url_kwarg = 'main_identifier'
 
-    def retrieve(self, request, main_identifier=None):
+    def retrieve(self, request, main_identifier=None):  # noqa:W0221
         queryset = PriceList.objects.all()
         pricelist = get_object_or_404(queryset, main_identifier=main_identifier)
         serializer = serializers.PriceListSerializer(pricelist)
