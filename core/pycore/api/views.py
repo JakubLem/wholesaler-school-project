@@ -4,15 +4,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from .models import Note, PriceList, Option
-from django.shortcuts import get_object_or_404
+
 from openpyxl import load_workbook
+from django.shortcuts import get_object_or_404
+from .models import Note, PriceList, Option
 from . import serializers, validators
 
 
-
 class GetTestViewSet(APIView):
-    def get(self, request):
+    def get(self, request):  # noqa:W0613
         return Response("OK")
 
 
@@ -21,31 +21,31 @@ class LoadStartDataViewSet(APIView):
 
     def check(self):
         try:
-            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)
+            main_pricelist = PriceList.objects.get(main_identifier=self.MAIN_PRICELIST_IDENTIFIER)  # noqa:W0612
             return False
-        except:
+        except Exception as e:  # noqa:W0612
             return True
         return True
 
     def post(self, request):
         validators.validate_load_start_data(request)
-        
+
         # TODO WSP-42 TOKEN VALIDATE
         code = "The pricelist data has already existed on the instance"
         if self.check():
-            
+
             pricelistarray = [
-                {'max_weight': 10,'price': 9},
-                {'max_weight': 35,'price': 19},
-                {'max_weight': 50,'price': 29},
-                {'max_weight': 65,'price': 49},
-                {'max_weight': 80,'price': 59},
-                {'max_weight': 90,'price': 69},
-                {'max_weight': 100,'price': 79},
-                {'max_weight': 125,'price': 99},
-                {'max_weight': 150,'price': 119},
-                {'max_weight': 175,'price': 199},
-                {'max_weight': 20000000,'price': 249},
+                {'max_weight': 10, 'price': 9},
+                {'max_weight': 35, 'price': 19},
+                {'max_weight': 50, 'price': 29},
+                {'max_weight': 65, 'price': 49},
+                {'max_weight': 80, 'price': 59},
+                {'max_weight': 90, 'price': 69},
+                {'max_weight': 100, 'price': 79},
+                {'max_weight': 125, 'price': 99},
+                {'max_weight': 150, 'price': 119},
+                {'max_weight': 175, 'price': 199},
+                {'max_weight': 20000000, 'price': 249},
             ]
 
             pricelist = PriceList.objects.create(
@@ -61,18 +61,19 @@ class LoadStartDataViewSet(APIView):
 
         return Response({"status": "OK", "code": code})
 
-class NoteViewSet(ModelViewSet):
+
+class NoteViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.NoteSerializer
     queryset = Note.objects.all()
 
 
-class PriceListViewSet(ModelViewSet):
+class PriceListViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.PriceListSerializer
     queryset = PriceList.objects.all()
     lookup_field = 'main_identifier'
     lookup_url_kwarg = 'main_identifier'
 
-    def retrieve(self, request, main_identifier=None):
+    def retrieve(self, request, main_identifier=None):  # noqa:W0221
         queryset = PriceList.objects.all()
         pricelist = get_object_or_404(queryset, main_identifier=main_identifier)
         serializer = serializers.PriceListSerializer(pricelist)
@@ -100,8 +101,8 @@ class PriceListViewSet(ModelViewSet):
             try:
                 mainwsppricelist = get_object_or_404(PriceList, main_identifier='mainwsppricelist')
                 mainwsppricelist.delete()
-            except:
-                pass            
+            except Exception as e:  # noqa
+                pass
 
         delete()
 
@@ -120,12 +121,12 @@ class PriceListViewSet(ModelViewSet):
             option = Option(max_weight=option_max_weight, price=option_price, price_list=mainwsppricelist)
             option.save()
             options.append(option)
-        
+
         mainwsppricelist.quantity = len(options)
         mainwsppricelist.save()
         return Response({"OK": len(options)})
 
 
-class OptionViewSet(ModelViewSet):
+class OptionViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.OptionSerializer
     queryset = Option.objects.all()

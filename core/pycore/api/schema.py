@@ -28,20 +28,20 @@ class Query(graphene.ObjectType):
     options = graphene.List(OptionType)
     pricelist = graphene.Field(PriceListType, main_identifier=graphene.String())
 
-    def resolve_notes(self, info):
+    def resolve_notes(self, info):  # noqa:W0613
         return Note.objects.all()
 
-    def resolve_options(self, info):
+    def resolve_options(self, info):  # noqa:W0613
         return Option.objects.all()
 
-    def resolve_pricelist(self, info, **args):
+    def resolve_pricelist(self, info, **args):  # noqa:W0613
         main_identifier = args.get('main_identifier')
         if main_identifier:
             return PriceList.objects.get(main_identifier=main_identifier)
         return None
 
-schema = graphene.Schema(query=Query)
 
+schema = graphene.Schema(query=Query)
 
 """
 query {

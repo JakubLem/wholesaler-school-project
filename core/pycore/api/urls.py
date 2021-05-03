@@ -2,12 +2,9 @@
 # | Zespół Szkół Komunikacji w Poznaniu |
 from django.conf.urls import url, include
 from rest_framework import routers
-from . import views
 from graphene_django.views import GraphQLView
 from api.schema import schema
-from django.urls import path
-from rest_framework import routers
-
+from . import views
 
 
 router = routers.DefaultRouter()

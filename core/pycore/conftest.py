@@ -1,19 +1,20 @@
 # | school project | Jakub Lemiesiewicz |
 # | Zespół Szkół Komunikacji w Poznaniu |
 import pytest
-from django.test import Client
-from graphene_django.utils.testing import graphql_query
 
-from openpyxl import Workbook
-from openpyxl.writer.excel import save_virtual_workbook
+from django.test import Client
 
 from django.utils.crypto import get_random_string
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+from graphene_django.utils.testing import graphql_query
+from openpyxl import Workbook
+from openpyxl.writer.excel import save_virtual_workbook
+
 
 @pytest.fixture
-def my_client(settings):
-    def client(**kwargs):
+def my_client():
+    def client():
         return Client()
 
     return client
@@ -29,9 +30,9 @@ def client_query(client):
 
 @pytest.fixture
 def notes():
-    def array(quantity, *args, **kwargs):
+    def array(quantity):
         result = list()
-        for i in range(quantity):
+        for i in range(quantity): # noqa:W0612
             result.append({'string': get_random_string(length=10)})
         return result
 

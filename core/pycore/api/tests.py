@@ -1,23 +1,20 @@
 # | school project | Jakub Lemiesiewicz |
 # | Zespół Szkół Komunikacji w Poznaniu |
-from django.test import TestCase
-from django.test import Client
 import pytest
 from . import models
-import json
-from graphene_django.utils.testing import GraphQLTestCase
 
 
 MAIN_API_PATH = '/api/'
 
+
 class TestTest:
     def test_test(self):
-        assert 1 == 1
+        pass
 
 
 class TestFunctions:
     def test_function(self):
-        assert 1 == 1
+        pass
 
     def test_temp_xlsx_file(self, temp_xlsx_file):
         header = []
@@ -32,8 +29,8 @@ class TestAPI:
         response = c.get(MAIN_API_PATH)
 
         assert response.json() == {
-            'notes': 'http://testserver/api/notes/', 
-            'options': 'http://testserver/api/options/', 
+            'notes': 'http://testserver/api/notes/',
+            'options': 'http://testserver/api/options/',
             'pricelists': 'http://testserver/api/pricelists/'
         }
 
@@ -54,7 +51,7 @@ class TestAPI:
         for note in notes_list:
             response = c.post(MAIN_API_PATH + 'notes/', note)
             assert response.status_code == 201
-        
+
         assert models.Note.objects.count() == 5
 
     def test_price_list_and_options(self, my_client):
@@ -90,16 +87,16 @@ class TestAPI:
 
         response = c.get(MAIN_API_PATH + 'pricelists/test_identifier/')
         assert response.json() == {
-            'price_list': 'test_identifier', 
+            'price_list': 'test_identifier',
             'options': [
                 {
-                    'id': 1, 
-                    'max_weight': 19.0, 
+                    'id': 1,
+                    'max_weight': 19.0,
                     'price': 15.99
-                }, 
+                },
                 {
-                    'id': 2, 
-                    'max_weight': 25.0, 
+                    'id': 2,
+                    'max_weight': 25.0,
                     'price': 26.99
                 }
             ]
