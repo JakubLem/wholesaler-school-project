@@ -14,6 +14,7 @@ let new_class_name = "register-form-form-invalid";
 
 <?php
 @include_once(__DIR__. '/top.php');
+@require_once(__DIR__.'/functions/functions.php');
 
 if(isset($_SESSION['register_ok'])) {
     if($_SESSION['register_ok'] == "OK") {
@@ -199,8 +200,8 @@ if(isset($_SESSION['register_ok'])) {
                                     echo '<div class="account-cart-container">';
                                     echo '<div class="product_name">'.$order->identifier.'</div>';
                                     echo '<div class="netto_price">'.count($order->ordered_products).'</div>';
-                                    echo '<div class="producer_name">'.$order->order_sum_cost.'</div>';
-                                    echo '<div class="quantity">'.$order->order_transport_cost.'</div>';
+                                    echo '<div class="producer_name">'.price_view($order->order_sum_cost).'</div>';
+                                    echo '<div class="quantity">'.price_view($order->order_transport_cost).'</div>';
                                     echo '<div class="value">'.$order->status.'</div>';
                                     echo '<div class="delete"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></div>';
                                     echo '</div>';
@@ -229,13 +230,13 @@ if(isset($_SESSION['register_ok'])) {
                                     echo '<div class="account-cart-container">';
                                     echo '<div class="product_name">'.$cart->product->product_name.'</div>';
                                     echo '<div class="producer_name">'.$cart->product->manufacturer->manufacturer_name.'</div>';
-                                    echo '<div class="netto_price">'.$cart->product->get_price().'</div>';
+                                    echo '<div class="netto_price">'.price_view($cart->product->get_price()).'</div>';
                                     echo '<div class="quantity">';
                                     echo '<a href="cart_subtract.php?master_cart_id='.$cart->master_cart_id.'">➖</a>';
                                     echo $cart->quantity;
                                     echo '<a href="cart_add.php?master_cart_id='.$cart->master_cart_id.'">➕</a>';
                                     echo '</div>';
-                                    echo '<div class="value">'.$cart->quantity*$cart->product->get_price().'</div>';
+                                    echo '<div class="value">'.price_view($cart->quantity*$cart->product->get_price()).'</div>';
                                     echo '<div class="delete"><a href="delete.php?id='.$cart->product->identifier.'">Usuń z koszyka</a></div>';
                                     echo '</div>';
                                 }
