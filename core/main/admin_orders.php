@@ -10,6 +10,7 @@ $GLOBALS['header'] = 2;
 @include_once('admin_header.php');
 if(isset($_SESSION['admin-login'])){
     include_once(__DIR__.'/forms/classes/Order.php');
+    @require_once(__DIR__.'/functions/functions.php');
     $orders = get_all_orders();
     ?>  
         <table class="products-table">
@@ -45,7 +46,7 @@ if(isset($_SESSION['admin-login'])){
                             echo '<th class="value">'.$user->user_surname."</th>";
                             echo '<th class="value">'.$user->user_email."</th>";
                             echo '<th class="value">'.count($order->ordered_products)."</th>";
-                            echo '<th class="value">'.$order->order_sum_cost."</th>";
+                            echo '<th class="value">'.price_view($order->order_sum_cost)."</th>";
                             echo '<th class="value">'.$order->status."</th>";
                             echo '<th class="value"><a href="order.php?order_id='.$order->identifier.'">Pokaż szczegóły</a></th>';
                             echo '<th class="value"><a href="edit_status.php?order_id='.$order->identifier.'">Edycja</a></th>';
