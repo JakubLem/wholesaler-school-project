@@ -95,9 +95,7 @@ class PriceListViewSet(ModelViewSet):  # noqa:R0901
     def upload_mainwsppricelist(self, request):
         serializer = serializers.XlsxPriceListSerializer(data=request.data)
         if not serializer.is_valid():
-            print("ttttheere")
-            raise BaseException("error")
-        print("thereeee")
+            raise BaseException(serializer.errors)
 
         def delete():
             try:
