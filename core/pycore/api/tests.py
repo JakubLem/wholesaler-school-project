@@ -109,3 +109,15 @@ class TestAPI:
 
         response = c.post(MAIN_API_PATH + 'loaddata_startdata/')
         assert response.json() == {'status': 'OK', 'code': 'The pricelist data has already existed on the instance'}
+
+    def test_upload_xlsx(self, my_client, temp_xlsx_file):
+        c = my_client()
+        header = ["test", "header"]
+        data = [
+            ["test", "data"],
+            ["test2", "data2"]
+        ]
+        response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
+            'pricelistfile': temp_xlsx_file(header=header, data=data)
+        })
+        assert response.json() == "test"
