@@ -1,4 +1,6 @@
 <?php
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 // @include_once('db_connector/db_connector.php');
 @include_once('connect_env.php');
 class MyDatabase {

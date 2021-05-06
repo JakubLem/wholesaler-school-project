@@ -1,4 +1,6 @@
 <?php
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 $GLOBALS['header'] = 4;
 @include_once(__DIR__. '/start.php');
 ?>
@@ -22,5 +24,13 @@ $GLOBALS['header'] = 4;
 <script src="scripts/validators/functions.js"></script>
 <script src="scripts/validators/contact.js"></script>
 <?php
+if(isset($_SESSION['contact_message'])){
+    ?>
+        <div class="register_ok">
+            <h2>Wysłano wiadomość!</h2>
+        </div>
+    <?php
+    unset($_SESSION['contact_message']);
+}
 @include_once(__DIR__. '/stop.php');
 ?>

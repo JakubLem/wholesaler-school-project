@@ -1,3 +1,7 @@
+<!--
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
+-->
 <form name="register-form" class="register-form-form-parent" action="forms/user_create_form.php" method="post" onsubmit="return register_validate()">
     <input class="register-form-form" id="user_name" type="text" name="user_name" placeholder="Imię" value="" onclick="reset_input(id)">
     <input class="register-form-form" id="user_surname" type="text" name="user_surname" placeholder="Nazwisko" value="" onclick="reset_input(id)">

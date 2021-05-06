@@ -1,4 +1,6 @@
 <?php
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 $GLOBALS['header'] = 2;
 @include_once(__DIR__. '/start.php');
 ?>
@@ -22,7 +24,7 @@ $header = array(
     "Stan magazynowy",
     "Cena promocyjna NETTO",
     "Cena główna NETTO",
-    "Dodaj do koszyka"
+    "Kup"
 );
 
 ?>
@@ -64,7 +66,7 @@ $header = array(
                 }
                 if(isset($_SESSION['login'])) {
                     if($_SESSION['login'] == "OK") {
-                        echo '<th class="buy"><a class="add-cart-link" href="buy.php?id='.$product->identifier.'">Dodaj do koszyka</a></th>';
+                        echo '<th class="buy"><a class="add-cart-link" href="buy.php?id='.$product->identifier.'">🛒</a></th>';
                     }
                 }
                 echo "</tr>";
