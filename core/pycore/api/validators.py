@@ -39,7 +39,6 @@ def validate_xlsx_file(file_obj):
             errors.append(f'row error row {i} col B')
             correct = False
 
-
     if not correct:
         raise ValidationError(errors)
 
