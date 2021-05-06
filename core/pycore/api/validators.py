@@ -6,6 +6,13 @@ def validate_xlsx_header(request_data, header):
     pass
 
 
-def validate_load_start_data(xlsx_file):
-    wb = load_workbook(file_obj)
-    ws = wb.active
+def validate_load_start_data(file_obj):
+    pass
+
+def validate_xlsx_file(file_obj):
+    workbook = load_workbook(file_obj)
+    worksheet = workbook.active
+    size = worksheet.max_row + 1
+
+    if worksheet[f'A{1}'].value != 'test':
+        raise ValidationError("testowoo")
