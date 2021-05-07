@@ -17,14 +17,12 @@ class Errors:
 
 
 class GeneralException(APIException):
-    def __init__(self, detail=None, code=None):
+    def __init__(self, detail=None, code=None, errors=None):
         super(GeneralException, self).__init__(detail=detail, code=code)
         self.code = code
         self.detail = detail
+        # self.errors = Errors(errors)
 
 
 class InvalidRequest(GeneralException):
     status_code = 400
-    
-    def __init__(self, errors):
-        self.errors = errors
