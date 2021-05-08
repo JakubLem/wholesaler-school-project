@@ -5,6 +5,7 @@ from graphene_django import DjangoObjectType
 from .models import Note, Option, PriceList
 
 
+#  TYPES
 class NoteType(DjangoObjectType):
     class Meta:
         model = Note
@@ -23,6 +24,7 @@ class PriceListType(DjangoObjectType):
         fields = ("main_identifier", "options")
 
 
+#  MUTATIONS
 class CreateNote(graphene.Mutation):
     class Arguments:
         id = graphene.ID()
