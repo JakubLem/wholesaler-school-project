@@ -49,6 +49,10 @@ def temp_xlsx_file():
         for row in data:
             ws.append(row)
         file_obj = save_virtual_workbook(wb)
-        return SimpleUploadedFile("test_file.xlsx", file_obj, content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        return SimpleUploadedFile(
+            "test_file.xlsx",
+            file_obj,
+            content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
 
     return temp_file

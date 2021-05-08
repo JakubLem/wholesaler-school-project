@@ -19,7 +19,7 @@ class TestFunctions:
     def test_temp_xlsx_file(self, temp_xlsx_file):
         header = []
         data = []
-        x = temp_xlsx_file(header, data)
+        temp_xlsx_file(header, data)
 
 
 @pytest.mark.django_db
