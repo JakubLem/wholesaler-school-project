@@ -51,6 +51,7 @@ class UpdateNote(graphene.Mutation):
 
 
 class Mutation(graphene.ObjectType):
+    create_note = CreateNote.Field()
     update_note = UpdateNote.Field()
 
 
