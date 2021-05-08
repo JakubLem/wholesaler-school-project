@@ -5,6 +5,7 @@ from graphene_django import DjangoObjectType
 from .models import Note, Option, PriceList
 
 
+#  TYPES
 class NoteType(DjangoObjectType):
     class Meta:
         model = Note
@@ -23,6 +24,20 @@ class PriceListType(DjangoObjectType):
         fields = ("main_identifier", "options")
 
 
+#  MUTATIONS
+class CreateNote(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID()
+        string = graphene.String()
+
+    note = graphene.Field(NoteType)
+
+    def mutate(self, info, string):  # noqa:W0613
+        note = Note.objects.create(string=string)
+        note.save()
+        return CreateNote(note=note)
+
+
 class UpdateNote(graphene.Mutation):
     class Arguments:
         id = graphene.ID()  # noqa 
@@ -38,6 +53,7 @@ class UpdateNote(graphene.Mutation):
 
 
 class Mutation(graphene.ObjectType):
+    create_note = CreateNote.Field()
     update_note = UpdateNote.Field()
 
 
