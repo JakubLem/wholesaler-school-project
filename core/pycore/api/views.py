@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 from openpyxl import load_workbook
 from django.shortcuts import get_object_or_404
 from .models import Note, PriceList, Option
-from . import serializers, validators
+from . import serializers, validators, exceptions
 
 
 class GetTestViewSet(APIView):
@@ -95,8 +95,12 @@ class PriceListViewSet(ModelViewSet):  # noqa:R0901
     def upload_mainwsppricelist(self, request):
         serializer = serializers.XlsxPriceListSerializer(data=request.data)
         if not serializer.is_valid():
-            raise BaseException("error")
-
+            # raise BaseException(serializer.errors)
+            print("X")
+            print(serializer.errors)
+            print("X")
+            raise exceptions.InvalidRequest(serializer.errors)
+            # raise exceptions.InvalidRequest(detail={'test': 'test'})
         def delete():
             try:
                 mainwsppricelist = get_object_or_404(PriceList, main_identifier='mainwsppricelist')

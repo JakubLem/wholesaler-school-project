@@ -4,6 +4,7 @@ from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError
 from .models import Note, PriceList, Option
+from . import validators
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -43,7 +44,5 @@ class OptionSerializer(serializers.ModelSerializer):
 
 
 class XlsxPriceListSerializer(serializers.Serializer):
-    def validate(self, data):  # noqa:W0221
-        return data
+    pricelistfile = serializers.FileField(validators=[validators.validate_xlsx_file])
 
-    pricelistfile = serializers.FileField()
