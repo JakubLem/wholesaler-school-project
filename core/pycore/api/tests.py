@@ -120,5 +120,22 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
             'pricelistfile': temp_xlsx_file(header=header, data=data)
         })
-        assert response.json() == {'test': 'test'}
+        assert response.json() == {  # TODO WSP-88 edit json view
+            'pricelistfile': 
+                [
+                    'xlsx cell error value',
+                    'header error A1',
+                    'xlsx cell error value',
+                    'header error B1',
+                    'xlsx cell error value',
+                    'row error row 2 col A',
+                    'xlsx cell error value',
+                    'row error row 2 col B',
+                    'xlsx cell error value',
+                    'row error row 3 col A',
+                    'xlsx cell error value',
+                    'row error row 3 col B'
+                ]
+           }
+
 
