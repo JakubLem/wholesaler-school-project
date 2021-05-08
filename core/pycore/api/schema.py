@@ -21,6 +21,25 @@ class PriceListType(DjangoObjectType):
         fields = ("main_identifier", "options")
 
 
+class UpdateNote(graphene.Mutation):
+  class Arguments:
+    id = graphene.ID()
+    string = graphene.String()
+
+
+  note = graphene.Field(NoteType)
+
+  def mutate(self, info, id, string):
+    note = Note.objects.get(pk=id)
+    note.name = string
+    note.save()
+    return UpdateNote(note=note)
+
+
+class Mutation(graphene.ObjectType):
+  update_note = UpdateNote.Field()
+
+
 class Query(graphene.ObjectType):
     notes = graphene.List(NoteType)
     options = graphene.List(OptionType)
