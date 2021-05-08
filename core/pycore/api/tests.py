@@ -19,7 +19,7 @@ class TestFunctions:
     def test_temp_xlsx_file(self, temp_xlsx_file):
         header = []
         data = []
-        x = temp_xlsx_file(header, data)
+        temp_xlsx_file(header, data)
 
 
 @pytest.mark.django_db
@@ -120,8 +120,9 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
             'pricelistfile': temp_xlsx_file(header=header, data=data)
         })
-        assert response.json() == {  # TODO WSP-88 edit json view
-            'pricelistfile': 
+        #  TODO WSP-88 edit json view
+        assert response.json() == {
+            'pricelistfile':
                 [
                     'xlsx cell error value',
                     'header error A1',
@@ -136,6 +137,4 @@ class TestAPI:
                     'xlsx cell error value',
                     'row error row 3 col B'
                 ]
-           }
-
-
+        }

@@ -24,22 +24,21 @@ class PriceListType(DjangoObjectType):
 
 
 class UpdateNote(graphene.Mutation):
-  class Arguments:
-    id = graphene.ID()
-    string = graphene.String()
+    class Arguments:
+        id = graphene.ID()  # noqa 
+        string = graphene.String()
 
+    note = graphene.Field(NoteType)
 
-  note = graphene.Field(NoteType)
-
-  def mutate(self, info, id, string):
-    note = Note.objects.get(pk=id)
-    note.string = string
-    note.save()
-    return UpdateNote(note=note)
+    def mutate(self, info, pk, string):  # noqa:W0613
+        note = Note.objects.get(pk=pk)
+        note.string = string
+        note.save()
+        return UpdateNote(note=note)
 
 
 class Mutation(graphene.ObjectType):
-  update_note = UpdateNote.Field()
+    update_note = UpdateNote.Field()
 
 
 class Query(graphene.ObjectType):
@@ -58,6 +57,7 @@ class Query(graphene.ObjectType):
         if main_identifier:
             return PriceList.objects.get(main_identifier=main_identifier)
         return None
+
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
 

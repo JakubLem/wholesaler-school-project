@@ -7,7 +7,7 @@ from openpyxl import load_workbook
 from .exceptions import Error, Errors
 
 
-def validate_xlsx_header(request_data, header):
+def validate_xlsx_header(request_data, header):  # noqa
     pass
 
 
@@ -30,14 +30,14 @@ def validate_xlsx_file(file_obj):
 
     for i in range(2, size, 1):
         try:
-            temp = float(worksheet[f'A{i}'].value)
-        except Exception as e:
+            float(worksheet[f'A{i}'].value)
+        except Exception as e:  # noqa
             errors.append(Error(category=XLSX_ERROR_CATEGORY, message=f'row error row {i} col A'))
             correct = False
 
         try:
-            temp = float(worksheet[f'B{i}'].value)
-        except Exception as e:
+            float(worksheet[f'B{i}'].value)
+        except Exception as e:  # noqa
             errors.append(Error(category=XLSX_ERROR_CATEGORY, message=f'row error row {i} col B'))
             correct = False
 

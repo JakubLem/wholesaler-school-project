@@ -45,4 +45,3 @@ class OptionSerializer(serializers.ModelSerializer):
 
 class XlsxPriceListSerializer(serializers.Serializer):
     pricelistfile = serializers.FileField(validators=[validators.validate_xlsx_file])
-

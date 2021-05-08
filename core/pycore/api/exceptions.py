@@ -15,6 +15,7 @@ class Error:
         print(json_obj)
         return json_obj
 
+
 class Errors:
     def __init__(self, errors):
         self.errors = errors
@@ -31,8 +32,8 @@ class Errors:
 
 
 class GeneralException(APIException):
-    def __init__(self, detail=None, code=None, errors=None):
-        super(GeneralException, self).__init__(detail=detail, code=code)
+    def __init__(self, detail=None, code=None):
+        super(GeneralException, self).__init__(detail=detail, code=code)  # noqa:R1725
         self.code = code
         self.detail = detail
 
