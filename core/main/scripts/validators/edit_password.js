@@ -1,3 +1,5 @@
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 function change_password_validate() {
     let form = document.forms["edit-password-form"];
     let user_old_password = {'name': 'user_old_password', 'value': form['user_old_password'].value};

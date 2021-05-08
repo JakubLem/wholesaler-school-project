@@ -1,3 +1,5 @@
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 function set_header(header_id, header_len) {
     let header_identifier;
     let element;

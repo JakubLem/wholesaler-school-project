@@ -1,4 +1,9 @@
-.register_ok {
+/*
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
+*/
+.register_ok, 
+.register_false {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -9,6 +14,10 @@
 }
 
 .register_false > p {
+    color: rgb(223, 79, 60);
+}
+
+.register_false > h2 {
     color: rgb(223, 79, 60);
 }
 
@@ -81,7 +90,7 @@
   
 .center-container { 
       grid-area: center-container;
-      width: 750px;
+      width: 900px;
       height: 550px;
       background-color: #cfd7e2;
       margin: 10px;

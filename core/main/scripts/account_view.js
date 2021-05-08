@@ -1,3 +1,5 @@
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 function switch_account_view(id) {
     let containers = Array.prototype.slice.call(
         document.getElementsByClassName("center-container")[0].children

@@ -1,4 +1,6 @@
 <?php
+// | school project | Jakub Lemiesiewicz |
+// | Zespół Szkół Komunikacji w Poznaniu |
 session_start();
 ?>
 
