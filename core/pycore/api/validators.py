@@ -4,6 +4,7 @@
 
 from django.core.exceptions import ValidationError
 from openpyxl import load_workbook
+from .exceptions import Error, Errors
 
 
 def validate_xlsx_header(request_data, header):
@@ -11,6 +12,7 @@ def validate_xlsx_header(request_data, header):
 
 
 def validate_xlsx_file(file_obj):
+    XLSX_ERROR_CATEGORY = 'xlsx cell error value'  # TODO WSP-84 create list of errors
     workbook = load_workbook(file_obj)
     worksheet = workbook.active
     size = worksheet.max_row + 1
@@ -20,7 +22,7 @@ def validate_xlsx_file(file_obj):
 
     if worksheet[f'A{1}'].value != 'max_weight':
         correct = False
-        errors.append("header error A1")
+        errors.append(Error(category=XLSX_ERROR_CATEGORY, message="header error A1"))
 
     if worksheet[f'B{1}'].value != 'price':
         correct = False
