@@ -26,23 +26,23 @@ def validate_xlsx_file(file_obj):
 
     if worksheet[f'B{1}'].value != 'price':
         correct = False
-        errors.append("header error B1")
+        errors.append(Error(category=XLSX_ERROR_CATEGORY, message="header error B1"))
 
     for i in range(2, size, 1):
         try:
             temp = float(worksheet[f'A{i}'].value)
         except Exception as e:
-            errors.append(f'row error row {i} col A')
+            errors.append(Error(category=XLSX_ERROR_CATEGORY, message=f'row error row {i} col A'))
             correct = False
 
         try:
             temp = float(worksheet[f'B{i}'].value)
         except Exception as e:
-            errors.append(f'row error row {i} col B')
+            errors.append(Error(category=XLSX_ERROR_CATEGORY, message=f'row error row {i} col B'))
             correct = False
 
     if not correct:
-        raise ValidationError(errors)
+        raise ValidationError(Errors(errors).json)
 
 
 def validate_load_start_data(request):  # noqa:W0613

@@ -120,5 +120,5 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
             'pricelistfile': temp_xlsx_file(header=header, data=data)
         })
-        assert response.json() == "{'pricelistfile': [ErrorDetail(string='header error A1', code='invalid'), ErrorDetail(string='header error B1', code='invalid'), ErrorDetail(string='row error row 2 col A', code='invalid'), ErrorDetail(string='row error row 2 col B', code='invalid'), ErrorDetail(string='row error row 3 col A', code='invalid'), ErrorDetail(string='row error row 3 col B', code='invalid')]}"
+        assert response.json() == "test"
 
