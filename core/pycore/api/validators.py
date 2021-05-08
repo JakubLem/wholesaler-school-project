@@ -42,7 +42,11 @@ def validate_xlsx_file(file_obj):
             correct = False
 
     if not correct:
-        raise ValidationError(Errors(errors).json)
+        detail = Errors(errors)
+        print("x")
+        print(detail.json_array)
+        print("x")
+        raise ValidationError(detail.json_array)
 
 
 def validate_load_start_data(request):  # noqa:W0613

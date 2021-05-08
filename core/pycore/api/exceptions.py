@@ -20,7 +20,7 @@ class Errors:
         self.errors = errors
 
     @property
-    def json(self):
+    def json_array(self):
 
         json_view = list()
         for error in self.errors:

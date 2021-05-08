@@ -120,5 +120,5 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
             'pricelistfile': temp_xlsx_file(header=header, data=data)
         })
-        assert response.json() == "test"
+        assert response.json() == {'test': 'test'}
 

@@ -96,6 +96,9 @@ class PriceListViewSet(ModelViewSet):  # noqa:R0901
         serializer = serializers.XlsxPriceListSerializer(data=request.data)
         if not serializer.is_valid():
             # raise BaseException(serializer.errors)
+            print("X")
+            print(serializer.errors)
+            print("X")
             raise exceptions.InvalidRequest(serializer.errors)
             # raise exceptions.InvalidRequest(detail={'test': 'test'})
         def delete():
