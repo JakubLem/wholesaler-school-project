@@ -6,6 +6,12 @@ class Error:
         self.category = category
         self.message = message
 
+    @property
+    def json(self):
+        return {
+            'category': self.category,
+            'message': self.message
+        }
 
 class Errors:
     def __init__(self, errors):
@@ -13,7 +19,10 @@ class Errors:
 
     @property
     def json(self):
-        return self.errors
+        json_view = list()
+        for error in self.errors:
+            json_view.append(error.json)
+        return json_view
 
 
 class GeneralException(APIException):
@@ -21,7 +30,6 @@ class GeneralException(APIException):
         super(GeneralException, self).__init__(detail=detail, code=code)
         self.code = code
         self.detail = detail
-        # self.errors = Errors(errors)
 
 
 class InvalidRequest(GeneralException):
