@@ -38,5 +38,5 @@ if(isset($_GET['id']) && isset($_SESSION['user_identifier'])){
         }
     }
 }
-
+$_SESSION['buy'] = "OK";
 header("Location: products.php");

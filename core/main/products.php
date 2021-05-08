@@ -76,10 +76,14 @@ $header = array(
     </tbody>
 </table>
 <?php
-
-
-
-
-
-
 @include_once(__DIR__. '/stop.php');
+if(isset($_SESSION['buy'])){
+    if($_SESSION['buy'] == "OK"){
+        ?>
+            <script>
+                alert("Dodano produkt do koszyka!");
+            </script>
+        <?php
+    }
+    unset($_SESSION['buy']);
+}
