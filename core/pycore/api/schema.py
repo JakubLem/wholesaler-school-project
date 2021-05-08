@@ -31,7 +31,7 @@ class UpdateNote(graphene.Mutation):
 
   def mutate(self, info, id, string):
     note = Note.objects.get(pk=id)
-    note.name = string
+    note.string = string
     note.save()
     return UpdateNote(note=note)
 
@@ -57,7 +57,7 @@ class Query(graphene.ObjectType):
             return PriceList.objects.get(main_identifier=main_identifier)
         return None
 
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query, mutation=Mutation)
 
 
 """
