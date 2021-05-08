@@ -30,7 +30,7 @@ class CreateNote(graphene.Mutation):
 
     note = graphene.Field(NoteType)
 
-    def mutate(self, info, string):
+    def mutate(self, info, string):  # noqa:W0613
         note = Note.objects.create(string=string)
         note.save()
         return CreateNote(note=note)
