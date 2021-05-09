@@ -3,7 +3,7 @@
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ValidationError
-from .models import Note, PriceList, Option, Product, Producer
+from .models import Note, PriceList, Option, Product, Producer, Category
 from . import validators
 
 
@@ -13,10 +13,31 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = ["string"]
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'short_description')
+
+    def validate(self, data):
+        pass
+
+
+class ProducerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Producer
+        fields = ('id', 'name', 'short_description', 'year_of_created')
+
+    def validate(self, data):
+        pass
+
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = []
+        fields = ('id', 'name', 'category', 'price', 'promo_price', 'status', 'producer')
+
+    def validate(self, data):
+        pass
 
 
 class PriceListSerializer(serializers.ModelSerializer):
