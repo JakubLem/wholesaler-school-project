@@ -138,3 +138,6 @@ class TestAPI:
                     'row error row 3 col B'
                 ]
         }
+
+    def test_producer_category_product(self, my_client):
+        pass
