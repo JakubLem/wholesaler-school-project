@@ -19,7 +19,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'short_description')
 
     def validate(self, data):
-        pass
+        validators.validate_category(data)
 
 
 class ProducerSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class ProducerSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'short_description', 'year_of_created')
 
     def validate(self, data):
-        pass
+        validators.validate_producer(data)
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'category', 'price', 'promo_price', 'status', 'producer')
 
     def validate(self, data):
-        pass
+        validators.validate_product(data=data)
 
 
 class PriceListSerializer(serializers.ModelSerializer):

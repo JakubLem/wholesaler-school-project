@@ -52,3 +52,15 @@ def validate_xlsx_file(file_obj):
 def validate_load_start_data(request):  # noqa:W0613
     # raise ValidationError({"test": "test_test"})
     return True
+
+
+def validate_product(data):
+    pass
+
+
+def validate_producer(data):
+    pass
+
+
+def validate_category(data):
+    pass
