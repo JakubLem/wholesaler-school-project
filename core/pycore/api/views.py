@@ -7,7 +7,7 @@ from rest_framework.decorators import action
 
 from openpyxl import load_workbook
 from django.shortcuts import get_object_or_404
-from .models import Note, PriceList, Option
+from .models import Note, PriceList, Option, Producer, Product, Category
 from . import serializers, validators, exceptions
 
 
@@ -130,3 +130,18 @@ class PriceListViewSet(ModelViewSet):  # noqa:R0901
 class OptionViewSet(ModelViewSet):  # noqa:R0901
     serializer_class = serializers.OptionSerializer
     queryset = Option.objects.all()
+
+
+class ProductViewSet(ModelViewSet):
+    serializer_class = serializers.ProductSerializer
+    queryset = Product.objects.all()
+
+
+class ProducerViewSet(ModelViewSet):
+    serializer_class = serializers.ProducerSerializer
+    queryset = Producer.objects.all()
+
+
+class CategoryViewSet(ModelViewSet):
+    serializer_class = serializers.CategorySerializer
+    queryset = Category.objects.all()
