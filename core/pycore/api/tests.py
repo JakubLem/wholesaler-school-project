@@ -140,4 +140,8 @@ class TestAPI:
         }
 
     def test_producer_category_product(self, my_client):
-        pass
+        c = my_client()
+
+        models.Product.objects.count() == 0
+        models.Producer.objects.count() == 0
+        models.Category.objects.count() == 0
