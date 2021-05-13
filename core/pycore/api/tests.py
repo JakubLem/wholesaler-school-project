@@ -29,9 +29,12 @@ class TestAPI:
         response = c.get(MAIN_API_PATH)
 
         assert response.json() == {
+            'categories': 'http://testserver/api/categories/',
             'notes': 'http://testserver/api/notes/',
             'options': 'http://testserver/api/options/',
-            'pricelists': 'http://testserver/api/pricelists/'
+            'pricelists': 'http://testserver/api/pricelists/',
+            'producers': 'http://testserver/api/producers/',
+            'products': 'http://testserver/api/products/'
         }
 
     def test_test_url(self, my_client):
@@ -145,3 +148,10 @@ class TestAPI:
         models.Product.objects.count() == 0
         models.Producer.objects.count() == 0
         models.Category.objects.count() == 0
+
+        response = c.post(MAIN_API_PATH + 'categories/', {
+            'name': 'test_category_name_1',
+            'short_description': 'test_category_sd_1'
+        })
+
+        assert response.status_code == 201

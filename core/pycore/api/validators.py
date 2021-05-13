@@ -48,19 +48,18 @@ def validate_xlsx_file(file_obj):
         print("x")
         raise ValidationError(detail.json_array)
 
-
-def validate_load_start_data(request):  # noqa:W0613
+def validate_load_start_data(data):  # noqa:W0613
     # raise ValidationError({"test": "test_test"})
-    return True
+    return data
 
 
 def validate_product(data):
-    pass
+    return data
 
 
 def validate_producer(data):
-    pass
+    return data
 
 
 def validate_category(data):
-    pass
+    return data

@@ -11,6 +11,9 @@ router = routers.DefaultRouter()
 router.register(r'notes', views.NoteViewSet)
 router.register(r'pricelists', views.PriceListViewSet)
 router.register(r'options', views.OptionViewSet)
+router.register(r'categories', views.CategoryViewSet)
+router.register(r'products', views.ProductViewSet)
+router.register(r'producers', views.ProducerViewSet)
 
 urlpatterns = [
     url(r'test/', views.GetTestViewSet.as_view(), name='test'),
