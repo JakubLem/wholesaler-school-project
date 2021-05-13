@@ -155,3 +155,25 @@ class TestAPI:
         })
 
         assert response.status_code == 201
+        models.Category.objects.count() == 1
+
+        response = c.post(MAIN_API_PATH + 'producers/', {
+            'name': 'test_producer_name_1',
+            'short_description': 'test_producer_sd_1',
+            'year_of_created': 1892
+        })
+
+        assert response.status_code == 201
+        models.Producer.objects.count() == 1
+
+        response = c.post(MAIN_API_PATH + 'products/', {
+            'name': 'test_product_name_1',
+            'category': 1,
+            'price': 19.15,
+            'promo_price': 19.15,
+            'status': True,
+            'producer': 1
+        })
+
+        assert response.status_code == 201
+        models.Product.objects.count() == 1
