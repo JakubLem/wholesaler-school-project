@@ -177,3 +177,17 @@ class TestAPI:
 
         assert response.status_code == 201
         models.Product.objects.count() == 1
+
+        response = c.get(MAIN_API_PATH + 'products/')
+        assert response.json() == [{'id': 1, 'name': 'test_product_name_1', 'category': 1, 'price': 19.15, 'promo_price': 19.15, 'status': True, 'producer': 1}]
+
+        response = c.get(MAIN_API_PATH + 'producers/')
+        assert response.json() == [{'id': 1, 'name': 'test_producer_name_1', 'short_description': 'test_producer_sd_1', 'year_of_created': 1892}]
+
+        response = c.get(MAIN_API_PATH + 'categories/')
+        assert response.json() == [{'id': 1, 'name': 'test_category_name_1', 'short_description': 'test_category_sd_1'}]
+
+        response = c.put(MAIN_API_PATH + 'categories/1/', {
+            'name': 'name_after_change'
+        })
+        assert response.json() == 'test'
