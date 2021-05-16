@@ -54,12 +54,15 @@ def validate_load_start_data(data):  # noqa:W0613
 
 
 def validate_product(data):
+    # TODO WSP-65
     return data
 
 
 def validate_producer(data):
+    # TODO WSP-65
     return data
 
 
 def validate_category(data):
+    # TODO WSP-65
     return data

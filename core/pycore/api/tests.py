@@ -187,7 +187,7 @@ class TestAPI:
         response = c.get(MAIN_API_PATH + 'categories/')
         assert response.json() == [{'id': 1, 'name': 'test_category_name_1', 'short_description': 'test_category_sd_1'}]
 
-        response = c.put(MAIN_API_PATH + 'categories/1/', {
+        response = c.put(MAIN_API_PATH + 'products/1/', {
             'name': 'name_after_change'
         })
         assert response.json() == 'test'
