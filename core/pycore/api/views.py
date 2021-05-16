@@ -135,13 +135,19 @@ class OptionViewSet(ModelViewSet):  # noqa:R0901
 class ProductViewSet(ModelViewSet):
     serializer_class = serializers.ProductSerializer
     queryset = Product.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = 'id'
 
 
 class ProducerViewSet(ModelViewSet):
     serializer_class = serializers.ProducerSerializer
     queryset = Producer.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = 'id'
 
 
 class CategoryViewSet(ModelViewSet):
     serializer_class = serializers.CategorySerializer
     queryset = Category.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = 'id'

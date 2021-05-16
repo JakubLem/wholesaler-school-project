@@ -188,6 +188,11 @@ class TestAPI:
         assert response.json() == [{'id': 1, 'name': 'test_category_name_1', 'short_description': 'test_category_sd_1'}]
 
         response = c.put(MAIN_API_PATH + 'products/1/', {
-            'name': 'name_after_change'
-        })
-        assert response.json() == 'test'
+            'name': 'test_product_name_1_after_change',
+            'category': 1,
+            'price': 19.15,
+            'promo_price': 19.15,
+            'status': True,
+            'producer': 1
+        }, content_type='application/json')
+        assert response.json() == {'id': 1, 'name': 'test_product_name_1_after_change', 'category': 1, 'price': 19.15, 'promo_price': 19.15, 'status': True, 'producer': 1}
