@@ -18,7 +18,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('id', 'name', 'short_description')
 
-    def validate(self, data):
+    def validate(self, data):  # noqa:W0221
         return validators.validate_category(data)
 
 
@@ -27,9 +27,8 @@ class ProducerSerializer(serializers.ModelSerializer):
         model = Producer
         fields = ('id', 'name', 'short_description', 'year_of_created')
 
-    def validate(self, data):
+    def validate(self, data):  # noqa:W0221
         return validators.validate_producer(data)
-
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -37,7 +36,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ('id', 'name', 'category', 'price', 'promo_price', 'status', 'producer')
 
-    def validate(self, data):
+    def validate(self, data):  # noqa:W0221
         return validators.validate_product(data=data)
 
 
