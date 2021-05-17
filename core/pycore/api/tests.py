@@ -29,9 +29,12 @@ class TestAPI:
         response = c.get(MAIN_API_PATH)
 
         assert response.json() == {
+            'categories': 'http://testserver/api/categories/',
             'notes': 'http://testserver/api/notes/',
             'options': 'http://testserver/api/options/',
-            'pricelists': 'http://testserver/api/pricelists/'
+            'pricelists': 'http://testserver/api/pricelists/',
+            'producers': 'http://testserver/api/producers/',
+            'products': 'http://testserver/api/products/'
         }
 
     def test_test_url(self, my_client):
@@ -122,19 +125,141 @@ class TestAPI:
         })
         #  TODO WSP-88 edit json view
         assert response.json() == {
-            'pricelistfile':
-                [
-                    'xlsx cell error value',
-                    'header error A1',
-                    'xlsx cell error value',
-                    'header error B1',
-                    'xlsx cell error value',
-                    'row error row 2 col A',
-                    'xlsx cell error value',
-                    'row error row 2 col B',
-                    'xlsx cell error value',
-                    'row error row 3 col A',
-                    'xlsx cell error value',
-                    'row error row 3 col B'
-                ]
+            'pricelistfile': [
+                'xlsx cell error value',
+                'header error A1',
+                'xlsx cell error value',
+                'header error B1',
+                'xlsx cell error value',
+                'row error row 2 col A',
+                'xlsx cell error value',
+                'row error row 2 col B',
+                'xlsx cell error value',
+                'row error row 3 col A',
+                'xlsx cell error value',
+                'row error row 3 col B'
+            ]
         }
+
+    def test_producer_category_product(self, my_client):
+        c = my_client()
+
+        assert models.Product.objects.count() == 0
+        assert models.Producer.objects.count() == 0
+        assert models.Category.objects.count() == 0
+
+        response = c.post(MAIN_API_PATH + 'categories/', {
+            'name': 'test_category_name_1',
+            'short_description': 'test_category_sd_1'
+        })
+
+        assert response.status_code == 201
+        assert models.Category.objects.count() == 1
+
+        response = c.post(MAIN_API_PATH + 'producers/', {
+            'name': 'test_producer_name_1',
+            'short_description': 'test_producer_sd_1',
+            'year_of_created': 1892
+        })
+
+        assert response.status_code == 201
+        assert models.Producer.objects.count() == 1
+
+        response = c.post(MAIN_API_PATH + 'products/', {
+            'name': 'test_product_name_1',
+            'category': 1,
+            'price': 19.15,
+            'promo_price': 19.15,
+            'status': True,
+            'producer': 1
+        })
+
+        assert response.status_code == 201
+        assert models.Product.objects.count() == 1
+
+        response = c.get(MAIN_API_PATH + 'products/')
+        assert response.json() == [
+            {
+                'id': 1,
+                'name': 'test_product_name_1',
+                'category': 1,
+                'price': 19.15,
+                'promo_price': 19.15,
+                'status': True,
+                'producer': 1
+            }
+        ]
+
+        response = c.get(MAIN_API_PATH + 'producers/')
+        assert response.json() == [
+            {
+                'id': 1,
+                'name': 'test_producer_name_1',
+                'short_description': 'test_producer_sd_1',
+                'year_of_created': 1892
+            }
+        ]
+
+        response = c.get(MAIN_API_PATH + 'categories/')
+        assert response.json() == [
+            {
+                'id': 1,
+                'name': 'test_category_name_1',
+                'short_description': 'test_category_sd_1'
+            }
+        ]
+
+        response = c.put(MAIN_API_PATH + 'products/1/', {
+            'name': 'test_product_name_1_after_change',
+            'category': 1,
+            'price': 19.15,
+            'promo_price': 19.15,
+            'status': True,
+            'producer': 1
+        }, content_type='application/json')
+        assert response.status_code == 200
+        assert response.json() == {
+            'id': 1,
+            'name': 'test_product_name_1_after_change',
+            'category': 1,
+            'price': 19.15,
+            'promo_price': 19.15,
+            'status': True,
+            'producer': 1
+        }
+
+        response = c.put(MAIN_API_PATH + 'producers/1/', {
+            'name': 'test_producer_name_1_ac',
+            'short_description': 'test_producer_sd_1',
+            'year_of_created': 1892
+        }, content_type='application/json')
+        assert response.status_code == 200
+        assert response.json() == {
+            'id': 1,
+            'name': 'test_producer_name_1_ac',
+            'short_description': 'test_producer_sd_1',
+            'year_of_created': 1892
+        }
+
+        response = c.put(MAIN_API_PATH + 'categories/1/', {
+            'name': 'test_category_name_1_ac',
+            'short_description': 'test_category_sd_1'
+        }, content_type='application/json')
+        assert response.status_code == 200
+        assert response.json() == {
+            'id': 1,
+            'name': 'test_category_name_1_ac',
+            'short_description': 'test_category_sd_1'
+        }
+
+        response = c.delete(MAIN_API_PATH + 'products/1/')
+        assert response.status_code == 204
+        assert models.Product.objects.count() == 0
+
+        response = c.delete(MAIN_API_PATH + 'categories/1/')
+        assert response.status_code == 204
+        assert models.Category.objects.count() == 0
+
+        response = c.delete(MAIN_API_PATH + 'producers/1/')
+        assert response.status_code == 204
+        assert models.Producer.objects.count() == 0
