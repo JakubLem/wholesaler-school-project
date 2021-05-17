@@ -110,7 +110,7 @@ class TestAPI:
         response = c.post(MAIN_API_PATH + 'loaddata_startdata/')
         assert response.json() == {'status': 'OK', 'code': 'The pricelist data has already existed on the instance'}
 
-    def test_upload_xlsx(self, my_client, temp_xlsx_file):
+    def test_upload_xlsx_invalid(self, my_client, temp_xlsx_file):
         c = my_client()
         header = ["test", "header"]
         data = [
@@ -138,3 +138,15 @@ class TestAPI:
                     'row error row 3 col B'
                 ]
         }
+
+    def test_upload_xlsx_valid(self, my_client, temp_xlsx_file):
+        c = my_client()
+        header = ["max_weight", "price"]
+        data = [
+            [1.0, 15.9],
+            [2.0, 33.33]
+        ]
+        response = c.post(MAIN_API_PATH + 'pricelists/upload_mainwsppricelist/', {
+            'pricelistfile': temp_xlsx_file(header=header, data=data)
+        })
+        assert response.json() == {'OK': 2}
