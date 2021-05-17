@@ -124,3 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Poland"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
