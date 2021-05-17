@@ -212,3 +212,15 @@ class TestAPI:
         }, content_type='application/json')
         assert response.status_code == 200
         assert response.json() == {'id': 1, 'name': 'test_category_name_1_ac', 'short_description': 'test_category_sd_1'}
+
+        response = c.delete(MAIN_API_PATH + 'products/1/')
+        assert response.status_code == 204
+        assert models.Product.objects.count() == 0
+
+        response = c.delete(MAIN_API_PATH + 'categories/1/')
+        assert response.status_code == 204
+        assert models.Category.objects.count() == 0
+
+        response = c.delete(MAIN_API_PATH + 'producers/1/')
+        assert response.status_code == 204
+        assert models.Producer.objects.count() == 0
