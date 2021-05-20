@@ -62,7 +62,7 @@ def temp_xlsx_file():
 def description():
     def array(custom_size):
         des = str("")
-        for i in range(custom_size):
+        for i in range(custom_size): # noqa:W0612
             des += get_random_string(length=15)
             des += " "
         return des[:-1]
