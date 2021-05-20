@@ -34,7 +34,7 @@ class ProducerSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'category', 'price', 'promo_price', 'status', 'producer')
+        fields = ('id', 'name', 'category', 'price', 'promo_price', 'status', 'producer', 'description')
 
     def validate(self, data):  # noqa:W0221
         return validators.validate_product(data=data)
