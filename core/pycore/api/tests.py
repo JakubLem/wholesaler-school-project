@@ -21,6 +21,10 @@ class TestFunctions:
         data = []
         temp_xlsx_file(header, data)
 
+    def test_description(self, description):
+        d = description(450)
+        assert len(d.split()) == 450
+
 
 @pytest.mark.django_db
 class TestAPI:
@@ -171,7 +175,8 @@ class TestAPI:
             'price': 19.15,
             'promo_price': 19.15,
             'status': True,
-            'producer': 1
+            'producer': 1,
+            'description': 'test'
         })
 
         assert response.status_code == 201
@@ -183,6 +188,7 @@ class TestAPI:
                 'id': 1,
                 'name': 'test_product_name_1',
                 'category': 1,
+                'description': 'test',
                 'price': 19.15,
                 'promo_price': 19.15,
                 'status': True,
@@ -215,13 +221,15 @@ class TestAPI:
             'price': 19.15,
             'promo_price': 19.15,
             'status': True,
-            'producer': 1
+            'producer': 1,
+            'description': 'test'
         }, content_type='application/json')
         assert response.status_code == 200
         assert response.json() == {
             'id': 1,
             'name': 'test_product_name_1_after_change',
             'category': 1,
+            'description': 'test',
             'price': 19.15,
             'promo_price': 19.15,
             'status': True,
