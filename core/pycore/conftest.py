@@ -56,3 +56,14 @@ def temp_xlsx_file():
         )
 
     return temp_file
+
+
+@pytest.fixture(scope='function')
+def description():
+    def array(custom_size):
+        des = str("")
+        for i in range(custom_size): # noqa:W0612
+            des += get_random_string(length=15)
+            des += " "
+        return des[:-1]
+    return array

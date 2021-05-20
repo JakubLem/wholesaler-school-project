@@ -54,3 +54,4 @@ class Product(models.Model):
     promo_price = models.FloatField()
     status = models.BooleanField()
     producer = models.ForeignKey(Producer, null=False, blank=False, on_delete=models.CASCADE, related_name='products')
+    description = models.TextField()
